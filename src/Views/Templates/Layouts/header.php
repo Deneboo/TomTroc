@@ -1,0 +1,23 @@
+    <header>
+        <nav>
+            <a href="index.php?action=login" class="logo-link">
+                <img src="/assets/images/logo.svg" alt="" class="logo"></a>
+            <div class="nav-container">
+                <ul class="nav-left">
+                    <li><a href="index.php?action=home">Accueil</a></li>
+                    <li><a href="index.php?action=books">Nos livres à échanger</a></li>
+                    
+                </ul>
+                <ul class="nav-right">
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <li><a href="index.php?action=home">Messagerie</a></li>
+                        <li><a href="index.php?action=books">Mon compte</a></li>
+                        <li><a href="index.php?action=logout">Déconnexion</a></li>
+                    <?php } else { ?>
+                        <li><a href="index.php?action=register">Inscription</a></li>
+                        <li><a href="index.php?action=login">Connexion</a></li>
+                    <?php  } ?>
+                </ul>
+            </div>
+        </nav>
+    </header>

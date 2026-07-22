@@ -1,2 +1,8 @@
-# TomTroc
-OpenClassroom training - Project 6
+## TomTroc 
+## Exercice OpenClassroom - Formation PHP/Symfony
+
+## Pour utiliser ce projet : 
+
+- Commencer par cloner le projet. 
+
+## Lancez le projet ! 

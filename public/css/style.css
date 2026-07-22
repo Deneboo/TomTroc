@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --backgroundColor: #F5F3EF;
+    --backgroundLight: #FAF9F7;
+    --primaryColor: #00AC66;
+    --titleColor: #000;
+    --primaryTextColor: #292929;
+    --secondaryTextColor: #A6A6A6;
+    --commentColor: #255E33;
+}
+
+main {
+  min-height: 80vh;
+}
+
+/* ----- Textes ----- */
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--titleColor);
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--primaryTextColor);
+}
+
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--primaryTextColor);
+}
+
+h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--TitleColor);
+}
+
+
+p {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--primaryTextColor);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--secondaryTextColor);
+}
+
+/* ----- Buttons ----- */
+
+.btn {
+  height: 63;
+  opacity: 1;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 22px 38px;
+}
+
+.btn-primary {
+  background: var(--primaryColor);
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background: var(--backgroundColor);
+  color: var(--primaryColor);
+  /* border:  1rem solid; */
+  border:  1px solid var(--primaryColor);
+}
+
+/* ----- Header ----- */
+
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: 78px;
+    max-width: 100%;
+    margin: auto;
+    padding: 15px 150px 14px 150px;
+    background-color: var(--backgroundColor);
+}
+
+.logo-link {
+  width: 155px;
+  height: 51px;
+  color: var(--primaryColor);
+}
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 266px;
+}
+
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 44px;
+}
+
+.nav-left a, .nav-right a {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--primaryTextColor);
+}
+
+.nav-right {
+  display: flex;
+  gap: 58px;
+  align-items: center;
+}
+
+/* ----- Footer ----- */
+
+footer nav {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+footer nav ul {
+  display: flex;
+  gap: 40px
+}
+
+footer nav ul li {
+  display: flex;
+  gap: 40px;
+  color: var(--primaryTextColor);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/* ----- Main content ----- */
+
+/* TODO : see if it is common to all pages or it just for home then move it it the right plce if that last part is true. */
+
+.container {
+  background-color: var(--backgroundColor);
+}
+
+.container:nth-child(even) {
+  background-color: var(--backgroundLight);
+}
+
+/* ----- Home page ----- */
+/* About section */
+
+.about {
+  display: flex;
+  gap: 108px;
+  align-items: center;
+  padding: 80px 290px 128px 310px;
+}
+
+.about-text {
+  width: 385px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-text button {
+  margin-top: 34px;
+  align-self: flex-start;
+}
+
+.about-img {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-img img {
+  width: 404px;
+  height: 539px;
+  object-fit: cover;
+}
+
+.about-img p {
+  align-self: flex-end;
+} 
+
+/* Last added books section */
+
+.last-added {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 263px 63px 263px;
+}
+
+.last-added h2 {
+  margin-bottom: 42px;
+  color: var(--primaryTextColor);
+}
+
+.last-added ul {
+  display: flex;
+  gap: 38px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: flex-start;
+  width: 200px;
+  padding-bottom: 23px;
+  background-color: #fff;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.book-card h4, 
+.book-card p {
+    padding: 0 14px;
+}
+
+.book-card h4 {
+  padding-top: 12px;
+}
+
+.book-card p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--secondaryTextColor);
+}
+
+.book-card .seller {
+  padding-top: 16px;
+  font-size: 10px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--secondaryTextColor);
+}
+
+.book-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* How it works section */
+
+.how-it-works {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  padding: 80px 263px 80px 263px;
+}
+
+.how-it-works h2 {
+  color: var(--primaryTextColor);
+} 
+
+.how-it-works ul {
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+  padding: 16px 0 24px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.how-it-works li {
+  max-width: 200px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.how-it-works li p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--primaryTextColor);
+}
+
+main img {
+  width: 100%;
+  height: 230px;
+  /* margin: 0;
+  padding: 0; */
+  object-fit: cover;
+  display: block;
+}
+
+/* Our values section */
+
+.our-values {
+  display: flex;
+  justify-content: center;
+}
+.our-values .values-box {
+  max-width: 392px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 80px 0;
+  box-sizing: border-box;
+}
+
+.our-values .values-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.signature {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.signature img {
+  width: 120px;
+  height: 102px;
+}
+
+/* ----- Books list page ----- */
+
+.books {
+
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: var(--backgroundLight);
+}
+
+.book-list {
+  width: 914px;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  margin: 0 263px 0 263px;
+}
+
+.book-list h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 130px;
+}
+
+.book-list ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 38px;
+    row-gap: 48px;
+    margin-bottom: 80px;
+}
+
+.book-list ul li .card {
+  background-color: #fff;
+}
+
+/* ----- Book detail page ----- */
+
+/* ----- Register page ----- */
+
+/* ----- Login page ----- */
+
+/* ----- User account page ----- */
+
+/* ----- Add edit book page ----- */
+
+/* ----- Messaging page ----- */
