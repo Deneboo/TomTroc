@@ -9,7 +9,7 @@
 ?>
 
 <!-- About -->
-<section class="container about">
+<section class="home-container about">
     <div class="about-text">
       <h1>Rejoignez nos lecteurs passionnés</h1>
       <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. 
@@ -23,7 +23,7 @@
     </div>
 </section>
 <!-- List of the four last books add -->
- <section class="container last-added">
+ <section class="home-container last-added">
  <h2>Les derniers livres ajoutés</h2>
  <ul>
     <?php foreach ($books as $book): ?>
@@ -56,7 +56,7 @@
 
  </section>
 <!-- How it works -->
- <section class="container how-it-works">
+ <section class="home-container how-it-works">
     <h2>Comment ça marche ?</h2>
     <p>Échanger des livres avec TomTroc c’est simple et amusant ! Suivez ces étapes pour commencer :</p>
     <ul>
@@ -86,7 +86,7 @@
  </section>
  <img src="/assets/images/darwin-vegher.jpg" alt="image de livres">
 <!-- Our values -->
- <section class="container our-values">
+ <section class="home-container our-values">
   <div class="values-box">
     <h2>Nos valeurs</h2>
     <div class="values-text">
