@@ -1,0 +1,51 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+h1 {
+  @include typography;
+}
+
+h2 {
+  @include typography(
+    $size: 32px,
+    $color: inherit
+  )
+}
+
+h3 {
+  @include typography(
+    $size: 24px,
+    $color: inherit
+  )
+}
+
+h4 {
+  @include typography(
+    $font-family: inherit,
+    $size: 16px,
+    $color: inherit
+  )
+}
+
+
+p {
+  @include typography(
+    inherit, 16px, 300, inherit
+  )
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+.caption {
+   @include typography(
+    inherit, 12px, 400, inherit
+  );
+  font-style: italic;
+}

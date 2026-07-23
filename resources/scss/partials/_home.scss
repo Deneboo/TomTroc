@@ -1,0 +1,141 @@
+@use '../common' as *;
+
+/* ----- Home page ----- */
+/* About section */
+
+.about {
+  @include flex(row, flex-start, center, 108px);
+  padding: 80px 290px 128px 310px;
+}
+
+.about-text {
+  @include flex(column, flex-start, stretch, 16px);
+  width: 385px;
+}
+
+.about-text button {
+  margin-top: 34px;
+  align-self: flex-start;
+}
+
+.about-img {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-img img {
+  width: 404px;
+  height: 539px;
+  object-fit: cover;
+}
+
+.about-img p {
+  align-self: flex-end;
+} 
+
+/* Last added books section */
+
+.last-added {
+    @include flex(
+    $direction: column,
+    $align: center,
+    $gap: 80px
+  );
+  padding: 80px 263px 63px 263px;
+}
+
+.last-added h2 {
+  margin-bottom: 42px;
+  color: inherit;
+}
+
+.last-added ul {
+  display: flex;
+  gap: 38px;
+}
+
+/* How it works section */
+
+.how-it-works {
+  @include flex(
+    $direction: column,
+    $align: center,
+    $gap: 24px
+  );
+  padding: 80px 263px 80px 263px;
+}
+
+.how-it-works h2 {
+  color: inherit;
+} 
+
+.how-it-works ul {
+  @include flex(
+    $justify: center,
+    $gap: 36px
+  );
+  padding: 16px 0 24px 0;
+  flex-wrap: wrap;
+}
+
+.how-it-works li {
+  max-width: 200px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 44px 17px;
+}
+
+.how-it-works li p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: inherit;
+}
+
+main img {
+  width: 100%;
+  height: 230px;
+  /* margin: 0;
+  padding: 0; */
+  object-fit: cover;
+  display: block;
+}
+
+/* Our values section */
+
+.our-values {
+  display: flex;
+  justify-content: center;
+}
+.our-values .values-box {
+  max-width: 392px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 80px 0;
+  box-sizing: border-box;
+}
+
+.our-values .values-text {
+  @include flex(
+    $direction: column,
+    $gap: 26px
+  );
+  padding: 0;
+  margin: 0;
+}
+
+.signature {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.signature img {
+  width: 120px;
+  height: 102px;
+}

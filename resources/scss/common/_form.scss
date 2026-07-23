@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+.form-section {
+  max-width: 322px;
+  width: 100%;
+  margin: 210px 0px 205px 150px;
+}
+
+form label {
+  font-size: 14px;
+  font-weight: 400;
+  color: $secondary-text-color;
+}
+
+form input {
+  width: 322px;
+  height: 50px;
+  border: 1px solid $light-border;
+  border-radius: 6px;
+}
+
+form input::placeholder {
+  color: $secondary-text-color;
+  opacity: 1;
+}

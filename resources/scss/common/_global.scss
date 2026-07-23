@@ -1,0 +1,31 @@
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-body;
+  color: $primary-text-color;
+}
+
+main {
+  min-height: 80vh;
+}
+
+.home-container {
+  background-color: $background-color;
+}
+
+.home-container:nth-child(even) {
+  background-color: $background-light;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: $background-light;
+}
+
+

@@ -1,0 +1,19 @@
+/* ----- Register Login page ----- */
+
+.register-login-page {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.register-login-page img {
+    width: 720px;
+    height: 886px;
+}
+
+.register-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 32px;
+}
