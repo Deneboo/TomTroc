@@ -1,0 +1,44 @@
+@use "../common" as *;
+
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: 78px;
+    max-width: 100%;
+    margin: auto;
+    padding: 15px 150px 14px 150px;
+    background-color: $background-color;
+}
+
+.logo-link {
+  width: 155px;
+  height: 51px;
+  color: $primary-color;
+}
+
+.nav-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 266px;
+}
+
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 44px;
+}
+
+.nav-left a, .nav-right a {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: inherit;
+}
+
+.nav-right {
+  display: flex;
+  gap: 58px;
+  align-items: center;
+}

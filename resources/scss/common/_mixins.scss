@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+@mixin typography(
+  $font-family: $font-title,
+  $size: 36px,
+  $weight: 400,
+  $color: $title-color
+) {
+  font-family: $font-family;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin section($top: 80px, $bottom: 80px) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+}
+
+@mixin button($bg, $color, $border: none) {
+  background: $bg;
+  color: $color;
+  border: $border;
+}

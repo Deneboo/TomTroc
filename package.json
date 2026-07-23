@@ -1,0 +1,17 @@
+{
+  "name": "tomtroc",
+  "version": "1.0.0",
+  "description": "## Pour utiliser ce projet :",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass resources/scss:public/css",
+    "watch": "sass --watch resources/scss:public/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.99.0"
+  }
+}

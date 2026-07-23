@@ -1,0 +1,76 @@
+/* ----- Books list page ----- */
+
+.book-list {
+  width: 914px;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  margin: 0 auto;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+   margin-top: 130px;
+}
+
+.title h1 {
+  margin: 0;
+}
+
+.title input {
+  height: 48px;
+  padding: 0 16px;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 48px;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 16px;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 12px;
+  padding: 0;
+}
+
+.search-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.search-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+}
+
+.search-input input::placeholder {
+  color: #A6A6A6;
+}
+
+.book-list ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 38px;
+    row-gap: 48px;
+    margin-bottom: 80px;
+}
+
+.book-list ul li .card {
+  background-color: #fff;
+}

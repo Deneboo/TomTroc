@@ -1,3 +1,4 @@
 config/config.php
 vendor/autoload.php
 vendor/composer/*.*
+node_modules

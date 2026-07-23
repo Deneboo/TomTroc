@@ -1,0 +1,42 @@
+@use 'variables' as v;
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: flex-start;
+  width: 200px;
+  padding-bottom: 23px;
+  background-color: #fff;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.book-card h4, 
+.book-card p {
+    padding: 0 14px;
+}
+
+.book-card h4 {
+  padding-top: 12px;
+}
+
+.book-card p {
+  font-size: 14px;
+  font-weight: 400;
+  color: v.$secondary-text-color;
+}
+
+.book-card .seller {
+  padding-top: 16px;
+  font-size: 10px;
+  font-weight: 400;
+  font-style: italic;
+  color: v.$secondary-text-color;
+}
+
+.book-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}

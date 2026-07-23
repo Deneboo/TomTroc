@@ -1,0 +1,20 @@
+/* ----- Footer ----- */
+
+footer nav {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+footer nav ul {
+  display: flex;
+  gap: 40px
+}
+
+footer nav ul li {
+  display: flex;
+  gap: 40px;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 300;
+}
