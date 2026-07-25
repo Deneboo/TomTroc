@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-<?php
-
 class User
 {
     private ?int $id = null;
@@ -12,6 +10,22 @@ class User
     private string $password;
     private ?string $avatar = null;
     private \DateTime $createdAt;
+
+     public function __construct(
+        int $id,
+        string $email,
+        string $username,
+        string $password,
+        string $avatar,
+        \DateTime $createdAt
+    ) {
+        $this->id = $id;
+        $this->email = $email;
+        $this->username = $username;
+        $this->password = $password;
+        $this->avatar = $avatar;
+        $this->createdAt = $createdAt;
+    }
 
     // Getters
 

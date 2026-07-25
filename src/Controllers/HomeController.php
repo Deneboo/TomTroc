@@ -17,9 +17,11 @@ class HomeController
 
     public function index(): void
     {
-        $books = $this->bookRepository->findFourLatest();
+        $allBooks = $this->bookRepository->findAll();
+
+        $bookLastFourList = array_slice($allBooks, 0, 4);
         View::render('Templates/Site/home', [
-            'books' => $books
+            'books' => $bookLastFourList
         ]);
     }
 }

@@ -9,21 +9,26 @@ class Book
     private string $author;
     private string $description;
     private string $image;
-    private string $userId;
+    private User $user;
 
-    public function __construct(int $id, string $title, string $author, string $description, string $image, string $userId)
+    public function __construct(int $id, string $title, string $author, string $description, string $image, User $user)
     {
         $this->id = $id;
         $this->title = $title;
         $this->author = $author;
         $this->description = $description;
         $this->image = $image;
-        $this->userId = $userId;
+        $this->user = $user;
     }
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -68,7 +73,7 @@ class Book
      */
     public function getImage(): string
     {
-        return $this->author;
+        return $this->image;
     }
 
     /**
@@ -80,24 +85,40 @@ class Book
         $this->image = $image;
     }
 
-    //  /**
-    //  * Getter for userId.
-    //  * @return string
-    //  */
-    // public function getUserId(): string
-    // {
-    //     $user = User::getUserId();
+    /**
+     * Getter for description.
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 
-    // return $user->getUsername();
-    // }
+    /**
+     * Setter for description.
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
 
-    // /**
-    //  * Setter for userId.
-    //  * @param string $userId
-    //  */
-    // public function setUserId(string $userId): void
-    // {
-    //     $this->userId = $userId;
-    // }
+     /**
+     * Getter for user.
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * Setter for user.
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
 
 }

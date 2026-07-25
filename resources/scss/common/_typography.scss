@@ -1,26 +1,26 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+@use 'variables' as v;
+@use 'mixins' as m;
 
 h1 {
-  @include typography;
+  @include m.typography;
 }
 
 h2 {
-  @include typography(
+  @include m.typography(
     $size: 32px,
     $color: inherit
   )
 }
 
 h3 {
-  @include typography(
+  @include m.typography(
     $size: 24px,
     $color: inherit
   )
 }
 
 h4 {
-  @include typography(
+  @include m.typography(
     $font-family: inherit,
     $size: 16px,
     $color: inherit
@@ -29,9 +29,16 @@ h4 {
 
 
 p {
-  @include typography(
+  @include m.typography(
     inherit, 16px, 300, inherit
   )
+}
+
+@mixin p-article {
+  font-family: v.$font-body;
+  font-weight: 400;
+  font-size: 14px;
+  color: v.$primary-text-color;
 }
 
 a {
@@ -44,7 +51,7 @@ li {
 }
 
 .caption {
-   @include typography(
+   @include m.typography(
     inherit, 12px, 400, inherit
   );
   font-style: italic;

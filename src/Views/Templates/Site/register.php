@@ -1,5 +1,5 @@
 <section class="page-container">
-    <section class="register-login-page">
+    <section class="register-login">
   <div class="form-section">
     <h1>Inscription</h1>
     <form class="register-login-form">

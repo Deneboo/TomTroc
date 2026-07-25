@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use PDO;
+use App\Models\Book;
+use App\Models\User;
 
 class BookRepository
 {
@@ -12,60 +14,93 @@ class BookRepository
     {
         $this->pdo = $pdo;
     }
- 
-    public function findFourLatest(): array
-    {
-        $query = $this->pdo->query("
-            SELECT
-                books.*,
-                users.username
-            FROM books
-            INNER JOIN users
-                ON books.user_id = users.id
-            ORDER BY books.created_at DESC
-            LIMIT 4
-        ");
-
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     public function findAll(): array
     {
-        $query = $this->pdo->query("
+        $query = "
             SELECT
                 books.*,
-                users.username
+                users.email,
+                users.username,
+                users.avatar
             FROM books
             INNER JOIN users
                 ON books.user_id = users.id
-            ORDER BY books.created_at DESC
-        ");
+            ORDER BY books.id DESC
+        ";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute();
 
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $books = [];
+
+        foreach ($rows as $data) {
+            $user = new User(
+                (int) $data['user_id'],
+                $data['email'],
+                $data['username'],
+                '',
+                $data['avatar'],
+                new \DateTime($data['created_at'])
+            );
+
+            $books[] = new Book(
+                (int) $data['id'],
+                $data['title'],
+                $data['author'],
+                $data['description'],
+                $data['image'],
+                $user
+            );
+        }
+
+        return $books;
     }
 
-    public function findBookById(int $id): ?array
+    public function findById(int $id): ?Book
     {
-        $query = $this->pdo->prepare("
+        $query = "
             SELECT
                 books.*,
-                users.username
+                users.email,
+                users.username,
+                users.avatar
             FROM books
             INNER JOIN users
                 ON books.user_id = users.id
             WHERE books.id = :id
-        ");
-
-        $query->execute([
-            'id' => $id
+        ";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([
+            'id' => $id,
         ]);
 
-        $book = $query->fetch(PDO::FETCH_ASSOC);
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $book ?: null;
+        if (!$data) {
+            return null;
+        }
+
+        $user = new User(
+            (int) $data['user_id'],
+            $data['email'],
+            $data['username'],
+            '',
+            $data['avatar'],
+            new \DateTime($data['created_at'])
+        );
+
+        return new Book(
+            (int) $data['id'],
+            $data['title'],
+            $data['author'],
+            $data['description'],
+            $data['image'],
+            $user
+        );
     }
 
-    public function findBooksByUserId(int $userId): array
+    public function findByUserId(int $userId): array
     {
         $query = $this->pdo->prepare("
             SELECT

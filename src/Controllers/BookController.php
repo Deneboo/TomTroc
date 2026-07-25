@@ -24,6 +24,16 @@ class BookController
 
     public function bookDetails(): void
     {
-        View::render('Templates/Site/book');
+        $id = (int) ($_GET['id'] ?? 0);
+
+        $book = $this->bookRepository->findById($id);
+
+        if ($book === null) {
+            throw new \Exception("Le livre demandé n'existe pas.");
+        }
+
+        View::render('Templates/Site/book', [
+            'book' => $book,
+        ]);
     }
 }

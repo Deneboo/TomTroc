@@ -27,28 +27,29 @@
         
          <ul>
     <?php foreach ($books as $book): ?>
+       
         <li>
-            <card class="book-card">
+            <a class="book-card" href="index.php?action=book&id=<?= $book->getId() ?>">
                 <img 
-                    src="<?= htmlspecialchars($book['image']) ?>"
-                    alt="Image du livre <?= htmlspecialchars($book['title']) ?>"
+                    src="<?= htmlspecialchars($book->getImage()) ?>"
+                    alt="Image du livre <?= htmlspecialchars($book->getTitle()) ?>"
                 >
 
                 <h4>
-                    <?= htmlspecialchars($book['author']) ?>
+                    <?= htmlspecialchars($book->getAuthor()) ?>
                 </h4>
 
                 <p>
-                    <?= htmlspecialchars($book['title']) ?>
+                    <?= htmlspecialchars($book->getTitle()) ?>
                 </p>
 
                 <p class="seller">
                     Vendu par :
                     <span class="seller-name">
-                        <?= htmlspecialchars($book['username']) ?>
+                        <?= htmlspecialchars($book->getUser()->getUsername()) ?>
                     </span>
                 </p>
-            </card>
+            </a>
         </li>
     <?php endforeach; ?>
 </ul>
