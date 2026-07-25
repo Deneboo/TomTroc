@@ -1,14 +1,13 @@
 /* ----- Register Login page ----- */
 
-.register-login-page {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+@use '../common/global' as *;
+
+.register-login {
+    @extend %split-page;
 }
 
-.register-login-page img {
-    width: 720px;
-    height: 886px;
+.register-login img {
+    @extend %split-page-img;
 }
 
 .register-login-form {

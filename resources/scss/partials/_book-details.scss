@@ -1,0 +1,72 @@
+/* ----- Books details page ----- */
+
+@use '../common/global' as *;
+@use '../common/typography' as t;
+@use '../common/variables' as v;
+@use '../common/mixins' as m;
+
+.book-details {
+    @extend %split-page;
+}
+
+.book-details img {
+    @extend %split-page-img;
+}
+
+// .detail-author {
+//   @include m.flex(
+//     $direction: row,
+//     $align: center, 
+//     $gap: 12px
+//   );
+// }
+
+.detail-author p,
+.detail-author p span {
+  @include m.typography(
+    inherit, 16px, 300, v.$secondary-text-color
+  );
+  margin-bottom: 32.5px;
+}
+
+.book-details article {
+  max-width: 482px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 80px auto 59px auto;
+}
+
+.description {
+  margin-bottom: 32.5px;
+}
+
+.tiny-uppercase-label {
+  font-family: v.$font-body;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 8px;
+  color: v.$primary-text-color;
+}
+.avatar-and-name {
+  width: fit-content;
+  @include m.flex(
+    $direction: row,
+    $align: center, 
+    $gap: 12px
+  );
+  padding: 6px 17px 6px 6px;
+  margin: 16px 0 64px 0;
+  border-radius: 114px;
+  background-color: #fff;
+}
+
+.avatar-and-name img {
+  @extend %avatar-small;
+}
+
+.avatar-and-name p {
+  @include t.p-article;
+}

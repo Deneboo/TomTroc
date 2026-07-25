@@ -19,7 +19,8 @@ class UserRepository
             SELECT
                 books.*,
                 users.username,
-                users.email
+                users.email,
+                user.avatar
             FROM books
             INNER JOIN users
                 ON books.user_id = users.id

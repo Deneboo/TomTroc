@@ -28,4 +28,28 @@ main {
   background-color: $background-light;
 }
 
+%split-page {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+}
+
+%split-page-img {
+    width: 50vw;
+    height: 886px;
+}
+
+%avatar {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+}
+
+%avatar-small {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
 
