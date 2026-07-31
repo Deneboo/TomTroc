@@ -1,9 +1,9 @@
 <?php
-    /**
-     * List books show. 
-     */
+/**
+ * List books show.
+ */
 
-    /** @var App\Models\Book[] $books */
+/** @var App\Models\Book[] $books */
 
 ?>
 

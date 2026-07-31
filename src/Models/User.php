@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Repository\BookRepository;
+
 class User
 {
     private ?int $id = null;
@@ -11,17 +13,17 @@ class User
     private ?string $avatar = null;
     private \DateTime $createdAt;
 
-     public function __construct(
+    public function __construct(
         int $id,
-        string $email,
         string $username,
+        string $email,
         string $password,
         string $avatar,
-        \DateTime $createdAt
+        \DateTime $createdAt,
     ) {
         $this->id = $id;
-        $this->email = $email;
         $this->username = $username;
+        $this->email = $email;
         $this->password = $password;
         $this->avatar = $avatar;
         $this->createdAt = $createdAt;
@@ -93,5 +95,20 @@ class User
     {
         $this->createdAt = $createdAt;
         return $this;
+    }
+
+    public function getMembershipDuration(): string
+    {
+        $interval = $this->createdAt->diff(new \DateTime());
+
+        if ($interval->y > 0) {
+            return $interval->y . ' an' . ($interval->y > 1 ? 's' : '');
+        }
+
+        if ($interval->m > 0) {
+            return $interval->m . ' mois';
+        }
+
+        return $interval->d . ' jour' . ($interval->d > 1 ? 's' : '');
     }
 }

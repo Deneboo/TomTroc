@@ -9,7 +9,8 @@
                     
                 </ul>
                 <ul class="nav-right">
-                    <?php if (isset($_SESSION['user'])) { ?>
+                    
+                    <?php if (isset($_SESSION['user_id'])) { ?>
                         <li><a href="index.php?action=home">Messagerie</a></li>
                         <li><a href="index.php?action=books">Mon compte</a></li>
                         <li><a href="index.php?action=logout">Déconnexion</a></li>

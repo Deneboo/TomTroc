@@ -27,7 +27,6 @@ h4 {
   )
 }
 
-
 p {
   @include m.typography(
     inherit, 16px, 300, inherit
@@ -38,6 +37,15 @@ p {
   font-family: v.$font-body;
   font-weight: 400;
   font-size: 14px;
+  color: v.$primary-text-color;
+}
+
+.tiny-uppercase-label {
+  font-family: v.$font-body;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 8px;
   color: v.$primary-text-color;
 }
 

@@ -2,10 +2,10 @@
   <section class="register-login">
   <div class="form-section">
     <h1>Connexion</h1>
-      <form class="register-login-form">
+      <form  action="index.php?action=loginPost" method="post" class="register-login-form">
         <div>
-            <label for="login">Login</label>
-            <input type="text" name="login" id="login" required>
+            <label for="email">Adresse email</label>
+            <input type="email" name="email" id="email" required>
             </div>
             <div>
             <label for="password">Mot de passe</label>

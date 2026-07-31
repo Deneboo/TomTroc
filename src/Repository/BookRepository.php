@@ -1,47 +1,40 @@
-<?php 
+<?php
 
 namespace App\Repository;
 
 use PDO;
+use App\Repository\AbstractRepository;
 use App\Models\Book;
 use App\Models\User;
 
-class BookRepository
+class BookRepository extends AbstractRepository
 {
-    private PDO $pdo;
-
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
-
     public function findAll(): array
     {
         $query = "
             SELECT
                 books.*,
-                users.email,
                 users.username,
+                users.email,
                 users.avatar
             FROM books
             INNER JOIN users
                 ON books.user_id = users.id
-            ORDER BY books.id DESC
+            ORDER BY books.created_at DESC
         ";
-        $statement = $this->pdo->prepare($query);
-        $statement->execute();
 
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $this->executeAll($query);
+
         $books = [];
 
         foreach ($rows as $data) {
             $user = new User(
                 (int) $data['user_id'],
-                $data['email'],
                 $data['username'],
+                $data['email'],
                 '',
                 $data['avatar'],
-                new \DateTime($data['created_at'])
+                new \DateTime($data['created_at']),
             );
 
             $books[] = new Book(
@@ -50,7 +43,8 @@ class BookRepository
                 $data['author'],
                 $data['description'],
                 $data['image'],
-                $user
+                new \DateTime($data['created_at']),
+                $user,
             );
         }
 
@@ -62,20 +56,17 @@ class BookRepository
         $query = "
             SELECT
                 books.*,
-                users.email,
                 users.username,
+                users.email,
                 users.avatar
             FROM books
             INNER JOIN users
                 ON books.user_id = users.id
             WHERE books.id = :id
         ";
-        $statement = $this->pdo->prepare($query);
-        $statement->execute([
+        $data = $this->executeOne($query, [
             'id' => $id,
         ]);
-
-        $data = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (!$data) {
             return null;
@@ -83,11 +74,11 @@ class BookRepository
 
         $user = new User(
             (int) $data['user_id'],
-            $data['email'],
             $data['username'],
+            $data['email'],
             '',
             $data['avatar'],
-            new \DateTime($data['created_at'])
+            new \DateTime($data['created_at']),
         );
 
         return new Book(
@@ -96,10 +87,12 @@ class BookRepository
             $data['author'],
             $data['description'],
             $data['image'],
-            $user
+            new \DateTime($data['created_at']),
+            $user,
         );
     }
 
+    // TODO : mettre dans user
     public function findByUserId(int $userId): array
     {
         $query = $this->pdo->prepare("
@@ -115,7 +108,7 @@ class BookRepository
         ");
 
         $query->execute([
-            'user_id' => $userId
+            'user_id' => $userId,
         ]);
 
         return $query->fetchAll(PDO::FETCH_ASSOC);

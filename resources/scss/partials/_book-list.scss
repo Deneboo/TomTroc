@@ -1,9 +1,12 @@
+@use '../common/variables' as *;
+
 /* ----- Books list page ----- */
 
 .book-list {
   width: 914px;
   display: flex;
   flex-direction: column;
+  text-align: left;
   gap: 72px;
   margin: 0 auto;
 }
@@ -12,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
-   margin-top: 130px;
+  margin-top: 130px;
 }
 
 .title h1 {
@@ -60,7 +63,7 @@
 }
 
 .search-input input::placeholder {
-  color: #A6A6A6;
+  color: $secondary-text-color;
 }
 
 .book-list ul {

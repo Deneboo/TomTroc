@@ -9,15 +9,17 @@ class Book
     private string $author;
     private string $description;
     private string $image;
+    private \DateTime $createdAt;
     private User $user;
 
-    public function __construct(int $id, string $title, string $author, string $description, string $image, User $user)
+    public function __construct(int $id, string $title, string $author, string $description, string $image, \DateTime $createdAt, User $user)
     {
         $this->id = $id;
         $this->title = $title;
         $this->author = $author;
         $this->description = $description;
         $this->image = $image;
+        $this->createdAt = $createdAt;
         $this->user = $user;
     }
 
@@ -101,6 +103,17 @@ class Book
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+        public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
     }
 
      /**
