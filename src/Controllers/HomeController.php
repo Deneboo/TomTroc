@@ -21,7 +21,7 @@ class HomeController
 
         $bookLastFourList = array_slice($allBooks, 0, 4);
         View::render('Templates/Site/home', [
-            'books' => $bookLastFourList
+            'books' => $bookLastFourList,
         ]);
     }
 }

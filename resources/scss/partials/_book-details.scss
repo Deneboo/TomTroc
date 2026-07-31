@@ -1,9 +1,9 @@
-/* ----- Books details page ----- */
-
 @use '../common/global' as *;
 @use '../common/typography' as t;
 @use '../common/variables' as v;
 @use '../common/mixins' as m;
+
+/* ----- Books details page ----- */
 
 .book-details {
     @extend %split-page;
@@ -42,14 +42,6 @@
   margin-bottom: 32.5px;
 }
 
-.tiny-uppercase-label {
-  font-family: v.$font-body;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-style: Semi Bold;
-  font-size: 8px;
-  color: v.$primary-text-color;
-}
 .avatar-and-name {
   width: fit-content;
   @include m.flex(

@@ -81,7 +81,6 @@ footer nav ul li {
 .btn-secondary {
   background: #F5F3EF;
   color: #00AC66;
-  /* border:  1rem solid; */
   border: 1px solid #00AC66;
 }
 
@@ -91,20 +90,27 @@ footer nav ul li {
   margin: 210px 0px 205px 150px;
 }
 
-form label {
+form div {
+  display: flex;
+  flex-direction: column;
+}
+form div label {
   font-size: 14px;
   font-weight: 400;
   color: #A6A6A6;
 }
-
-form input {
+form div input {
   width: 322px;
   height: 50px;
   border: 1px solid #F0F0F0;
   border-radius: 6px;
+  margin-top: 10px;
+  padding: 16px 14px;
+  color: #292929;
+  background-color: #EDF2F6;
+  border-color: #F0F0F0;
 }
-
-form input::placeholder {
+form div input::placeholder {
   color: #A6A6A6;
   opacity: 1;
 }
@@ -142,6 +148,7 @@ main {
   justify-content: space-between;
   width: 100%;
   margin: 0 auto;
+  color: pink;
 }
 
 .register-login img, .book-details img {
@@ -188,6 +195,15 @@ p {
   font-size: 16px;
   font-weight: 300;
   color: inherit;
+}
+
+.tiny-uppercase-label {
+  font-family: "Inter", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 8px;
+  color: #292929;
 }
 
 a {
@@ -273,15 +289,6 @@ nav {
   margin-bottom: 32.5px;
 }
 
-.tiny-uppercase-label {
-  font-family: "Inter", sans-serif;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-style: Semi Bold;
-  font-size: 8px;
-  color: #292929;
-}
-
 .avatar-and-name {
   width: fit-content;
   display: flex;
@@ -307,6 +314,7 @@ nav {
   width: 914px;
   display: flex;
   flex-direction: column;
+  text-align: left;
   gap: 72px;
   margin: 0 auto;
 }
@@ -397,7 +405,6 @@ nav {
   gap: 16px;
   width: 385px;
 }
-
 .about-text button {
   margin-top: 34px;
   align-self: flex-start;
@@ -408,13 +415,11 @@ nav {
   flex-direction: column;
   gap: 12px;
 }
-
 .about-img img {
   width: 404px;
   height: 539px;
   object-fit: cover;
 }
-
 .about-img p {
   align-self: flex-end;
 }
@@ -448,11 +453,9 @@ nav {
   gap: 24px;
   padding: 80px 263px 80px 263px;
 }
-
 .how-it-works h2 {
   color: inherit;
 }
-
 .how-it-works ul {
   display: flex;
   flex-direction: row;
@@ -462,8 +465,7 @@ nav {
   padding: 16px 0 24px 0;
   flex-wrap: wrap;
 }
-
-.how-it-works li {
+.how-it-works ul li {
   max-width: 200px;
   box-sizing: border-box;
   text-align: center;
@@ -471,15 +473,14 @@ nav {
   border-radius: 10px;
   padding: 44px 17px;
 }
-
-.how-it-works li p {
+.how-it-works ul li p {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #292929;
 }
 
-main img {
+.home-img {
   width: 100%;
   height: 230px;
   /* margin: 0;
@@ -493,7 +494,6 @@ main img {
   display: flex;
   justify-content: center;
 }
-
 .our-values .values-box {
   max-width: 392px;
   width: 100%;
@@ -503,7 +503,6 @@ main img {
   padding: 80px 0;
   box-sizing: border-box;
 }
-
 .our-values .values-text {
   display: flex;
   flex-direction: column;
@@ -519,7 +518,6 @@ main img {
   justify-content: space-between;
   margin-top: 15px;
 }
-
 .signature img {
   width: 120px;
   height: 102px;
@@ -531,6 +529,143 @@ main img {
   flex-direction: column;
   gap: 32px;
   margin-top: 32px;
+}
+
+/* ----- Register Messages page ----- */
+/* ----- Profile page ----- */
+.profile-page {
+  width: 1135px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 32px;
+}
+.profile-page h1 {
+  margin: 170px 0 16px 0;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  gap: 33px;
+  width: 100%;
+  margin: 0 auto;
+  color: pink;
+}
+
+.book-list, .profile-edit, .profile-header {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.profile-header {
+  width: 547px;
+  height: 508px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 0 96px;
+}
+.profile-header .profile-avatar {
+  display: block;
+  width: 242px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #F5F3EF;
+}
+.profile-header .profile-avatar img {
+  display: block;
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+}
+.profile-header .profile-avatar a {
+  display: block;
+  text-decoration: underline;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #A6A6A6;
+}
+.profile-header .profile-info {
+  padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.profile-header .profile-info .username {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: inherit;
+  margin-bottom: 5px;
+}
+.profile-header .profile-info .membership {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #A6A6A6;
+  margin-bottom: 15px;
+}
+.profile-header .profile-info .membership span {
+  color: #A6A6A6;
+}
+.profile-header .profile-info .book-nbr {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #292929;
+}
+
+.profile-edit {
+  height: 508px;
+  padding: 38px 116px 37px 116px;
+}
+.profile-edit .profile-btn {
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.book-list {
+  width: 1140px;
+  padding: 33px 0 26px 0;
+}
+.book-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.book-list table thead {
+  padding-bottom: 8.29px;
+  border-bottom: 1px solid #eee;
+}
+.book-list img {
+  width: 78px;
+  height: 78px;
+}
+.book-list tr td {
+  max-width: 128px;
+  padding: 26px 40px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  color: inherit;
+}
+.book-list tr:nth-child(even) {
+  width: 100%;
+  background-color: #F5F3EF;
+}
+.book-list .description {
+  width: 128px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

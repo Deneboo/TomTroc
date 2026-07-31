@@ -1,10 +1,10 @@
 <?php
-    /**
-     * Affichage de Liste des articles. 
-     */
+/**
+ * Affichage de Liste des articles.
+ */
 
-    /** @var App\Models\Book[] $books */
- 
+/** @var App\Models\Book[] $books */
+
 ?>
 
 <!-- About -->
@@ -83,7 +83,7 @@
     <a href="index.php?action=books" class="btn btn-secondary">Voir tous les livres</a>
     
  </section>
- <img src="/assets/images/darwin-vegher.jpg" alt="image de livres">
+ <img src="/assets/images/darwin-vegher.jpg" alt="image de livres" class="home-img" >
 <!-- Our values -->
  <section class="home-container our-values">
   <div class="values-box">

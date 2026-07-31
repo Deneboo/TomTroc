@@ -18,7 +18,7 @@ class BookController
     {
         $books = $this->bookRepository->findAll();
         View::render('Templates/Site/books', [
-            'books' => $books
+            'books' => $books,
         ]);
     }
 
@@ -31,6 +31,7 @@ class BookController
         if ($book === null) {
             throw new \Exception("Le livre demandé n'existe pas.");
         }
+
 
         View::render('Templates/Site/book', [
             'book' => $book,
