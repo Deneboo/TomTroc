@@ -113,41 +113,79 @@
   }
 }
 
-.book-list {
+.profile-book-list {
   @extend %profile-card;
   width: 1140px;
-  padding: 33px 0 26px 0;
-  // padding: 33px 66px 26px 80px;
+  padding-top: 33px;
+  margin-bottom: 102px;
+
   table {
-  width: 100%;
-  border-collapse: collapse;
-  thead {
-    padding-bottom: 8.29px;
-    border-bottom: 1px solid #eee;
-  }
-}
-  img {
-    width: 78px;
-    height: 78px;
-  }
-
-  tr {
-    td {
-      max-width: 128px;
-      padding: 26px 40px;
-      @include m.typography(
-        inherit, 12px, 400, inherit
-      );
-      // vertical-align: middle;
-    }
-  }
-
-  tr:nth-child(even) {
     width: 100%;
-    background-color: v.$background-color;
-  }
+    border-collapse: collapse;
 
-    .description {
+    thead {
+      padding-bottom: 8.29px;
+      border-bottom: 1px solid #eee;
+
+      th {
+        padding: 0 40px 8.29px 16px;
+      }
+    }
+  
+    img {
+      width: 78px;
+      height: 78px;
+    }
+
+    tbody {
+padding: 0 26px 0 40px;
+      tr {
+        
+        
+        td {
+          max-width: 128px;
+          padding: 26px 40px 26px 40px;
+          
+          @include m.typography(
+            v.$font-body, 12px, 400, v.$primary-text-color
+          );
+          // vertical-align: middle;
+
+          .status {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 29.58px;
+              padding: 3.7px 13.31px;
+              font: inherit;
+              color: #fff;
+              background-color: v.$success-color;
+          }
+
+          .action {
+            display:flex;
+            flex-direction: row;
+            gap: 28px;
+            
+            p {
+              font: inherit;
+            }
+
+            .delete {
+              text-decoration: underline;
+              color: v.$error-color;
+            }
+          }
+        }
+      }
+    } 
+
+    tr:nth-child(even) {
+      width: 100%;
+      background-color: v.$background-color;
+    }
+
+    .book-list-description {
       width: 128px;
       display: -webkit-box;
       -webkit-line-clamp: 4;
@@ -155,5 +193,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+  }
 }
 
