@@ -4,11 +4,10 @@
  */
 
 /** @var App\Models\Book[] $books */
-
 ?>
 
-<section class="page-container">
-    <section class="book-list">
+<div class="page-container">
+    <div class="book-list">
         <div class="title">
             <h1>Nos livres à échanger</h1>
             <div class="search-input">
@@ -35,9 +34,9 @@
                     alt="Image du livre <?= htmlspecialchars($book->getTitle()) ?>"
                 >
 
-                <h4>
+                <p class="heading-3">
                     <?= htmlspecialchars($book->getAuthor()) ?>
-                </h4>
+                </p>
 
                 <p>
                     <?= htmlspecialchars($book->getTitle()) ?>
@@ -53,5 +52,5 @@
         </li>
     <?php endforeach; ?>
 </ul>
-    </section>
-</section>
+    </div>
+</div>

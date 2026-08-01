@@ -1,18 +1,28 @@
 @use '../common/global' as *;
+@use '../common/typography' as t;
 
 /* ----- Register Login page ----- */
 
 .register-login {
     @extend %split-page;
-}
 
-.register-login img {
-    @extend %split-page-img;
+    img {
+        @extend %split-page-img;
+    }
 }
 
 .register-login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.redirect-to {
+    margin-top: 40px;
+    @include t.p-article();
+
+    a {
+        text-decoration: underline;
+    }
 }

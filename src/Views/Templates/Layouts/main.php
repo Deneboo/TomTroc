@@ -1,10 +1,3 @@
-<?php
-/**
- * Main file that contains all the other views.
- */
-/** @var mixed $content */
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,11 +8,13 @@
 </head>
 
 <body>
-    <?php include(__DIR__ . '/header.php'); ?>
+    <?php include __DIR__ . '/header.php'; ?>
     <main>
-        <?= $content /* Here is the content */ ?>
+        <?= $content
+/* Here is the content */
+?>
     </main>
-    <?php include(__DIR__ . '/footer.php'); ?>
+    <?php include __DIR__ . '/footer.php'; ?>
 
 </body>
 </html>

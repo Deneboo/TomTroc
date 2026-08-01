@@ -14,13 +14,6 @@ h2 {
 
 h3 {
   @include m.typography(
-    $size: 24px,
-    $color: inherit
-  )
-}
-
-h4 {
-  @include m.typography(
     $font-family: inherit,
     $size: 16px,
     $color: inherit

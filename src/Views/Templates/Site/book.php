@@ -2,9 +2,11 @@
 /** @var object $book */
 ?>
 
-<section class="page-container">
-    <section class="book-details">
-        <img src="<?= htmlspecialchars($book->getImage()) ?>" alt="Image du livre 'Le Petit Prince'">
+<div class="page-container">
+    <div class="book-details">
+        <img src="<?= htmlspecialchars(
+            $book->getImage(),
+        ) ?>" alt="Couverture du livre <?= htmlspecialchars($book->getTitle()) ?>">
         <article>
             <h1><?= htmlspecialchars($book->getTitle()) ?></h1>
             <div class="detail-author">
@@ -28,5 +30,5 @@
             </div>
             <button class="btn btn-primary">Envoyer un message</button>
         </article>
-    </section>
-</section>
+    </div>
+</div>

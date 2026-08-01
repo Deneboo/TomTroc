@@ -105,7 +105,7 @@ class Book
         $this->description = $description;
     }
 
-        public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
@@ -116,10 +116,10 @@ class Book
         return $this;
     }
 
-     /**
-     * Getter for user.
-     * @return User
-     */
+    /**
+    * Getter for user.
+    * @return User
+    */
     public function getUser(): User
     {
         return $this->user;
