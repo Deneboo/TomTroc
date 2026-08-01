@@ -4,11 +4,10 @@
  */
 
 /** @var App\Models\Book[] $books */
-
 ?>
 
 <!-- About -->
-<section class="home-container about">
+<div class="home-container about">
     <div class="about-text">
       <h1>Rejoignez nos lecteurs passionnés</h1>
       <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. 
@@ -20,9 +19,9 @@
         <img src="/assets/images/homme-et-livres.jpg" alt="Image d'un homme avec des livres">
         <p class="caption">Hamza</p>
     </div>
-</section>
+</div>
 <!-- List of the four last books add -->
- <section class="home-container last-added">
+ <div class="home-container last-added">
  <h2>Les derniers livres ajoutés</h2>
  <ul>
     <?php foreach ($books as $book): ?>
@@ -33,9 +32,9 @@
                     alt="Image du livre <?= htmlspecialchars($book->getTitle()) ?>"
                 >
 
-                <h4>
+                <h3>
                     <?= htmlspecialchars($book->getAuthor()) ?>
-                </h4>
+                </h3>
 
                 <p>
                     <?= htmlspecialchars($book->getTitle()) ?>
@@ -53,9 +52,9 @@
 </ul>
   <a href="index.php?action=books" class="btn btn-primary">Voir tous les livres</a>
 
- </section>
+ </div>
 <!-- How it works -->
- <section class="home-container how-it-works">
+ <div class="home-container how-it-works">
     <h2>Comment ça marche ?</h2>
     <p>Échanger des livres avec TomTroc c’est simple et amusant ! Suivez ces étapes pour commencer :</p>
     <ul>
@@ -82,10 +81,10 @@
     </ul>
     <a href="index.php?action=books" class="btn btn-secondary">Voir tous les livres</a>
     
- </section>
+ </div>
  <img src="/assets/images/darwin-vegher.jpg" alt="image de livres" class="home-img" >
 <!-- Our values -->
- <section class="home-container our-values">
+ <div class="home-container our-values">
   <div class="values-box">
     <h2>Nos valeurs</h2>
     <div class="values-text">
@@ -109,4 +108,4 @@
       <img src="/assets/images/Vector_2.png" alt="Signature en forme de coeur vert">
     </div>
   </div>
- </section>
+ </div>

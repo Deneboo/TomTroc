@@ -17,7 +17,7 @@
                     <?php } else { ?>
                         <li><a href="index.php?action=register">Inscription</a></li>
                         <li><a href="index.php?action=login">Connexion</a></li>
-                    <?php  } ?>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>

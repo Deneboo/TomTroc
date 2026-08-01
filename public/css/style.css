@@ -33,12 +33,12 @@ footer nav ul li {
   border-bottom-left-radius: 10px;
 }
 
-.book-card h4,
+.book-card h3,
 .book-card p {
   padding: 0 14px;
 }
 
-.book-card h4 {
+.book-card h3 {
   padding-top: 12px;
 }
 
@@ -177,13 +177,6 @@ h2 {
 }
 
 h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 24px;
-  font-weight: 400;
-  color: inherit;
-}
-
-h4 {
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
@@ -334,6 +327,13 @@ nav {
 .title input {
   height: 48px;
   padding: 0 16px;
+}
+
+.heading-3 {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: inherit;
 }
 
 .search-input {
@@ -532,7 +532,18 @@ nav {
   margin-top: 32px;
 }
 
-/* ----- Register Messages page ----- */
+.redirect-to {
+  margin-top: 40px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #292929;
+}
+.redirect-to a {
+  text-decoration: underline;
+}
+
+/* ----- Messages page ----- */
 /* ----- Profile page ----- */
 .profile-page {
   width: 1135px;
@@ -651,9 +662,6 @@ nav {
 .profile-book-list table img {
   width: 78px;
   height: 78px;
-}
-.profile-book-list table tbody {
-  padding: 0 26px 0 40px;
 }
 .profile-book-list table tbody tr td {
   max-width: 128px;

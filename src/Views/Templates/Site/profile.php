@@ -7,7 +7,7 @@
 /** @var App\Models\Book[] $books */
 ?>
 
-<section class="page-container">
+<div class="page-container">
   <div class="profile-page"> 
     <h1>Mon compte</h1>
     <div class="profile">
@@ -60,7 +60,9 @@
                 <td class=""><img src="<?= $book['image'] ?>"></td>
                 <td class=""><a href=""><?= $book['title'] ?></a></td>
                 <td class=""><?= $book['author'] ?></td>
-                <td class=""><p class="caption book-list-description"><?= $book['description'] ?></p></td>
+                <td class=""><p class="caption book-list-description"><?= $book[
+                    'description'
+                ] ?></p></td>
                 <td><div class="status">Disponible</div></td>
                 <td>
                   <div class="action">
@@ -74,4 +76,4 @@
       </table>
     </div>
   </div>
-</section>
+</div>
