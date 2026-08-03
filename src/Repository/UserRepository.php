@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
+use PDO;
 use App\models\User;
 use App\models\Book;
-use App\Views\View;
 
 class UserRepository extends AbstractRepository
 {
@@ -97,6 +97,47 @@ class UserRepository extends AbstractRepository
             $data['avatar'],
             new \DateTime($data['created_at']),
         );
+    }
+
+    public function update(User $user): bool
+    {
+        $query = "
+            UPDATE users
+            SET username = :username,
+                email = :email,
+                password = :password,
+                avatar = :avatar
+            WHERE id = :id
+        ";
+
+        return $this->execute($query, [
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+            'avatar' => $user->getAvatar(),
+        ]);
+    }
+
+    public function findByUserId(int $userId): array
+    {
+        $query = $this->pdo->prepare("
+            SELECT
+                books.*,
+                users.username,
+                users.email
+            FROM books
+            INNER JOIN users
+                ON books.user_id = users.id
+            WHERE users.id = :user_id
+            ORDER BY books.created_at DESC
+        ");
+
+        $query->execute([
+            'user_id' => $userId,
+        ]);
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function findBooksByUserId(int $userId): ?array

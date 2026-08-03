@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use PDO;
 use App\Repository\AbstractRepository;
 use App\Models\Book;
 use App\Models\User;
@@ -90,27 +89,5 @@ class BookRepository extends AbstractRepository
             new \DateTime($data['created_at']),
             $user,
         );
-    }
-
-    // TODO : mettre dans user
-    public function findByUserId(int $userId): array
-    {
-        $query = $this->pdo->prepare("
-            SELECT
-                books.*,
-                users.username,
-                users.email
-            FROM books
-            INNER JOIN users
-                ON books.user_id = users.id
-            WHERE users.id = :user_id
-            ORDER BY books.created_at DESC
-        ");
-
-        $query->execute([
-            'user_id' => $userId,
-        ]);
-
-        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }

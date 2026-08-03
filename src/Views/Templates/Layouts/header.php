@@ -1,7 +1,8 @@
     <header>
         <nav>
-            <a href="index.php?action=login" class="logo-link">
-                <img src="/assets/images/logo.svg" alt="" class="logo"></a>
+            <div class="logo-link">
+                <img src="/assets/images/logo.svg" alt="Logo Tomtroc avec le nom" class="logo">
+            </div>
             <div class="nav-container">
                 <ul class="nav-left">
                     <li><a href="index.php?action=home">Accueil</a></li>

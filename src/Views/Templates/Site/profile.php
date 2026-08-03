@@ -25,18 +25,29 @@
         </div>
       <div  class="profile-edit">
         <p>Vos informations personnelles</p>
-            <form action="index.php?action=registerPost" method="post" enctype="multipart/form-data"  class="register-login-form">
+            <?php if (isset($_SESSION['flash_success'])): ?>
+                <div class="alert alert-success"><?= htmlspecialchars(
+                    $_SESSION['flash_success'],
+                ) ?></div>
+                <?php unset($_SESSION['flash_success']); ?>
+            <?php endif; ?>
+            <?php if (isset($error)): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
+            <form action="index.php?action=updateProfile" method="post" enctype="multipart/form-data"  class="register-login-form">
                 <div>
                     <label for="email">Adresse email</label>
-                    <input type="email" name="email" id="email" placeholder="<?= $user->getEmail() ?>" required>
+                    <input type="email" name="email" id="email" placeholder="<?= $user->getEmail() ?>" value="<?= $user->getEmail() ??
+    '' ?>" required>
                 </div>
                 <div>
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password" placeholder="********"required>
+                    <input type="password" name="password" id="password" placeholder="********" >
                 </div>
                 <div>
                   <label for="username">Pseudo</label>
-                  <input type="text" name="username" id="username" placeholder="<?= $user->getUsername() ?>" required>
+                  <input type="text" name="username" id="username" placeholder="<?= $user->getUsername() ?>" value="<?= $user->getUsername() ??
+    '' ?>" required>
               </div>
             <button class="submit btn btn-secondary profile-btn">Enregistrer</button>
           </form>

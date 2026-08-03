@@ -4,22 +4,23 @@ namespace App\Controllers;
 
 use App\Views\View;
 
-class ErrorController {
+class ErrorController
+{
+    public function error404(string $errorMessage): void
+    {
 
-  
-  public function error404(string $errorMessage) : void {
-
-    http_response_code(404);
-    View::render('Templates/Site/errorPage', [
+        http_response_code(404);
+        View::render('Templates/Site/errorPage', [
             'errorMessage' => $errorMessage,
         ]);
-  }
+    }
 
-  public function error500() : void {
-    http_response_code(500);
-    $errorMessage = " 500 - Erreur interne du serveur.";
-    View::render('Templates/Site/errorPage', [
+    public function error500(): void
+    {
+        http_response_code(500);
+        $errorMessage = " 500 - Erreur interne du serveur.";
+        View::render('Templates/Site/errorPage', [
             'errorMessage' => $errorMessage,
         ]);
-  }
+    }
 }

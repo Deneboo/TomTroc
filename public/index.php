@@ -67,7 +67,11 @@ try {
             break;
         case 'profile':
             $userController = new UserController($database);
-            $userController->profile();
+            $userController->getProfile();
+            break;
+        case 'updateProfile':
+            $userController = new UserController($database);
+            $userController->updateProfile();
             break;
         default:
             $errorControler = new ErrorController();
