@@ -51,9 +51,3 @@ li {
   list-style: none;
 }
 
-.caption {
-   @include m.typography(
-    inherit, 12px, 400, inherit
-  );
-  font-style: italic;
-}

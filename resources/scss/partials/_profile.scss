@@ -16,7 +16,6 @@
 }
 
 .profile {
-  // @extend %split-page;
     display: flex;
     justify-content: space-between;
     gap: 33px;
@@ -33,7 +32,7 @@
 .profile-header {
   @extend %profile-card;
   width: 547px;
-  height: 508px;
+  height: 515px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,7 +103,7 @@
 
 .profile-edit {
   @extend %profile-card;
-  height: 508px;
+  height: 515px;
   padding: 38px 116px 37px 116px;
 
   .profile-btn {

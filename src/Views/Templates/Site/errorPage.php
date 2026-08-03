@@ -1,9 +1,9 @@
 <?php
-    /**
-     * Error page.
-     */
+/**
+ * Error page.
+ */
 
-    /** @var string $errorMessage */
+/** @var string $errorMessage */
 ?>
 <div class="page-container">
     <div class="error-page">

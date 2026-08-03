@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'mixins' as m;
 
 * {
   margin: 0;
@@ -51,6 +52,30 @@ main {
   width: 48px;
   height: 48px;
   border-radius: 50%;
+}
+
+%message {
+   @include m.typography(
+    inherit, 12px, 400, inherit
+  );
+  font-style: italic;
+}
+
+caption {
+   @extend %message;
+}
+
+.alert {
+  margin-top: 3px;
+  @extend %message;
+}
+
+.alert-success {
+  color: $success-color;
+}
+
+.alert-danger {
+  color: $error-color;
 }
 
 
