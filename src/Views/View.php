@@ -9,10 +9,8 @@ class View
         extract($data);
 
         ob_start();
-        // var_dump($view);
         require __DIR__ . '/' . $view . '.php';
         $content = ob_get_clean();
-        // var_dump($content);
 
         require __DIR__ . '/Templates/Layouts/main.php';
     }

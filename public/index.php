@@ -13,6 +13,7 @@ use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\BookController;
+use App\Controllers\ErrorController;
 use App\Database\DBConnect;
 
 // Initiate database if not exists
@@ -22,6 +23,13 @@ $dbInitialize->initialize();
 $database = DBConnect::getInstance();
 
 try {
+
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+    if ($path !== '/index.php') {
+        header('Location:  /index.php?action=error404');
+        exit;
+    }
 
     switch ($_GET['action'] ?? 'home') {
         case 'home':
@@ -61,7 +69,12 @@ try {
             $userController = new UserController($database);
             $userController->profile();
             break;
+        default:
+            $errorControler = new ErrorController();
+            $errorControler->error404("La page demandée n'existe pas.");
+            break;
     }
-} catch (\Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+} catch (\Throwable $e) {
+    $errorControler = new ErrorController();
+    $errorControler->error500();
 }

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Database\DBConnect;
 use App\Views\View;
 use App\Repository\BookRepository;
+use App\Controllers\ErrorController;
 
 class BookController
 {
@@ -29,7 +30,11 @@ class BookController
         $book = $this->bookRepository->findById($id);
 
         if ($book === null) {
-            throw new \Exception("Le livre demandé n'existe pas.");
+            if ($book === null) {
+                $errorMessage = "La livre demandé est introuvable.";
+                (new ErrorController())->error404($errorMessage);
+                return;
+            }
         }
 
 
