@@ -484,8 +484,6 @@ nav {
 .home-img {
   width: 100%;
   height: 230px;
-  /* margin: 0;
-  padding: 0; */
   object-fit: cover;
   display: block;
 }
@@ -704,6 +702,15 @@ nav {
   line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  min-height: 90vh;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,6 @@
+@use '../common' as *;
+
+.error-page {
+   @include flex( column, center, center, 24px);
+  min-height: 90vh;
+}
