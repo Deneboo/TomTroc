@@ -17,6 +17,9 @@ class HomeController
 
     public function index(): void
     {
+        if (isset($_SESSION['user'])) {
+            return;
+        }
         $allBooks = $this->bookRepository->findAll();
 
         $bookLastFourList = array_slice($allBooks, 0, 4);

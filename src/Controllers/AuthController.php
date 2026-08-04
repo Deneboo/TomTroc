@@ -52,7 +52,7 @@ class AuthController
             $username,
             $email,
             $hashedPassword,
-            'assets/images/default-avatar.png',
+            '/assets/images/default-avatar.png',
             new \DateTime(),
         );
 
@@ -63,14 +63,20 @@ class AuthController
 
     public function login(): void
     {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            View::render('Templates/Site/login');
+            return;
+        }
+
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
         $user = $this->userRepository->findUserByEmail($email);
 
-        if ($user && password_verify($password, $user->getPassword())) {
-            session_start();
 
+        if ($user && password_verify($password, $user->getPassword())) {
+
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $user->getId();
 
             header('Location: index.php?action=profile');
@@ -78,8 +84,10 @@ class AuthController
         }
 
         $error = "Email ou mot de passe incorrect.";
+
         View::render('Templates/Site/login', [
             'error' => $error,
+            'email' => $email,
         ]);
     }
 

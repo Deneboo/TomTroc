@@ -5,17 +5,14 @@ namespace App\Controllers;
 use App\Database\DBConnect;
 use App\Views\View;
 use App\Repository\UserRepository;
-use App\Repository\BookRepository;
 
 class UserController
 {
     private UserRepository $userRepository;
-    private BookRepository $bookRepository;
 
     public function __construct(DBConnect $database)
     {
         $this->userRepository = new UserRepository($database->getConnection());
-        $this->bookRepository = new BookRepository($database->getConnection());
     }
 
     public function loginPage(): void
@@ -30,8 +27,6 @@ class UserController
 
     public function getProfile(): void
     {
-        session_start();
-
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
@@ -52,8 +47,6 @@ class UserController
 
     public function updateProfile(): void
     {
-        session_start();
-
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
@@ -103,8 +96,6 @@ class UserController
 
     public function uploadAvatar(): void
     {
-        session_start();
-
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
