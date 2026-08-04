@@ -24,8 +24,8 @@
               <?php if (isset($_SESSION['flash_error_avatar'])): ?>
                 <div class="alert-avatar alert-danger">
                   <?= htmlspecialchars(
-                    $_SESSION['flash_error_avatar'],
-                ) ?>
+                      $_SESSION['flash_error_avatar'],
+                  ) ?>
                 </div>
                 <?php unset($_SESSION['flash_error_avatar']); ?>
               <?php endif; ?>
@@ -57,8 +57,8 @@
             <form action="index.php?action=updateProfile" method="post" enctype="multipart/form-data"  class="register-login-form">
                 <div>
                     <label for="email">Adresse email</label>
-                    <input type="email" name="email" id="email" value="<?= htmlspecialchars($user->getEmail()) ??
-    '' ?>" required>
+                    <input type="email" name="email" id="email" value="<?= htmlspecialchars($user->getEmail())
+    ?? '' ?>" required>
                 </div>
                 <div>
                     <label for="password">Mot de passe</label>
@@ -66,8 +66,8 @@
                 </div>
                 <div>
                   <label for="username">Pseudo</label>
-                  <input type="text" name="username" id="username" value="<?= htmlspecialchars($user->getUsername()) ??
-    '' ?>" required>
+                  <input type="text" name="username" id="username" value="<?= htmlspecialchars($user->getUsername())
+    ?? '' ?>" required>
               </div>
             <button class="submit btn btn-secondary profile-btn">Enregistrer</button>
           </form>
