@@ -162,7 +162,7 @@ main {
   border-radius: 50%;
 }
 
-.alert, caption {
+.alert-avatar, .alert, caption {
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -180,6 +180,11 @@ main {
 
 .alert-danger {
   color: #CB2D2D;
+}
+
+.alert-avatar {
+  margin-top: 3px;
+  text-align: center;
 }
 
 h1 {
@@ -605,8 +610,9 @@ nav {
   height: 135px;
   border-radius: 50%;
 }
-.profile-header .profile-avatar a {
+.profile-header .profile-avatar .avatar-label {
   display: block;
+  padding-top: 5px;
   text-decoration: underline;
   font-family: "Inter", sans-serif;
   font-size: 14px;

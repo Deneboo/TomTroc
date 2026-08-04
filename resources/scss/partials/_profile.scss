@@ -53,9 +53,9 @@
       height: 135px;
       border-radius: 50%;
     }
-
-    a {
+    .avatar-label {
       display: block;
+      padding-top: 5px;
       text-decoration: underline;
       @include m.typography(
         v.$font-body,

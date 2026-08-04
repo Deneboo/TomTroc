@@ -1,6 +1,6 @@
 <?php
 
-ob_start();
+// ob_start();
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -73,12 +73,17 @@ try {
             $userController = new UserController($database);
             $userController->updateProfile();
             break;
+        case 'uploadAvatar':
+            $userController = new UserController($database);
+            $userController->uploadAvatar();
+            break;
         default:
             $errorControler = new ErrorController();
             $errorControler->error404("La page demandée n'existe pas.");
             break;
     }
 } catch (\Throwable $e) {
-    $errorControler = new ErrorController();
-    $errorControler->error500();
+    var_dump($e->getMessage());
+    // $errorControler = new ErrorController();
+    // $errorControler->error500();
 }

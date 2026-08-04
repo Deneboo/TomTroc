@@ -4,7 +4,8 @@
  */
 
 /** @var App\Models\User $user */
-/** @var App\Models\Book[] $books */
+/** @var array[] $books */
+
 ?>
 
 <div class="page-container">
@@ -13,8 +14,27 @@
     <div class="profile">
         <div  class="profile-header">
           <div class="profile-avatar">
-            <img src="<?= $user->getAvatar() ?>">
-            <a>Modifier</a>
+            <img src="<?= htmlspecialchars($user->getAvatar()) ?>" alt="Avatar de <?= htmlspecialchars($user->getUsername()) ?>">
+            <form action="index.php?action=uploadAvatar" method="post" enctype="multipart/form-data">
+              <label for="fileToUpload" class="avatar-label" style="cursor: pointer;">
+                Modifier
+              </label>
+              <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" style="display: none;">
+            </form>
+              <?php if (isset($_SESSION['flash_error_avatar'])): ?>
+                <div class="alert-avatar alert-danger">
+                  <?= htmlspecialchars(
+                    $_SESSION['flash_error_avatar'],
+                ) ?>
+                </div>
+                <?php unset($_SESSION['flash_error_avatar']); ?>
+              <?php endif; ?>
+            <?php if (isset($_SESSION['flash_success_avatar'])): ?>
+                <div class="alert-avatar alert-success"><?= htmlspecialchars(
+                    $_SESSION['flash_success_avatar'],
+                ) ?></div>
+                <?php unset($_SESSION['flash_success_avatar']); ?>
+            <?php endif; ?>
           </div>
           <div class="profile-info">
             <p class="username" ><?= $user->getUsername() ?></p>
@@ -25,11 +45,11 @@
         </div>
       <div  class="profile-edit">
         <p>Vos informations personnelles</p>
-            <?php if (isset($_SESSION['flash_success'])): ?>
+            <?php if (isset($_SESSION['flash_success_info'])): ?>
                 <div class="alert alert-success"><?= htmlspecialchars(
-                    $_SESSION['flash_success'],
+                    $_SESSION['flash_success_info'],
                 ) ?></div>
-                <?php unset($_SESSION['flash_success']); ?>
+                <?php unset($_SESSION['flash_success_info']); ?>
             <?php endif; ?>
             <?php if (isset($error)): ?>
                 <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
@@ -37,7 +57,7 @@
             <form action="index.php?action=updateProfile" method="post" enctype="multipart/form-data"  class="register-login-form">
                 <div>
                     <label for="email">Adresse email</label>
-                    <input type="email" name="email" id="email" placeholder="<?= $user->getEmail() ?>" value="<?= $user->getEmail() ??
+                    <input type="email" name="email" id="email" value="<?= htmlspecialchars($user->getEmail()) ??
     '' ?>" required>
                 </div>
                 <div>
@@ -46,7 +66,7 @@
                 </div>
                 <div>
                   <label for="username">Pseudo</label>
-                  <input type="text" name="username" id="username" placeholder="<?= $user->getUsername() ?>" value="<?= $user->getUsername() ??
+                  <input type="text" name="username" id="username" value="<?= htmlspecialchars($user->getUsername()) ??
     '' ?>" required>
               </div>
             <button class="submit btn btn-secondary profile-btn">Enregistrer</button>
@@ -57,23 +77,34 @@
       <table>
 
         <thead>
+          <tr>
           <th><p class="tiny-uppercase-label ">Photo</p></th>
           <th><p class="tiny-uppercase-label ">Titre</p></th>
           <th><p class="tiny-uppercase-label ">Auteur</p></th>
           <th><p class="tiny-uppercase-label ">Description</p></th>
           <th><p class="tiny-uppercase-label ">Disponibilité</p></th>
           <th><p class="tiny-uppercase-label ">Action</p></th>
-        
+          </tr>
         </thead>
         <tbody>
           <?php foreach ($books as $book) { ?>
             <tr>
-                <td class=""><img src="<?= $book['image'] ?>"></td>
-                <td class=""><a href=""><?= $book['title'] ?></a></td>
-                <td class=""><?= $book['author'] ?></td>
-                <td class=""><p class="caption book-list-description"><?= $book[
-                    'description'
-                ] ?></p></td>
+                <td>
+                  <a href="index.php?action=book&id=<?= htmlspecialchars(($book['id'])) ?>">
+                    <img src="<?= htmlspecialchars($book['image']) ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
+                  </a>
+                </td>
+                <td>
+                  <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
+                    <?= htmlspecialchars($book['title']) ?>
+                  </a>
+                </td>
+                <td><?= htmlspecialchars($book['author']) ?></td>
+                <td>
+                  <p class="caption book-list-description">
+                    <?= htmlspecialchars($book['description']) ?>
+                  </p>
+                </td>
                 <td><div class="status">Disponible</div></td>
                 <td>
                   <div class="action">
@@ -83,7 +114,7 @@
                 </td>
             </tr>
           <?php } ?>
-        <tbody>
+            </tbody>
       </table>
     </div>
   </div>
