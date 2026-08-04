@@ -157,7 +157,14 @@
               padding: 3.7px 13.31px;
               font: inherit;
               color: #fff;
-              background-color: v.$success-color;
+          }
+
+          .available {
+            background-color: v.$success-color;
+          }
+
+          .unavailable {
+            background-color: v.$error-color;
           }
 
           .action {
@@ -184,6 +191,7 @@
     }
 
     .book-list-description {
+      @extend %message;
       width: 128px;
       display: -webkit-box;
       -webkit-line-clamp: 4;

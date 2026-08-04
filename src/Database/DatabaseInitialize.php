@@ -41,6 +41,7 @@ class DatabaseInitialize
                 description TEXT,
                 image VARCHAR(255) DEFAULT NULL,
                 user_id INT NOT NULL,
+                is_available BOOLEAN DEFAULT TRUE,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(id)
             ) ENGINE=InnoDB

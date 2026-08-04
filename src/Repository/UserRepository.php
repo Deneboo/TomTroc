@@ -183,6 +183,7 @@ class UserRepository extends AbstractRepository
                 $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
+                $data['is_available'] === '1' ? true : false,
             );
         }
         return $books;

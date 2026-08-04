@@ -162,7 +162,7 @@ main {
   border-radius: 50%;
 }
 
-.alert-avatar, .alert, caption {
+.profile-book-list table .book-list-description, .alert-avatar, .alert, caption {
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -695,7 +695,12 @@ nav {
   padding: 3.7px 13.31px;
   font: inherit;
   color: #fff;
+}
+.profile-book-list table tbody tr td .available {
   background-color: #6DC5A1;
+}
+.profile-book-list table tbody tr td .unavailable {
+  background-color: #CB2D2D;
 }
 .profile-book-list table tbody tr td .action {
   display: flex;
