@@ -44,6 +44,7 @@ class BookRepository extends AbstractRepository
                 $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
+                $data['is_available'] === '1' ? true : false,
             );
         }
 
@@ -88,6 +89,7 @@ class BookRepository extends AbstractRepository
             $data['image'],
             new \DateTime($data['created_at']),
             $user,
+            $data['is_available'] === '1' ? true : false,
         );
     }
 }

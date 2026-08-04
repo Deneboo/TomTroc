@@ -5,7 +5,6 @@
 
 /** @var App\Models\User $user */
 /** @var array[] $books */
-
 ?>
 
 <div class="page-container">
@@ -14,7 +13,9 @@
     <div class="profile">
         <div  class="profile-header">
           <div class="profile-avatar">
-            <img src="<?= htmlspecialchars($user->getAvatar()) ?>" alt="Avatar de <?= htmlspecialchars($user->getUsername()) ?>">
+            <img src="<?= htmlspecialchars(
+                $user->getAvatar(),
+            ) ?>" alt="Avatar de <?= htmlspecialchars($user->getUsername()) ?>">
             <form action="index.php?action=uploadAvatar" method="post" enctype="multipart/form-data">
               <label for="fileToUpload" class="avatar-label" style="cursor: pointer;">
                 Modifier
@@ -23,9 +24,7 @@
             </form>
               <?php if (isset($_SESSION['flash_error_avatar'])): ?>
                 <div class="alert-avatar alert-danger">
-                  <?= htmlspecialchars(
-                      $_SESSION['flash_error_avatar'],
-                  ) ?>
+                  <?= htmlspecialchars($_SESSION['flash_error_avatar']) ?>
                 </div>
                 <?php unset($_SESSION['flash_error_avatar']); ?>
               <?php endif; ?>
@@ -57,8 +56,9 @@
             <form action="index.php?action=updateProfile" method="post" enctype="multipart/form-data"  class="register-login-form">
                 <div>
                     <label for="email">Adresse email</label>
-                    <input type="email" name="email" id="email" value="<?= htmlspecialchars($user->getEmail())
-    ?? '' ?>" required>
+                    <input type="email" name="email" id="email" value="<?= htmlspecialchars(
+                        $user->getEmail(),
+                    ) ?? '' ?>" required>
                 </div>
                 <div>
                     <label for="password">Mot de passe</label>
@@ -66,8 +66,9 @@
                 </div>
                 <div>
                   <label for="username">Pseudo</label>
-                  <input type="text" name="username" id="username" value="<?= htmlspecialchars($user->getUsername())
-    ?? '' ?>" required>
+                  <input type="text" name="username" id="username" value="<?= htmlspecialchars(
+                      $user->getUsername(),
+                  ) ?? '' ?>" required>
               </div>
             <button class="submit btn btn-secondary profile-btn">Enregistrer</button>
           </form>
@@ -90,8 +91,10 @@
           <?php foreach ($books as $book) { ?>
             <tr>
                 <td>
-                  <a href="index.php?action=book&id=<?= htmlspecialchars(($book['id'])) ?>">
-                    <img src="<?= htmlspecialchars($book['image']) ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
+                  <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
+                    <img src="<?= htmlspecialchars(
+                        $book['image'],
+                    ) ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
                   </a>
                 </td>
                 <td>
@@ -101,11 +104,19 @@
                 </td>
                 <td><?= htmlspecialchars($book['author']) ?></td>
                 <td>
-                  <p class="caption book-list-description">
+                  <p class="book-list-description">
                     <?= htmlspecialchars($book['description']) ?>
                   </p>
                 </td>
-                <td><div class="status">Disponible</div></td>
+                <td>
+                  <div class="status <?= htmlspecialchars($book['is_available']) === '1'
+                      ? 'available'
+                      : 'unavailable' ?>">
+                  <?= htmlspecialchars($book['is_available']) === '1'
+                      ? 'disponible'
+                      : 'non dispo.' ?>
+                </div>
+              </td>
                 <td>
                   <div class="action">
                   <p class="edit">Editer</p>

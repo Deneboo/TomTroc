@@ -40,7 +40,6 @@ class BookController
             }
         }
 
-
         View::render('Templates/Site/book', [
             'book' => $book,
         ]);

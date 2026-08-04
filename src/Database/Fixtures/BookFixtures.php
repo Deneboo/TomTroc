@@ -13,6 +13,7 @@ class BookFixtures
                 'description' => 'Un roman captivant.',
                 'image' => '/assets/images/alabaster.jpg',
                 'seller' => 'CamilleClubLit',
+                'is_available' => true,
             ],
             [
                 'title' => 'The Kinfolk Table',
@@ -20,6 +21,7 @@ class BookFixtures
                 'description' => 'Recettes et art de vivre.',
                 'image' => '/assets/images/frosty-ilze.jpg',
                 'seller' => 'Nathalire',
+                'is_available' => true,
             ],
             [
                 'title' => 'Wabi Sabi',
@@ -27,6 +29,7 @@ class BookFixtures
                 'description' => 'Découvrir la philosophie japonaise du Wabi Sabi.',
                 'image' => '/assets/images/anni-sprat.jpg',
                 'seller' => 'Alexlecture',
+                'is_available' => true,
             ],
             [
                 'title' => 'Milk & Honey',
@@ -34,6 +37,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/sincerely-media.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
             [
                 'title' => 'Delight!',
@@ -41,6 +45,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/delight.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
             [
                 'title' => 'Milwaukee Mission',
@@ -48,6 +53,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/milwaukee-mission.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
             [
                 'title' => 'Minimalist Graphics',
@@ -55,6 +61,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/minimalist-graphics.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
             [
                 'title' => 'Hygge',
@@ -62,6 +69,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/hygge.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
             [
                 'title' => 'Innovation',
@@ -69,6 +77,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/innovation.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
             [
                 'title' => 'Psalms',
@@ -76,6 +85,7 @@ class BookFixtures
                 'description' => 'Recueil de poésie contemporaine.',
                 'image' => '/assets/images/psalms.jpg',
                 'seller' => 'Hugo1990_12',
+                'is_available' => true,
             ],
         ];
     }
