@@ -95,9 +95,81 @@ class UserController
         }
 
         $this->userRepository->update($user);
-        $_SESSION['flash_success'] = "Vos modifications ont bien été enregistrées.";
+        $_SESSION['flash_success_info'] = "Vos modifications ont bien été enregistrées.";
 
         header('Location: index.php?action=profile');
         exit;
     }
+
+    public function uploadAvatar(): void
+    {
+        session_start();
+
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit;
+        }
+
+        $errorFile = null;
+        $messageSuccess = null;
+
+        $user = $this->userRepository->findUserById($_SESSION['user_id']);
+
+        $targetDir = __DIR__ . "/../../public/assets/uploads/" . $user->getId() . "/avatar/";
+
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
+
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        if (isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if ($check !== false) {
+                $uploadOk = 1;
+            } else {
+                $errorFile   =  "Le fichier n'est pas une image valide..";
+                $uploadOk = 0;
+            }
+        }
+
+        if (file_exists($targetFile)) {
+            $errorFile   = "Le fichier existe déjà.";
+            $uploadOk = 0;
+        }
+
+        if ($_FILES["fileToUpload"]["size"] > 200000) {
+            $errorFile   =  "Votre fichier est trop volumineux. La taille maximale autorisée est de 200 Ko.";
+            $uploadOk = 0;
+        }
+
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif") {
+            $errorFile   =  "Seul les fichiers JPG, JPEG, PNG & GIF sont autorisés.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            $errorFile   =  "Le téléchargement de votre fichier a échoué.";
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+                $filePath = "/assets/uploads/" . $user->getId() . "/avatar/" . basename($_FILES["fileToUpload"]["name"]);
+                $user->setAvatar($filePath);
+                $messageSuccess = "Votre avatar a été mis à jour avec succès.";
+
+                $this->userRepository->update($user);
+            } else {
+                $errorFile   = "Une erreur s'est produite lors du téléchargement de votre fichier.";
+            }
+        }
+        $_SESSION['flash_error_avatar'] = $errorFile;
+        $_SESSION['flash_success_avatar'] = $messageSuccess;
+
+        header('Location: index.php?action=profile');
+        exit;
+    }
+
 }

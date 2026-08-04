@@ -78,4 +78,10 @@ caption {
   color: $error-color;
 }
 
+.alert-avatar {
+  margin-top: 3px;
+  @extend %message;
+  text-align: center;
+}
+
 

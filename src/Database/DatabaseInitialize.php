@@ -24,7 +24,7 @@ class DatabaseInitialize
                 email VARCHAR(255) NOT NULL UNIQUE,
                 password VARCHAR(255) NOT NULL,
                 username VARCHAR(255) NOT NULL UNIQUE,
-                avatar VARCHAR(255) DEFAULT NULL,
+                avatar VARCHAR(255) NOT NULL DEFAULT '/assets/images/default-avatar.png',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=InnoDB
             CHARACTER SET utf8mb4
