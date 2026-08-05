@@ -3,7 +3,7 @@
  * List books show.
  */
 
-/** @var array[] $books */
+/**@var App\Models\Book[] $books */
 ?>
 
 <div class="page-container">
@@ -26,34 +26,33 @@
         
          <ul>
     <?php foreach ($books as $book):
-        if (htmlspecialchars($book['is_available']) === '1') { ?>
-
-       
+        if (htmlspecialchars($book->getIsAvailable()) === '1'): 
+        ?>
         <li>
-            <a class="book-card" href="index.php?action=book&id=<?= $book['id'] ?>">
+            <a class="book-card" href="index.php?action=book&id=<?= $book->getId() ?>">
                 <img 
-                    src="<?= htmlspecialchars($book['image']) ?>"
-                    alt="Image du livre <?= htmlspecialchars($book['title']) ?>"
+                    src="<?= htmlspecialchars($book->getImage()) ?>"
+                    alt="Image du livre <?= htmlspecialchars($book->getTitle()) ?>"
                 >
 
                 <p class="heading-3">
-                    <?= htmlspecialchars($book['author']) ?>
+                    <?= htmlspecialchars($book->getAuthor()) ?>
                 </p>
 
                 <p>
-                    <?= htmlspecialchars($book['title']) ?>
+                    <?= htmlspecialchars($book->getTitle()) ?>
                 </p>
 
                 <p class="seller">
                     Vendu par :
                     <span class="seller-name">
-                        <?= htmlspecialchars($book['username']) ?>
+                        <?= htmlspecialchars($book->getUser()->getUsername()) ?>
                     </span>
                 </p>
             </a>
         </li>
-    <?php }
-        endforeach; ?>
+    <?php endif;
+    endforeach; ?>
 </ul>
     </div>
 </div>
