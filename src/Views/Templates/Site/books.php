@@ -18,8 +18,15 @@
                 <input 
                     type="text" 
                     name="title" 
-                    placeholder="Rechercher un livre"
+                    placeholder="Rechercher un livre par titre"
+                    value="<?= htmlspecialchars($_GET['title'] ?? '')?>"
                 >
+                <?php 
+                    $hasSearchQuery = isset($_GET['title']) ? htmlspecialchars($_GET['title']) : '';
+                    if (!empty($hasSearchQuery) ) : 
+                ?>
+                    <a href="index.php?action=books" class="search-clear">×</a>
+                <?php endif; ?>
             </form>
         </div>
         
