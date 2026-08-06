@@ -111,8 +111,8 @@ class BookRepository extends AbstractRepository
         $rows = $this->executeAll(
             $query,
             [
-                'title' => '%' . $title . '%'
-            ]
+                'title' => '%' . $title . '%',
+            ],
         );
 
         $books = [];
@@ -139,5 +139,56 @@ class BookRepository extends AbstractRepository
             );
         }
         return $books;
+    }
+
+    public function insert(Book $book): bool
+    {
+        $query = "
+            INSERT INTO books (title, author, description, image, user_id, is_available)
+            VALUES (:title, :author, :description, :image, :user_id, :is_available)
+        ";
+
+        return $this->execute($query, [
+            'title' => $book->getTitle(),
+            'author' => $book->getAuthor(),
+            'description' => $book->getDescription(),
+            'image' => $book->getImage(),
+            'user_id' => $book->getUser()->getId(),
+            'is_available' => $book->getIsAvailable() ? 1 : 0,
+        ]);
+    }
+
+    public function update(Book $book): bool
+    {
+        $query = "
+            UPDATE books
+            SET title = :title,
+                author = :author,
+                description = :description,
+                image = :image,
+                is_available = :is_available
+            WHERE id = :id
+        ";
+
+        return $this->execute($query, [
+            'id' => $book->getId(),
+            'title' => $book->getTitle(),
+            'author' => $book->getAuthor(),
+            'description' => $book->getDescription(),
+            'image' => $book->getImage(),
+            'is_available' => $book->getIsAvailable() ? 1 : 0,
+        ]);
+    }
+
+    public function delete(int $id): bool
+    {
+        $query = "
+            DELETE FROM books
+            WHERE id = :id
+        ";
+
+        return $this->execute($query, [
+            'id' => $id,
+        ]);
     }
 }

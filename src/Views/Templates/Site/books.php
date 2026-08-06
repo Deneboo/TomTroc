@@ -19,21 +19,20 @@
                     type="text" 
                     name="title" 
                     placeholder="Rechercher un livre par titre"
-                    value="<?= htmlspecialchars($_GET['title'] ?? '')?>"
+                    value="<?= htmlspecialchars($_GET['title'] ?? '') ?>"
                 >
-                <?php 
-                    $hasSearchQuery = isset($_GET['title']) ? htmlspecialchars($_GET['title']) : '';
-                    if (!empty($hasSearchQuery) ) : 
-                ?>
+                <?php
+                $hasSearchQuery = isset($_GET['title']) ? htmlspecialchars($_GET['title']) : '';
+                if (!empty($hasSearchQuery)): ?>
                     <a href="index.php?action=books" class="search-clear">×</a>
-                <?php endif; ?>
+                <?php endif;
+                ?>
             </form>
         </div>
         
         <ul>
             <?php foreach ($books as $book):
-                if (htmlspecialchars($book->getIsAvailable()) === '1'): 
-            ?>
+                if (htmlspecialchars($book->getIsAvailable()) === '1'): ?>
                 <li>
                     <a class="book-card" href="index.php?action=book&id=<?= $book->getId() ?>">
                         <img 
