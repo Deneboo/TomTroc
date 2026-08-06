@@ -87,6 +87,7 @@ class BookController
         $description = trim($_POST['description'] ?? '');
         $image = $_POST['image'] ?? null;
         $userId = $_SESSION['user_id'];
+        $isAvailable = isset($_POST['isAvailable']) ? (bool) $_POST['isAvailable'] : true;
         if (empty($title) || empty($author) || empty($description)) {
             $error = "Tous les champs sont obligatoires.";
             View::render('Templates/Site/addEditBook', [
@@ -117,13 +118,12 @@ class BookController
                 $image ? $image : $book->getImage(),
                 new \DateTime(),
                 $book->getUser(),
-                $book->getIsAvailable(),
+                $isAvailable,
             );
 
             $this->bookRepository->update($newBook);
             $_SESSION['flash_success_edit_book'] = "Votre livre  a bien été modifié.";
         } else {
-            var_dump('add book:', $userId);
             $user = $this->userRepository->findUserById($userId);
             $newBook = new Book(
                 0,

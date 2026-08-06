@@ -3,7 +3,7 @@
  * Add or edit book template.
  */
 /** @var object $book */
-var_dump('addEditBook', $book->getId()); ?>
+?>
 
 <div class="page-container">
     <div class="add-edit-book-page">
@@ -30,6 +30,12 @@ var_dump('addEditBook', $book->getId()); ?>
             <label for="image">Image :</label>
             <input type="file" id="image" name="image" <?= isset($book) ? '' : 'required' ?>>
 
+            <label for="isAvailable">Disponible :</label>
+            <select id="isAvailable" name="isAvailable">
+                <option value="" disabled selected>-- Choisissez une option --</option>
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+            </select>
             <button type="submit"><?= isset($book) ? 'Modifier' : 'Ajouter' ?></button>
         </form>
     </div>
