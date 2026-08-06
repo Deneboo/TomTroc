@@ -44,4 +44,12 @@ class BookController
             'book' => $book,
         ]);
     }
+
+    public function search(): void {
+        $title = $_GET['title'] ?? '';
+        $books = $this->bookRepository->searchByTitle($title);
+        View::render('Templates/Site/books', [
+            'books' => $books,
+        ]);
+    }
 }
