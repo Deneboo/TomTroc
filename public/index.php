@@ -50,6 +50,10 @@ try {
             $bookController = new BookController($database);
             $bookController->bookList();
             break;
+        case 'search':
+            $bookController = new BookController($database);
+            $bookController->search();
+            break;
         case 'book':
             $bookController = new BookController($database);
             $bookController->bookDetails();

@@ -142,7 +142,7 @@ class Book
      */
     public function getIsAvailable(): bool
     {
-        return $this->isAvailable;
+        return (bool) $this->isAvailable;
     }
 
     /**
@@ -151,6 +151,6 @@ class Book
      */
     public function setIsAvailable(bool $isAvailable): void
     {
-        $this->isAvailable = $isAvailable;
+        $this->isAvailable = (bool) $isAvailable;
     }
 }

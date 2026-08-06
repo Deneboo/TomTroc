@@ -44,7 +44,7 @@ class BookRepository extends AbstractRepository
                 $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
-                $data['is_available'] === '1' ? true : false,
+                (bool) $data['is_available'],
             );
         }
 
@@ -91,5 +91,53 @@ class BookRepository extends AbstractRepository
             $user,
             $data['is_available'] === '1' ? true : false,
         );
+    }
+
+    public function searchByTitle(string $title): array
+    {
+        $query = " 
+            SELECT 
+                books.*,
+                users.username,
+                users.email,
+                users.avatar
+            FROM books
+            LEFT JOIN users
+                ON books.user_id = users.id
+            WHERE books.title LIKE :title
+            ORDER BY books.created_at DESC
+        ";
+
+        $rows = $this->executeAll(
+            $query,
+            [
+                'title' => '%' . $title . '%'
+            ]
+        );
+
+        $books = [];
+
+        foreach ($rows as $data) {
+            $user = new User(
+                (int) $data['user_id'],
+                $data['username'],
+                '',
+                '',
+                $data['avatar'],
+                new \DateTime($data['created_at']),
+            );
+
+            $books[] = new Book(
+                (int) $data['id'],
+                $data['title'],
+                $data['author'],
+                $data['description'],
+                $data['image'],
+                new \DateTime($data['created_at']),
+                $user,
+                (bool) $data['is_available'],
+            );
+        }
+        return $books;
     }
 }
