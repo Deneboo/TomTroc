@@ -1,20 +1,18 @@
 @use '../common/global' as *;
 @use '../common/typography' as t;
+@use '../common/form' as f;
 
 /* ----- Register Login page ----- */
 
 .register-login {
     @extend %split-page;
-
     img {
         @extend %split-page-img;
     }
 }
 
 .register-login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+    @extend %form-template;
     margin-top: 32px;
 }
 

@@ -119,8 +119,12 @@
               </td>
                 <td>
                   <div class="action">
-                  <p class="edit">Editer</p>
-                  <p class="delete">Supprimer</p>
+                  <a class="edit" href="index.php?action=addEditBook&id=<?= htmlspecialchars(
+                      $book['id'],
+                  ) ?>">Editer</a>
+                  <a class="delete" href="index.php?action=deleteBook&id=<?= htmlspecialchars(
+                      $book['id'],
+                  ) ?>">Supprimer</a>
                   </div>
                 </td>
             </tr>

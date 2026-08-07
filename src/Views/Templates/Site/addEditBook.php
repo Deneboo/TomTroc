@@ -1,0 +1,76 @@
+<?php
+/**
+ * Add or edit book template.
+ */
+/** @var object $book */
+?>
+
+<div class="page-container">
+    <section class="add-edit-book-page">
+        <h1>
+            <?= isset($book) ? 'Modifier le livre' : 'Ajouter un livre' ?>
+        </h1>
+        <div class="add-edit-book-card">
+            <div class="add-edit-book-img">
+            <form class="add-edit-book-form" action="index.php?action=upload£Image" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="fileToUpload">
+                    Photo
+                    </label>
+                    <img src="<?= isset($book)
+                        ? htmlspecialchars($book->getImage())
+                        : 'https://via.placeholder.com/150' ?>" alt="Couverture du livre <?= isset(
+    $book,
+)
+    ? htmlspecialchars($book->getTitle())
+    : '' ?>">
+                    <input
+                        type="file"
+                        name="fileToUpload"
+                        id="fileToUpload"
+                        accept="image/*"
+                        hidden
+                    >
+                </div>
+                <button class="btn-img" type="submit">
+                    Modifier la photo
+                </button>
+            </form>
+            </div>
+            <form class="add-edit-book-form form-details" method="post" action="index.php?action=addEditBookPost" enctype="multipart/form-data">
+                <?php if (!empty($book->getId())): ?>
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($book->getId()) ?>">
+                <?php endif; ?>
+                <div>
+                    <label for="title">Titre</label>
+                    <input type="text" id="title" name="title" value="<?= isset($book)
+                        ? htmlspecialchars($book->getTitle())
+                        : '' ?>" required>
+                </div>
+                <div>
+                    <label for="author">Auteur</label>
+                    <input type="text" id="author" name="author" value="<?= isset($book)
+                        ? htmlspecialchars($book->getAuthor())
+                        : '' ?>" required>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea id="description" class="text-area" name="description" required><?= htmlspecialchars(
+                        isset($book) ? $book->getDescription() : '',
+                    ) ?></textarea>
+                </div>
+                <div>
+                    <label for="isAvailable">Disponible :</label>
+                    <select id="isAvailable" name="isAvailable">
+                        <option value="" disabled selected>-- Choisissez une option --</option>
+                        <option value="1">Disponible</option>
+                        <option value="0">Non dispo.</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit btn btn-form btn-primary"><?= isset($book)
+                    ? 'Modifier'
+                    : 'Ajouter' ?></button>
+            </form>
+        </div>
+    </section>
+</div>

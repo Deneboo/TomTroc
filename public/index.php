@@ -52,11 +52,23 @@ try {
             break;
         case 'search':
             $bookController = new BookController($database);
-            $bookController->search();
+            $bookController->bookSearch();
             break;
         case 'book':
             $bookController = new BookController($database);
             $bookController->bookDetails();
+            break;
+        case 'addEditBook':
+            $bookController = new BookController($database);
+            $bookController->addEditBook();
+            break;
+        case 'addEditBookPost':
+            $bookController = new BookController($database);
+            $bookController->addEditBookPost();
+            break;
+        case 'deleteBook':
+            $bookController = new BookController($database);
+            $bookController->deleteBook();
             break;
         case 'login':
             $userController = new UserController($database);

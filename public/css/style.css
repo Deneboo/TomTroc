@@ -90,18 +90,27 @@ footer nav ul li {
   margin: 210px 0px 205px 150px;
 }
 
-form div {
+.register-login-form, .add-edit-book-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 32px;
+}
+.register-login-form div, .add-edit-book-form div {
   display: flex;
   flex-direction: column;
 }
-form div label {
+.register-login-form div label, .add-edit-book-form div label {
   font-size: 14px;
   font-weight: 400;
   color: #A6A6A6;
 }
-form div input {
-  width: 322px;
+.register-login-form div input, .add-edit-book-form div input, .register-login-form div select, .add-edit-book-form div select {
   height: 50px;
+}
+.register-login-form div input, .add-edit-book-form div input, .register-login-form div textarea, .add-edit-book-form div textarea, .register-login-form div select, .add-edit-book-form div select {
+  width: 435px;
   border: 1px solid #F0F0F0;
   border-radius: 6px;
   margin-top: 10px;
@@ -110,7 +119,7 @@ form div input {
   background-color: #EDF2F6;
   border-color: #F0F0F0;
 }
-form div input::placeholder {
+.register-login-form div input::placeholder, .add-edit-book-form div input::placeholder {
   color: #A6A6A6;
   opacity: 1;
 }
@@ -185,6 +194,11 @@ main {
 .alert-avatar {
   margin-top: 3px;
   text-align: center;
+}
+
+.profile-header, .profile-edit, .profile-book-list, .add-edit-book-card {
+  background-color: #fff;
+  border-radius: 20px;
 }
 
 h1 {
@@ -274,134 +288,6 @@ nav {
   display: flex;
   gap: 58px;
   align-items: center;
-}
-
-/* ----- Books details page ----- */
-.detail-author p,
-.detail-author p span {
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 300;
-  color: #A6A6A6;
-  margin-bottom: 32.5px;
-}
-
-.book-details article {
-  max-width: 482px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin: 80px auto 59px auto;
-}
-
-.description {
-  margin-bottom: 32.5px;
-}
-
-.avatar-and-name {
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 17px 6px 6px;
-  margin: 16px 0 64px 0;
-  border-radius: 114px;
-  background-color: #fff;
-}
-
-.avatar-and-name p {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #292929;
-}
-
-/* ----- Books list page ----- */
-.book-list {
-  width: 914px;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  gap: 72px;
-  margin: 0 auto;
-  background-color: #FAF9F7;
-}
-
-.title {
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  margin-top: 130px;
-}
-
-.title h1 {
-  margin: 0;
-}
-
-.title input {
-  height: 48px;
-  padding: 0 16px;
-}
-
-.heading-3 {
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 400;
-  color: inherit;
-}
-
-.search-input {
-  display: flex;
-  align-items: center;
-  width: 320px;
-  height: 48px;
-  border: 1px solid #D9D9D9;
-  border-radius: 8px;
-  background: #fff;
-  padding: 0 16px;
-}
-
-.search-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin-right: 12px;
-  padding: 0;
-}
-
-.search-button img {
-  width: 18px;
-  height: 18px;
-}
-
-.search-input input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 16px;
-}
-
-.search-input input::placeholder {
-  color: #A6A6A6;
-}
-
-.book-list ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 38px;
-  row-gap: 48px;
-  margin-bottom: 80px;
-}
-
-.book-list ul li .book-card {
-  background-color: #fff;
 }
 
 /* ----- Home page ----- */
@@ -539,11 +425,192 @@ nav {
   height: 102px;
 }
 
-/* ----- Register Login page ----- */
-.register-login-form {
+/* ----- Books details page ----- */
+.detail-author p,
+.detail-author p span {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 300;
+  color: #A6A6A6;
+  margin-bottom: 32.5px;
+}
+
+.book-details article {
+  max-width: 482px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  margin: 80px auto 59px auto;
+}
+
+.description {
+  margin-bottom: 32.5px;
+  white-space: pre-wrap;
+}
+
+.avatar-and-name {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 17px 6px 6px;
+  margin: 16px 0 64px 0;
+  border-radius: 114px;
+  background-color: #fff;
+}
+
+.avatar-and-name p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #292929;
+}
+
+/* ----- Books list page ----- */
+.book-list {
+  width: 914px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 72px;
+  margin: 0 auto;
+  background-color: #FAF9F7;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 130px;
+}
+
+.title h1 {
+  margin: 0;
+}
+
+.title input {
+  height: 48px;
+  padding: 0 16px;
+}
+
+.heading-3 {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: inherit;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 48px;
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 16px;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 12px;
+  padding: 0;
+}
+
+.search-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.search-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+}
+
+.search-input input::placeholder {
+  color: #A6A6A6;
+}
+
+.book-list ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 38px;
+  row-gap: 48px;
+  margin-bottom: 80px;
+}
+
+.book-list ul li .book-card {
+  background-color: #fff;
+}
+
+/* ----- Books create/edit page ----- */
+.add-edit-book-page {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 32px;
+}
+.add-edit-book-page h1 {
+  margin: 170px 0 16px 0;
+}
+
+.add-edit-book-card {
+  width: 1135px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 118px;
+  padding: 56px 50px 68px 50px;
+  margin-bottom: 92px;
+}
+
+.add-edit-book-form {
+  margin-top: 32px;
+}
+.add-edit-book-form label {
+  color: #A6A6A6;
+}
+.add-edit-book-form img {
+  width: 448px;
+  height: 448px;
+  margin-top: 10px;
+}
+.add-edit-book-form .text-area {
+  min-height: 100px;
+  resize: vertical;
+  box-sizing: content-box;
+  padding-bottom: 15px;
+}
+.add-edit-book-form .btn-img {
+  all: unset;
+  padding-top: 5px;
+  text-decoration: underline;
+  text-align: right;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #A6A6A6;
+}
+.add-edit-book-form .btn-form {
+  width: 322px;
+}
+
+/* ----- Register Login page ----- */
+.register-login-form {
   margin-top: 32px;
 }
 
@@ -580,11 +647,6 @@ nav {
   width: 100%;
   margin: 0 auto;
   color: pink;
-}
-
-.profile-book-list, .profile-edit, .profile-header {
-  background-color: #fff;
-  border-radius: 20px;
 }
 
 .profile-header {
