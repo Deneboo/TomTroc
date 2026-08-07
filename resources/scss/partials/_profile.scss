@@ -24,13 +24,8 @@
     color: pink;
 }
 
-%profile-card {
-  background-color: #fff;
-  border-radius: 20px;
-}
-
 .profile-header {
-  @extend %profile-card;
+  @extend %section-card;
   width: 547px;
   height: 515px;
   display: flex;
@@ -102,7 +97,7 @@
 }
 
 .profile-edit {
-  @extend %profile-card;
+  @extend %section-card;
   height: 515px;
   padding: 38px 116px 37px 116px;
 
@@ -113,7 +108,7 @@
 }
 
 .profile-book-list {
-  @extend %profile-card;
+  @extend %section-card;
   width: 1140px;
   padding-top: 33px;
   margin-bottom: 102px;

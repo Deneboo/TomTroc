@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'mixins' as m;
 
 .form-section {
   max-width: 322px;
@@ -6,7 +7,11 @@
   margin: 210px 0px 205px 150px;
 }
 
-form  {
+%form-template {
+  @include m.flex(
+    $direction: column,
+    $gap: 32px
+  );
 
   div {
     display: flex;
@@ -18,9 +23,12 @@ form  {
       color: $secondary-text-color;
     }
 
-    input {
-      width: 322px;
+    input, select {
       height: 50px;
+    }
+
+    input, textarea, select {
+      width: 435px;
       border: 1px solid $light-border;
       border-radius: 6px;
       margin-top: 10px;
