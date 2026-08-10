@@ -22,17 +22,17 @@
               </label>
               <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" style="display: none;">
             </form>
-              <?php if (isset($_SESSION['flash_error_avatar'])): ?>
+              <?php if (isset($_SESSION['flash_error_upload_file'])): ?>
                 <div class="alert-avatar alert-danger">
-                  <?= htmlspecialchars($_SESSION['flash_error_avatar']) ?>
+                  <?= htmlspecialchars($_SESSION['flash_error_upload_file']) ?>
                 </div>
-                <?php unset($_SESSION['flash_error_avatar']); ?>
+                <?php unset($_SESSION['flash_error_upload_file']); ?>
               <?php endif; ?>
-            <?php if (isset($_SESSION['flash_success_avatar'])): ?>
+            <?php if (isset($_SESSION['flash_success_upload_file'])): ?>
                 <div class="alert-avatar alert-success"><?= htmlspecialchars(
-                    $_SESSION['flash_success_avatar'],
+                    $_SESSION['flash_success_upload_file'],
                 ) ?></div>
-                <?php unset($_SESSION['flash_success_avatar']); ?>
+                <?php unset($_SESSION['flash_success_upload_file']); ?>
             <?php endif; ?>
           </div>
           <div class="profile-info">

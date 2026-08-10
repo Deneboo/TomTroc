@@ -8,15 +8,19 @@ use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use App\Controllers\ErrorController;
 use App\Models\Book;
+use App\Services\ImageUploadService;
 
 class BookController
 {
     private BookRepository $bookRepository;
     private UserRepository $userRepository;
+    private ImageUploadService $imageUploadService;
+
     public function __construct(DBConnect $database)
     {
         $this->bookRepository = new BookRepository($database->getConnection());
         $this->userRepository = new UserRepository($database->getConnection());
+        $this->imageUploadService = new ImageUploadService($database);
     }
     public function bookList(): void
     {
@@ -142,6 +146,30 @@ class BookController
         header('Location: index.php?action=profile');
         exit;
     }
+
+    public function uploadImage(): void
+    {
+        $bookId = isset($_POST['id']) ? (int) $_POST['id'] : null;
+        $userId = (int) $_SESSION['user_id'];
+
+        $result = $this->imageUploadService->uploadImage(
+            'book_cover',
+            $userId,
+        );
+        if ($result['success']) {
+            $book = $this->bookRepository->findById($bookId);
+            $book->setImage($result['path']);
+
+            $this->bookRepository->update($book);
+        }
+
+        $_SESSION['flash_error_upload_file'] = $result['error'];
+        $_SESSION['flash_success_upload_file'] = $result['message'];
+
+        header('Location: index.php?action=addEditBook&id=' . $bookId);
+        exit;
+    }
+
 
     public function deleteBook(): void
     {

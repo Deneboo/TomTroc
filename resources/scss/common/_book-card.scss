@@ -10,16 +10,20 @@
   border-bottom-left-radius: 10px;
 }
 
-.book-card h3, 
-.book-card p {
+
+.heading-3, .author, .seller {
   padding: 0 14px;
 }
-
-.book-card h3 {
+.heading-3 {
+  @include m.typography(
+    $font-family: inherit,
+    $size: 16px,
+    $color: #000,
+  );
   padding-top: 12px;
 }
-
-.book-card p {
+.book-card .author {
+  padding: 0 14px;
   font-size: 14px;
   font-weight: 400;
   color: v.$secondary-text-color;

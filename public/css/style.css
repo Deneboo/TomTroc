@@ -33,16 +33,20 @@ footer nav ul li {
   border-bottom-left-radius: 10px;
 }
 
-.book-card h3,
-.book-card p {
+.heading-3, .author, .seller {
   padding: 0 14px;
 }
 
-.book-card h3 {
+.heading-3 {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
   padding-top: 12px;
 }
 
-.book-card p {
+.book-card .author {
+  padding: 0 14px;
   font-size: 14px;
   font-weight: 400;
   color: #A6A6A6;
@@ -494,13 +498,6 @@ nav {
 .title input {
   height: 48px;
   padding: 0 16px;
-}
-
-.heading-3 {
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 400;
-  color: inherit;
 }
 
 .search-input {

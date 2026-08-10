@@ -23,10 +23,10 @@
                 >
                 <?php
                 $hasSearchQuery = isset($_GET['title']) ? htmlspecialchars($_GET['title']) : '';
-                if (!empty($hasSearchQuery)): ?>
+if (!empty($hasSearchQuery)): ?>
                     <a href="index.php?action=books" class="search-clear">×</a>
                 <?php endif;
-                ?>
+?>
             </form>
         </div>
         
@@ -41,11 +41,11 @@
                         >
 
                         <p class="heading-3">
-                            <?= htmlspecialchars($book->getAuthor()) ?>
+                            <?= htmlspecialchars($book->getTitle()) ?>
                         </p>
 
-                        <p>
-                            <?= htmlspecialchars($book->getTitle()) ?>
+                        <p class="author">
+                            <?= htmlspecialchars($book->getAuthor()) ?>
                         </p>
 
                         <p class="seller">

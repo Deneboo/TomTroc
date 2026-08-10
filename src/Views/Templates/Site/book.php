@@ -4,7 +4,7 @@
 
 <div class="page-container">
     <div class="book-details">
-        <img src="<?= htmlspecialchars(
+        <img class="book-details-img" src="<?= htmlspecialchars(
             $book->getImage(),
         ) ?>" alt="Couverture du livre <?= htmlspecialchars($book->getTitle()) ?>">
         <article>

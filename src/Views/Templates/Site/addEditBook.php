@@ -12,29 +12,28 @@
         </h1>
         <div class="add-edit-book-card">
             <div class="add-edit-book-img">
-            <form class="add-edit-book-form" action="index.php?action=upload£Image" method="post" enctype="multipart/form-data">
+            <form class="add-edit-book-form" action="index.php?action=uploadImage" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="fileToUpload">
                     Photo
                     </label>
-                    <img src="<?= isset($book)
+                    <img class="book-form-img" src="<?= isset($book)
                         ? htmlspecialchars($book->getImage())
                         : 'https://via.placeholder.com/150' ?>" alt="Couverture du livre <?= isset(
-    $book,
-)
+                            $book,
+                        )
     ? htmlspecialchars($book->getTitle())
     : '' ?>">
-                    <input
-                        type="file"
-                        name="fileToUpload"
-                        id="fileToUpload"
-                        accept="image/*"
-                        hidden
-                    >
                 </div>
-                <button class="btn-img" type="submit">
+                <label for="fileToUpload" class="btn-img" style="cursor: pointer;">
                     Modifier la photo
-                </button>
+                </label>
+                <input
+                    type="hidden"
+                    name="id"
+                    value="<?= $book->getId() ?>"
+                >
+                <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" value="<?= $book->getId() ?>" style="display: none;">
             </form>
             </div>
             <form class="add-edit-book-form form-details" method="post" action="index.php?action=addEditBookPost" enctype="multipart/form-data">
@@ -44,14 +43,14 @@
                 <div>
                     <label for="title">Titre</label>
                     <input type="text" id="title" name="title" value="<?= isset($book)
-                        ? htmlspecialchars($book->getTitle())
-                        : '' ?>" required>
+                                                ? htmlspecialchars($book->getTitle())
+                                                : '' ?>" required>
                 </div>
                 <div>
                     <label for="author">Auteur</label>
                     <input type="text" id="author" name="author" value="<?= isset($book)
-                        ? htmlspecialchars($book->getAuthor())
-                        : '' ?>" required>
+                                                ? htmlspecialchars($book->getAuthor())
+                                                : '' ?>" required>
                 </div>
                 <div>
                     <label for="description">Description</label>

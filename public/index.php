@@ -66,6 +66,9 @@ try {
         case 'addEditBookPost':
             $bookController->addEditBook();
             break;
+        case 'uploadImage':
+            $bookController->uploadImage();
+            break;
         case 'deleteBook':
             $bookController->deleteBook();
             break;
@@ -98,7 +101,7 @@ try {
             break;
     }
 } catch (\Throwable $e) {
-    // var_dump($e->getMessage());
-    $errorControler = new ErrorController();
-    $errorControler->error500();
+    var_dump($e->getMessage());
+    // $errorControler = new ErrorController();
+    // $errorControler->error500();
 }
