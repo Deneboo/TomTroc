@@ -41,70 +41,59 @@ try {
         exit;
     }
 
+    $homeController = new HomeController($database);
+    $bookController = new BookController($database);
+    $authController = new AuthController($database);
+    $userController = new UserController($database);
+    $errorControler = new ErrorController();
+
     switch ($_GET['action'] ?? 'home') {
         case 'home':
-            $homeController = new HomeController($database);
             $homeController->index();
             break;
         case 'books':
-            $bookController = new BookController($database);
             $bookController->bookList();
             break;
         case 'search':
-            $bookController = new BookController($database);
             $bookController->bookSearch();
             break;
         case 'book':
-            $bookController = new BookController($database);
             $bookController->bookDetails();
             break;
         case 'addEditBook':
-            $bookController = new BookController($database);
-            $bookController->addEditBook();
+            $bookController->addEditBookForm();
             break;
         case 'addEditBookPost':
-            $bookController = new BookController($database);
-            $bookController->addEditBookPost();
+            $bookController->addEditBook();
             break;
         case 'deleteBook':
-            $bookController = new BookController($database);
             $bookController->deleteBook();
             break;
-        case 'login':
-            $userController = new UserController($database);
-            $userController->loginPage();
-            break;
-        case 'loginPost':
-            $authController = new AuthController($database);
-            $authController->login();
-            break;
         case 'register':
-            $userController = new UserController($database);
-            $userController->registerPage();
-            break;
-        case 'registerPost':
-            echo "Route registerPost OK";
-            $authController = new AuthController($database);
             $authController->register();
             break;
+        case 'login':
+            $authController->login();
+            break;
         case 'logout':
-            $authController = new AuthController($database);
             $authController->logout();
             break;
+        case 'loginPage':
+            $userController->loginPage();
+            break;
+        case 'registerPage':
+            $userController->registerPage();
+            break;
         case 'profile':
-            $userController = new UserController($database);
             $userController->getProfile();
             break;
         case 'updateProfile':
-            $userController = new UserController($database);
             $userController->updateProfile();
             break;
         case 'uploadAvatar':
-            $userController = new UserController($database);
             $userController->uploadAvatar();
             break;
         default:
-            $errorControler = new ErrorController();
             $errorControler->error404("La page demandée n'existe pas.");
             break;
     }

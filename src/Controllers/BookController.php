@@ -57,7 +57,7 @@ class BookController
         ]);
     }
 
-    public function addEditBook(): void
+    public function addEditBookForm(): void
     {
         echo "addEditBook";
         $bookId = isset($_GET['id']) ? (int) $_GET['id'] : null;
@@ -78,7 +78,7 @@ class BookController
         ]);
     }
 
-    public function addEditBookPost(): void
+    public function addEditBook(): void
     {
         $bookId = isset($_POST['id']) ? (int) $_POST['id'] : null;
 

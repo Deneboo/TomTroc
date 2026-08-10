@@ -16,8 +16,8 @@
                         <li><a href="index.php?action=profile">Mon compte</a></li>
                         <li><a href="index.php?action=logout">Déconnexion</a></li>
                     <?php } else { ?>
-                        <li><a href="index.php?action=register">Inscription</a></li>
-                        <li><a href="index.php?action=login">Connexion</a></li>
+                        <li><a href="index.php?action=registerPage">Inscription</a></li>
+                        <li><a href="index.php?action=loginPage">Connexion</a></li>
                     <?php } ?>
                 </ul>
             </div>

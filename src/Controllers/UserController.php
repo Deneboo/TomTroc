@@ -28,7 +28,7 @@ class UserController
     public function getProfile(): void
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=loginPage');
             exit;
         }
 
@@ -97,7 +97,7 @@ class UserController
     public function uploadAvatar(): void
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=loginPage');
             exit;
         }
 

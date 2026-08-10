@@ -5,7 +5,7 @@
         <?php if (isset($error)): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
-        <form form class="add-edit-book-form" action="index.php?action=registerPost"  method="post" enctype="multipart/form-data"  class="register-login-form">
+        <form action="index.php?action=registerPost"  method="post" enctype="multipart/form-data"  class="register-login-form">
             <div>
                 <label for="username">Pseudo</label>
                 <input type="text" name="username" value="<?= htmlspecialchars(
@@ -29,7 +29,7 @@
             </div>
             <button class="submit btn btn-primary">S'enregistrer</button>
         </form>
-        <p class="redirect-to">Déja inscrit ? <span><a href="index.php?action=login">Connectez-vous</a></span></p>
+        <p class="redirect-to">Déja inscrit ? <span><a href="index.php?action=loginPage">Connectez-vous</a></span></p>
     </div>
     <img src="/assets/images/library-vintage.jpg" alt="image de livres">
     </div>
