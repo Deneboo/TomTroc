@@ -9,18 +9,21 @@ use App\Repository\UserRepository;
 use App\Controllers\ErrorController;
 use App\Models\Book;
 use App\Services\ImageUploadService;
+use App\Validators\ImageValidator;
 
 class BookController
 {
     private BookRepository $bookRepository;
     private UserRepository $userRepository;
     private ImageUploadService $imageUploadService;
+    private ImageValidator $imageValidator;
 
     public function __construct(DBConnect $database)
     {
         $this->bookRepository = new BookRepository($database->getConnection());
         $this->userRepository = new UserRepository($database->getConnection());
         $this->imageUploadService = new ImageUploadService($database);
+        $this->imageValidator = new ImageValidator();
     }
     public function bookList(): void
     {
@@ -151,25 +154,52 @@ class BookController
     {
         $bookId = isset($_POST['id']) ? (int) $_POST['id'] : null;
         $userId = (int) $_SESSION['user_id'];
+        $imageType = 'book_cover';
 
-        $result = $this->imageUploadService->uploadImage(
+        $error = $this->imageValidator->validate(
+            $_FILES['fileToUpload'],
+            $imageType
+        );
+
+        if ($error !== null) {
+            $_SESSION['flash_error_upload_file'] = $error;
+
+            header('Location: index.php?action=profile');
+            exit;
+        }
+        
+        $path = $this->imageUploadService->uploadImage(
             'book_cover',
             $userId,
         );
-        if ($result['success']) {
+        if ($path) {
             $book = $this->bookRepository->findById($bookId);
-            $book->setImage($result['path']);
+            $book->setImage($path);
 
             $this->bookRepository->update($book);
         }
 
-        $_SESSION['flash_error_upload_file'] = $result['error'];
-        $_SESSION['flash_success_upload_file'] = $result['message'];
+        try {
+            $path = $this->imageUploadService->uploadImage(
+                $imageType,
+                $userId,
+            );
+
+            if ($path) {
+                $book = $this->bookRepository->findById($bookId);
+                $book->setImage($path);
+
+                $this->bookRepository->update($book);
+                $_SESSION['flash_success_upload_file'] = "Image modifiée avec succès.";
+            }
+        } catch (\RuntimeException) {
+            $_SESSION['flash_error_upload_file']
+                = "Une erreur s'est produite lors du téléchargement.";
+        }
 
         header('Location: index.php?action=addEditBook&id=' . $bookId);
         exit;
     }
-
 
     public function deleteBook(): void
     {

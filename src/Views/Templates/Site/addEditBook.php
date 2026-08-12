@@ -61,8 +61,8 @@
                 <div>
                     <label for="isAvailable">Disponible :</label>
                     <select id="isAvailable" name="isAvailable">
-                        <option value="" disabled selected>-- Choisissez une option --</option>
-                        <option value="1">Disponible</option>
+                        <!-- <option value="" disabled selected>-- Choisissez une option --</option> -->
+                        <option value="1" <?= $book->getIsAvailable() ? selected : '' ?>>Disponible</option>
                         <option value="0">Non dispo.</option>
                     </select>
                 </div>
