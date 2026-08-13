@@ -41,10 +41,10 @@ class BookRepository extends AbstractRepository
                 $data['title'],
                 $data['author'],
                 $data['description'],
-                $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
                 (bool) $data['is_available'],
+                $data['image'],
             );
         }
 
@@ -86,10 +86,10 @@ class BookRepository extends AbstractRepository
             $data['title'],
             $data['author'],
             $data['description'],
-            $data['image'],
             new \DateTime($data['created_at']),
             $user,
             $data['is_available'] === '1' ? true : false,
+            $data['image'],
         );
     }
 
@@ -132,10 +132,10 @@ class BookRepository extends AbstractRepository
                 $data['title'],
                 $data['author'],
                 $data['description'],
-                $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
                 (bool) $data['is_available'],
+                $data['image']
             );
         }
         return $books;

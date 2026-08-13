@@ -3,6 +3,7 @@
  * Add or edit book template.
  */
 /** @var object $book */
+
 ?>
 
 <div class="page-container">
@@ -15,15 +16,22 @@
             <form class="add-edit-book-form" action="index.php?action=uploadImage" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="fileToUpload">
-                    Photo
+                        Photo
                     </label>
-                    <img class="book-form-img" src="<?= isset($book)
+                    <?php if ($book->getImage() !== null): ?>
+                        <img class="book-form-img" src="<?= isset($book)
                         ? htmlspecialchars($book->getImage())
                         : 'https://via.placeholder.com/150' ?>" alt="Couverture du livre <?= isset(
-                            $book,
-                        )
-    ? htmlspecialchars($book->getTitle())
-    : '' ?>">
+                                $book,
+                            )
+                        ? htmlspecialchars($book->getTitle())
+                        : '' ?>">
+                    <?php else: ?>
+                        <img
+                            src="/assets/images/default-book-cover.jpg"
+                            alt="<?= htmlspecialchars($book->getTitle()) ?>"
+                        >
+                    <?php endif; ?>
                 </div>
                 <label for="fileToUpload" class="btn-img" style="cursor: pointer;">
                     Modifier la photo
@@ -35,6 +43,19 @@
                 >
                 <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" value="<?= $book->getId() ?>" style="display: none;">
             </form>
+            <?php if (isset($_SESSION['flash_error_upload_book_cover'])): ?>
+                <div class="alert alert-book-cover alert-danger">
+                    <?= htmlspecialchars($_SESSION['flash_error_upload_book_cover']) ?>
+                </div>
+                <?php unset($_SESSION['flash_error_upload_book_cover']); ?>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['flash_success_upload_book_cover'])): ?>
+                <div class="alert alert-book-cover alert-success"><?= htmlspecialchars(
+                    $_SESSION['flash_success_upload_book_cover'],
+                ) ?>
+                </div>
+                <?php unset($_SESSION['flash_success_upload_book_cover']); ?>
+            <?php endif; ?>
             </div>
             <form class="add-edit-book-form form-details" method="post" action="index.php?action=addEditBookPost" enctype="multipart/form-data">
                 <?php if (!empty($book->getId())): ?>

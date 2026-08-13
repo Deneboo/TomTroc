@@ -66,7 +66,6 @@ class BookController
 
     public function addEditBookForm(): void
     {
-        echo "addEditBook";
         $bookId = isset($_GET['id']) ? (int) $_GET['id'] : null;
         $book = null;
 
@@ -122,10 +121,10 @@ class BookController
                 $title,
                 $author,
                 $description,
-                $image ? $image : $book->getImage(),
                 new \DateTime(),
                 $book->getUser(),
                 $isAvailable,
+                $image ? $image : $book->getImage(),
             );
 
             $this->bookRepository->update($newBook);
@@ -137,10 +136,10 @@ class BookController
                 $title,
                 $author,
                 $description,
-                '/assets/images/default-avatar.png',
                 new \DateTime(),
                 $user,
                 '1',
+                $image ? $image : '',
             );
             $this->bookRepository->insert($newBook);
             $_SESSION['flash_success_add_book'] = "Votre livre  a bien été ajouté.";
@@ -158,43 +157,35 @@ class BookController
 
         $error = $this->imageValidator->validate(
             $_FILES['fileToUpload'],
-            $imageType
+            $imageType,
         );
 
-        if ($error !== null) {
-            $_SESSION['flash_error_upload_file'] = $error;
-
+        if ($error !== null || $bookId === null) {
+            $_SESSION['flash_error_upload_book_cover'] = $error;
             header('Location: index.php?action=profile');
             exit;
-        }
-        
-        $path = $this->imageUploadService->uploadImage(
-            'book_cover',
-            $userId,
-        );
-        if ($path) {
-            $book = $this->bookRepository->findById($bookId);
-            $book->setImage($path);
-
-            $this->bookRepository->update($book);
         }
 
         try {
             $path = $this->imageUploadService->uploadImage(
                 $imageType,
                 $userId,
+                $bookId
             );
-
             if ($path) {
                 $book = $this->bookRepository->findById($bookId);
-                $book->setImage($path);
 
-                $this->bookRepository->update($book);
-                $_SESSION['flash_success_upload_file'] = "Image modifiée avec succès.";
+                if ($book->getImage() == null) {
+                    $book->setImage($path);
+
+                    $this->bookRepository->update($book);
+
+                }
+                $_SESSION['flash_success_upload_book_cover'] = "Image modifiée avec succès.";
             }
-        } catch (\RuntimeException) {
-            $_SESSION['flash_error_upload_file']
-                = "Une erreur s'est produite lors du téléchargement.";
+        } catch (\RuntimeException $e) {
+            $_SESSION['flash_error_upload_book_cover']
+                = "Une erreur s'est produite lors du téléchargement de la couverture.";
         }
 
         header('Location: index.php?action=addEditBook&id=' . $bookId);

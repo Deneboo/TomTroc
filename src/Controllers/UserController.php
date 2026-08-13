@@ -111,7 +111,7 @@ class UserController
         );
 
         if ($error !== null) {
-            $_SESSION['flash_error_upload_file'] = $error;
+            $_SESSION['flash_error_upload_avatar'] = $error;
 
             header('Location: index.php?action=profile');
             exit;
@@ -128,12 +128,13 @@ class UserController
                 $user->setAvatar($path);
 
                 $this->userRepository->update($user);
-                $_SESSION['flash_success_upload_file'] = "Avatar modifié avec succès.";
+                $_SESSION['flash_success_upload_avatar'] = "Avatar modifié avec succès.";
             }
         // Deal with exeption from the service
-        } catch (\RuntimeException) {
-            $_SESSION['flash_error_upload_file']
-                = "Une erreur s'est produite lors du téléchargement.";
+        } catch (\RuntimeException $e) {
+            // var_dump($e->getMessage());
+            $_SESSION['flash_error_upload_avatar']
+                = "Une erreur s'est produite lors du téléchargement de votre avatar.";
         }
 
         header('Location: index.php?action=profile');

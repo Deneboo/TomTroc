@@ -79,9 +79,11 @@ caption {
 }
 
 .alert-avatar {
-  margin-top: 3px;
-  @extend %message;
   text-align: center;
+}
+
+.alert-book-cover {
+  text-align: right;
 }
 
 %section-card {

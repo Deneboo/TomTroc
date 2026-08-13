@@ -5,7 +5,7 @@
         <?php if (isset($error)): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
-        <form action="index.php?action=registerPost"  method="post" enctype="multipart/form-data"  class="register-login-form">
+        <form action="index.php?action=register"  method="post" enctype="multipart/form-data"  class="register-login-form">
             <div>
                 <label for="username">Pseudo</label>
                 <input type="text" name="username" value="<?= htmlspecialchars(

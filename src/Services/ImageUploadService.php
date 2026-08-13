@@ -7,6 +7,7 @@ class ImageUploadService
         public function uploadImage(
             string $imageType,
             int $userId,
+            ?int $bookId = null
         ): string 
         {
 
@@ -25,7 +26,7 @@ class ImageUploadService
         $extension = strtolower(
             pathinfo($file['name'], PATHINFO_EXTENSION)
         );
-        $fileName = uniqid('', true) . '.' . $extension;
+        $fileName = $imageType === 'book_cover' ? $bookId . '_' . $imageType . '.' . $extension : $imageType . '.' . $extension;
         $targetFile = $targetDir . $fileName;
 
         if (!move_uploaded_file(
@@ -37,11 +38,13 @@ class ImageUploadService
             );
         }
 
-        return '/assets/uploads/'
+        $filePath = '/assets/uploads/'
             . $userId
             . '/'
             . $imageType
             . '/'
             . $fileName;
+
+        return $filePath;
     }
 }
