@@ -15,6 +15,6 @@
         </form>
         <p class="redirect-to">Pas de compte ? <span><a href="index.php?action=registerPage">Inscrivez-vous</a></span></p>
   </div>
-  <img src="/assets/images/library-vintage.jpg" alt="image de livres">
+  <img class="register-login-img" src="/assets/images/library-vintage.jpg" alt="image de livres">
   </div>
 </div>

@@ -79,9 +79,28 @@ caption {
 }
 
 .alert-avatar {
-  margin-top: 3px;
-  @extend %message;
   text-align: center;
+}
+
+.alert-book-cover {
+  text-align: right;
+}
+
+%section-card {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+%label {
+  display: block;
+  padding-top: 5px;
+  text-decoration: underline;
+  @include m.typography(
+    $font-body,
+    14px,
+    400,
+    $secondary-text-color
+  );
 }
 
 

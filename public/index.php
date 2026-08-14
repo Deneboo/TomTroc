@@ -60,11 +60,17 @@ try {
         case 'book':
             $bookController->bookDetails();
             break;
-        case 'addEditBook':
+        // case 'addBookForm':
+        //     $bookController->addBookForm();
+        //     break;
+        case 'addEditBookForm':
             $bookController->addEditBookForm();
             break;
-        case 'addEditBookPost':
+        case 'addEditBook':
             $bookController->addEditBook();
+            break;
+        case 'uploadImage':
+            $bookController->uploadImage();
             break;
         case 'deleteBook':
             $bookController->deleteBook();
@@ -98,6 +104,7 @@ try {
             break;
     }
 } catch (\Throwable $e) {
-    // var_dump($e->getMessage());
-    $errorControler->error500();
+    var_dump($e->getMessage());
+    // $errorControler = new ErrorController();
+    // $errorControler->error500();
 }

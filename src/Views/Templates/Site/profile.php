@@ -5,6 +5,8 @@
 
 /** @var App\Models\User $user */
 /** @var array[] $books */
+/** @var int $bookCount */
+
 ?>
 
 <div class="page-container">
@@ -22,17 +24,17 @@
               </label>
               <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" style="display: none;">
             </form>
-              <?php if (isset($_SESSION['flash_error_avatar'])): ?>
-                <div class="alert-avatar alert-danger">
-                  <?= htmlspecialchars($_SESSION['flash_error_avatar']) ?>
+              <?php if (isset($_SESSION['flash_error_upload_avatar'])): ?>
+                <div class="alert alert-avatar alert-danger">
+                  <?= htmlspecialchars($_SESSION['flash_error_upload_avatar']) ?>
                 </div>
-                <?php unset($_SESSION['flash_error_avatar']); ?>
+                <?php unset($_SESSION['flash_error_upload_avatar']); ?>
               <?php endif; ?>
-            <?php if (isset($_SESSION['flash_success_avatar'])): ?>
-                <div class="alert-avatar alert-success"><?= htmlspecialchars(
-                    $_SESSION['flash_success_avatar'],
+            <?php if (isset($_SESSION['flash_success_upload_avatar'])): ?>
+                <div class="alert alert-avatar alert-success"><?= htmlspecialchars(
+                    $_SESSION['flash_success_upload_avatar'],
                 ) ?></div>
-                <?php unset($_SESSION['flash_success_avatar']); ?>
+                <?php unset($_SESSION['flash_success_upload_avatar']); ?>
             <?php endif; ?>
           </div>
           <div class="profile-info">
@@ -74,59 +76,67 @@
           </form>
       </div>
     </div>
-    <div class="profile-book-list">
-      <table>
-
-        <thead>
-          <tr>
-          <th><p class="tiny-uppercase-label ">Photo</p></th>
-          <th><p class="tiny-uppercase-label ">Titre</p></th>
-          <th><p class="tiny-uppercase-label ">Auteur</p></th>
-          <th><p class="tiny-uppercase-label ">Description</p></th>
-          <th><p class="tiny-uppercase-label ">Disponibilité</p></th>
-          <th><p class="tiny-uppercase-label ">Action</p></th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($books as $book) { ?>
+    <?php if ($bookCount > 0): ?>
+      <div class="profile-book-list">
+        <table>
+          <thead>
             <tr>
-                <td>
-                  <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
-                    <img src="<?= htmlspecialchars(
-                        $book['image'],
-                    ) ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
-                  </a>
-                </td>
-                <td>
-                  <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
-                    <?= htmlspecialchars($book['title']) ?>
-                  </a>
-                </td>
-                <td><?= htmlspecialchars($book['author']) ?></td>
-                <td>
-                  <p class="book-list-description">
-                    <?= htmlspecialchars($book['description']) ?>
-                  </p>
-                </td>
-                <td>
-                  <div class="status <?= htmlspecialchars($book['is_available']) === '1'
-                      ? 'available'
-                      : 'unavailable' ?>">
-                  <?= htmlspecialchars($book['is_available']) === '1'
-                      ? 'disponible'
-                      : 'non dispo.' ?>
-                </div>
-              </td>
-                <td>
-                  <div class="action">
-                  <p class="edit">Editer</p>
-                  <p class="delete">Supprimer</p>
+            <th><p class="tiny-uppercase-label ">Photo</p></th>
+            <th><p class="tiny-uppercase-label ">Titre</p></th>
+            <th><p class="tiny-uppercase-label ">Auteur</p></th>
+            <th><p class="tiny-uppercase-label ">Description</p></th>
+            <th><p class="tiny-uppercase-label ">Disponibilité</p></th>
+            <th><p class="tiny-uppercase-label ">Action</p></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($books as $book) { 
+              $image = $book['image'] !== null && $book['image'] !== '' ? htmlspecialchars($book['image']) : "/assets/images/default-book-cover.jpg";
+              ?>
+              <tr>
+                  <td>
+                    <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
+                      <img src="<?= $image ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
+                    </a>
+                  </td>
+                  <td>
+                    <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
+                      <?= htmlspecialchars($book['title']) ?>
+                    </a>
+                  </td>
+                  <td><?= htmlspecialchars($book['author']) ?></td>
+                  <td>
+                    <p class="book-list-description">
+                      <?= htmlspecialchars($book['description']) ?>
+                    </p>
+                  </td>
+                  <td>
+                    <div class="status <?= htmlspecialchars($book['is_available']) === '1'
+                        ? 'available'
+                        : 'unavailable' ?>">
+                    <?= htmlspecialchars($book['is_available']) === '1'
+                        ? 'disponible'
+                        : 'non dispo.' ?>
                   </div>
                 </td>
-            </tr>
-          <?php } ?>
-            </tbody>
-      </table>
-    </div>
+                  <td>
+                    <div class="action">
+                    <a class="edit" href="index.php?action=addEditBookForm&id=<?= htmlspecialchars(
+                        $book['id'],
+                    ) ?>">Editer</a>
+                    <a class="delete" href="index.php?action=deleteBook&id=<?= htmlspecialchars(
+                        $book['id'],
+                    ) ?>">Supprimer</a>
+                    </div>
+                  </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+        <a class="add-book" href="index.php?action=addEditBookForm">Ajouter un livre</a>
+      </div>
+    <?php else : ?>
+      <a class="add-book" href="index.php?action=addEditBookForm">Ajouter un livre</a>
+    <?php endif ?>
   </div>
 </div>

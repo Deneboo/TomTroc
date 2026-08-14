@@ -29,14 +29,6 @@
   padding: 0 16px;
 }
 
-.heading-3 {
-  @include m.typography(
-    $font-family: inherit,
-    $size: 16px,
-    $color: inherit
-  )
-}
-
 .search-input {
   display: flex;
   align-items: center;

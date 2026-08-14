@@ -10,7 +10,6 @@ class UserRepository extends AbstractRepository
 {
     public function insert(User $user): bool
     {
-
         $query = "
             INSERT INTO users 
             (username, email, password, avatar)

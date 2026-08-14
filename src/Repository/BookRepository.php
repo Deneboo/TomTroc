@@ -41,10 +41,10 @@ class BookRepository extends AbstractRepository
                 $data['title'],
                 $data['author'],
                 $data['description'],
-                $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
                 (bool) $data['is_available'],
+                $data['image'],
             );
         }
 
@@ -86,10 +86,10 @@ class BookRepository extends AbstractRepository
             $data['title'],
             $data['author'],
             $data['description'],
-            $data['image'],
             new \DateTime($data['created_at']),
             $user,
-            $data['is_available'] === '1' ? true : false,
+            $data['is_available'] === 1 ? true : false,
+            $data['image'],
         );
     }
 
@@ -111,8 +111,8 @@ class BookRepository extends AbstractRepository
         $rows = $this->executeAll(
             $query,
             [
-                'title' => '%' . $title . '%'
-            ]
+                'title' => '%' . $title . '%',
+            ],
         );
 
         $books = [];
@@ -132,12 +132,66 @@ class BookRepository extends AbstractRepository
                 $data['title'],
                 $data['author'],
                 $data['description'],
-                $data['image'],
                 new \DateTime($data['created_at']),
                 $user,
                 (bool) $data['is_available'],
+                $data['image']
             );
         }
         return $books;
+    }
+
+    public function insert(Book $book): int
+    {
+        $query = "
+            INSERT INTO books (title, author, description, image, user_id, is_available)
+            VALUES (:title, :author, :description, :image, :user_id, :is_available)
+        ";
+
+        $this->execute($query, [
+            'title' => $book->getTitle(),
+            'author' => $book->getAuthor(),
+            'description' => $book->getDescription(),
+            'image' => $book->getImage(),
+            'user_id' => $book->getUser()->getId(),
+            'is_available' => $book->isAvailable() ? 1 : 0,
+        ]);
+        $id = (int) $this->pdo->lastInsertId();
+
+        return $id;
+    }
+
+    public function update(Book $book): bool
+    {
+        $query = "
+            UPDATE books
+            SET title = :title,
+                author = :author,
+                description = :description,
+                image = :image,
+                is_available = :is_available
+            WHERE id = :id
+        ";
+
+        return $this->execute($query, [
+            'id' => $book->getId(),
+            'title' => $book->getTitle(),
+            'author' => $book->getAuthor(),
+            'description' => $book->getDescription(),
+            'image' => $book->getImage(),
+            'is_available' => $book->isAvailable() ? 1 : 0,
+        ]);
+    }
+
+    public function delete(int $id): bool
+    {
+        $query = "
+            DELETE FROM books
+            WHERE id = :id
+        ";
+
+        return $this->execute($query, [
+            'id' => $id,
+        ]);
     }
 }

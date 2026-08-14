@@ -24,13 +24,8 @@
     color: pink;
 }
 
-%profile-card {
-  background-color: #fff;
-  border-radius: 20px;
-}
-
 .profile-header {
-  @extend %profile-card;
+  @extend %section-card;
   width: 547px;
   height: 515px;
   display: flex;
@@ -47,6 +42,7 @@
     padding-bottom: 48px;
     border-bottom: 1px solid v.$background-color;
 
+
     img {
       display: block;
       width: 135px;
@@ -54,15 +50,7 @@
       border-radius: 50%;
     }
     .avatar-label {
-      display: block;
-      padding-top: 5px;
-      text-decoration: underline;
-      @include m.typography(
-        v.$font-body,
-        14px,
-        400,
-        v.$secondary-text-color
-      );
+      @extend %label;
     }
   }
 
@@ -102,7 +90,7 @@
 }
 
 .profile-edit {
-  @extend %profile-card;
+  @extend %section-card;
   height: 515px;
   padding: 38px 116px 37px 116px;
 
@@ -113,7 +101,7 @@
 }
 
 .profile-book-list {
-  @extend %profile-card;
+  @extend %section-card;
   width: 1140px;
   padding-top: 33px;
   margin-bottom: 102px;
@@ -134,6 +122,7 @@
     img {
       width: 78px;
       height: 78px;
+      object-fit: cover;
     }
 
     tbody {
@@ -199,6 +188,12 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+  }
+
+  .add-book {
+    @extend %label;
+    padding: 30px;
+    text-align: right;
   }
 }
 

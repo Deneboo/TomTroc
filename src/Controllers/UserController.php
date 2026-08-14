@@ -5,14 +5,20 @@ namespace App\Controllers;
 use App\Database\DBConnect;
 use App\Views\View;
 use App\Repository\UserRepository;
+use App\Services\ImageUploadService;
+use App\Validators\ImageValidator;
 
 class UserController
 {
     private UserRepository $userRepository;
+    private ImageUploadService $imageUploadService;
+    private ImageValidator $imageValidator;
 
     public function __construct(DBConnect $database)
     {
         $this->userRepository = new UserRepository($database->getConnection());
+        $this->imageUploadService = new ImageUploadService();
+        $this->imageValidator = new ImageValidator();
     }
 
     public function loginPage(): void
@@ -96,71 +102,42 @@ class UserController
 
     public function uploadAvatar(): void
     {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=loginPage');
+        $userId = (int) $_SESSION['user_id'];
+        $imageType = 'avatar';
+
+        $error = $this->imageValidator->validate(
+            $_FILES['fileToUpload'],
+            $imageType
+        );
+
+        if ($error !== null) {
+            $_SESSION['flash_error_upload_avatar'] = $error;
+
+            header('Location: index.php?action=profile');
             exit;
         }
 
-        $errorFile = null;
-        $messageSuccess = null;
+        try {
+            $path = $this->imageUploadService->uploadImage(
+                $imageType,
+                $userId,
+            );
 
-        $user = $this->userRepository->findUserById($_SESSION['user_id']);
-
-        $targetDir = __DIR__ . "/../../public/assets/uploads/" . $user->getId() . "/avatar/";
-
-        if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0777, true);
-        }
-
-        $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
-
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-
-        if (isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if ($check !== false) {
-                $uploadOk = 1;
-            } else {
-                $errorFile   =  "Le fichier n'est pas une image valide..";
-                $uploadOk = 0;
-            }
-        }
-
-        if (file_exists($targetFile)) {
-            $errorFile   = "Le fichier existe déjà.";
-            $uploadOk = 0;
-        }
-
-        if ($_FILES["fileToUpload"]["size"] > 200000) {
-            $errorFile   =  "Votre fichier est trop volumineux. La taille maximale autorisée est de 200 Ko.";
-            $uploadOk = 0;
-        }
-
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif") {
-            $errorFile   =  "Seul les fichiers JPG, JPEG, PNG & GIF sont autorisés.";
-            $uploadOk = 0;
-        }
-
-        if ($uploadOk == 0) {
-            $errorFile   =  "Le téléchargement de votre fichier a échoué.";
-        } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
-                $filePath = "/assets/uploads/" . $user->getId() . "/avatar/" . basename($_FILES["fileToUpload"]["name"]);
-                $user->setAvatar($filePath);
-                $messageSuccess = "Votre avatar a été mis à jour avec succès.";
+            if ($path) {
+                $user = $this->userRepository->findUserById($userId);
+                $user->setAvatar($path);
 
                 $this->userRepository->update($user);
-            } else {
-                $errorFile   = "Une erreur s'est produite lors du téléchargement de votre fichier.";
+                $_SESSION['flash_success_upload_avatar'] = "Avatar modifié avec succès.";
             }
+        // Deal with exeption from the service
+        } catch (\RuntimeException $e) {
+            // var_dump($e->getMessage());
+            $_SESSION['flash_error_upload_avatar']
+                = "Une erreur s'est produite lors du téléchargement de votre avatar.";
         }
-        $_SESSION['flash_error_avatar'] = $errorFile;
-        $_SESSION['flash_success_avatar'] = $messageSuccess;
 
         header('Location: index.php?action=profile');
         exit;
     }
-
 }

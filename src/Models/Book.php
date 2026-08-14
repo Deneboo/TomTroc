@@ -8,21 +8,21 @@ class Book
     private string $title;
     private string $author;
     private string $description;
-    private string $image;
     private \DateTime $createdAt;
     private User $user;
     private bool $isAvailable;
+    private ?string $image;
 
-    public function __construct(int $id, string $title, string $author, string $description, string $image, \DateTime $createdAt, User $user, bool $isAvailable = true)
+    public function __construct(int $id, string $title, string $author, string $description, \DateTime $createdAt, User $user, bool $isAvailable = true, ?string $image = NULL,)
     {
         $this->id = $id;
         $this->title = $title;
         $this->author = $author;
         $this->description = $description;
-        $this->image = $image;
         $this->createdAt = $createdAt;
         $this->user = $user;
         $this->isAvailable = $isAvailable;
+        $this->image = $image;
     }
 
     public function getId(): int
@@ -75,7 +75,7 @@ class Book
      * Getter for image.
      * @return string
      */
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
@@ -84,7 +84,7 @@ class Book
      * Setter for image.
      * @param string $image
      */
-    public function setImage(string $image): void
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
@@ -140,17 +140,16 @@ class Book
      * Getter for isAvailable.
      * @return bool
      */
-    public function getIsAvailable(): bool
+    public function isAvailable(): bool
     {
-        return (bool) $this->isAvailable;
+        return $this->isAvailable;
     }
 
     /**
      * Setter for isAvailable.
-     * @param bool $isAvailable
      */
     public function setIsAvailable(bool $isAvailable): void
     {
-        $this->isAvailable = (bool) $isAvailable;
+        $this->isAvailable = $isAvailable;
     }
 }

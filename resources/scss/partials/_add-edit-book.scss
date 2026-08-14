@@ -1,0 +1,66 @@
+@use '../common/global' as *;
+@use '../common/typography' as t;
+@use '../common/variables' as v;
+@use '../common/mixins' as m;
+@use '../common/form' as f;
+
+/* ----- Books create/edit page ----- */
+
+.add-edit-book-page {
+  margin-inline: auto;
+  @include m.flex(column, flex-start, flex-start, 32px);
+
+  h1 {
+    margin: 170px 0 16px 0;
+  }
+}
+.add-edit-book-card {
+    width: 1135px;
+    @extend %section-card;
+    @include m.flex(
+      $direction: row,
+      $gap: 118px
+    );
+    padding: 56px 50px 68px 50px;
+    margin-bottom: 92px;
+}
+
+.add-edit-book-form {
+    @extend %form-template;
+    margin-top: 32px;
+
+    label {
+      color: v.$secondary-text-color;
+    }
+
+    img {
+      width: 448px;
+      height: 448px;
+      margin-top: 10px;
+      object-fit: cover;
+    }
+
+    .text-area {
+      min-height: 100px;
+      resize: vertical;
+      box-sizing: content-box;
+      padding-bottom: 15px;
+    }
+
+    .btn-img {
+      all: unset;
+      padding-top: 5px;
+      text-decoration: underline;
+      text-align: right;
+      @include m.typography(
+        v.$font-body,
+        14px,
+        400,
+        v.$secondary-text-color
+      );
+    }
+
+    .btn-form {
+      width: 322px;
+    }
+}

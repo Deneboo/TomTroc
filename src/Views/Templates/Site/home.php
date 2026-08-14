@@ -32,11 +32,11 @@
                     alt="Image du livre <?= htmlspecialchars($book->getTitle()) ?>"
                 >
 
-                <h3>
+                <p class="heading-3">
                     <?= htmlspecialchars($book->getAuthor()) ?>
-                </h3>
+                </p>
 
-                <p>
+                <p class="author">
                     <?= htmlspecialchars($book->getTitle()) ?>
                 </p>
 
