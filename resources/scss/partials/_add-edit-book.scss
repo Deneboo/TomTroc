@@ -18,6 +18,7 @@
     width: 1135px;
     @extend %section-card;
     @include m.flex(
+      $direction: row,
       $gap: 118px
     );
     padding: 56px 50px 68px 50px;

@@ -5,6 +5,8 @@
 
 /** @var App\Models\User $user */
 /** @var array[] $books */
+/** @var int $bookCount */
+
 ?>
 
 <div class="page-container">
@@ -88,13 +90,13 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($books as $book) { ?>
+            <?php foreach ($books as $book) { 
+              $image = $book['image'] !== null && $book['image'] !== '' ? htmlspecialchars($book['image']) : "/assets/images/default-book-cover.jpg";
+              ?>
               <tr>
                   <td>
                     <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
-                      <img src="<?= htmlspecialchars(
-                          $book['image'],
-                      ) ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
+                      <img src="<?= $image ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
                     </a>
                   </td>
                   <td>
@@ -119,7 +121,7 @@
                 </td>
                   <td>
                     <div class="action">
-                    <a class="edit" href="index.php?action=addEditBook&id=<?= htmlspecialchars(
+                    <a class="edit" href="index.php?action=addEditBookForm&id=<?= htmlspecialchars(
                         $book['id'],
                     ) ?>">Editer</a>
                     <a class="delete" href="index.php?action=deleteBook&id=<?= htmlspecialchars(
@@ -131,9 +133,10 @@
             <?php } ?>
           </tbody>
         </table>
+        <a class="delete" href="index.php?action=addEditBookForm">Ajouter un livre</a>
       </div>
     <?php else : ?>
-      <p>Ajouter un livre</p>
+      <a href="index.php?action=addEditBookForm">Ajouter un livre</a>
     <?php endif ?>
   </div>
 </div>

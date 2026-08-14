@@ -175,7 +175,7 @@ main {
   border-radius: 50%;
 }
 
-.profile-book-list table .book-list-description, .alert-avatar, .alert, caption {
+.profile-book-list table .book-list-description, .alert, caption {
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -196,8 +196,11 @@ main {
 }
 
 .alert-avatar {
-  margin-top: 3px;
   text-align: center;
+}
+
+.alert-book-cover {
+  text-align: right;
 }
 
 .profile-header, .profile-edit, .profile-book-list, .add-edit-book-card {

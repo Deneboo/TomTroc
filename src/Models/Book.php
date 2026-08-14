@@ -140,17 +140,16 @@ class Book
      * Getter for isAvailable.
      * @return bool
      */
-    public function getIsAvailable(): bool
+    public function isAvailable(): bool
     {
-        return (bool) $this->isAvailable;
+        return $this->isAvailable;
     }
 
     /**
      * Setter for isAvailable.
-     * @param bool $isAvailable
      */
     public function setIsAvailable(bool $isAvailable): void
     {
-        $this->isAvailable = (bool) $isAvailable;
+        $this->isAvailable = $isAvailable;
     }
 }

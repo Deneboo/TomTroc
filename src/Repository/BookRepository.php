@@ -80,7 +80,7 @@ class BookRepository extends AbstractRepository
             $data['avatar'],
             new \DateTime($data['created_at']),
         );
-
+        
         return new Book(
             (int) $data['id'],
             $data['title'],
@@ -88,7 +88,7 @@ class BookRepository extends AbstractRepository
             $data['description'],
             new \DateTime($data['created_at']),
             $user,
-            $data['is_available'] === '1' ? true : false,
+            $data['is_available'] === 1 ? true : false,
             $data['image'],
         );
     }
@@ -154,12 +154,13 @@ class BookRepository extends AbstractRepository
             'description' => $book->getDescription(),
             'image' => $book->getImage(),
             'user_id' => $book->getUser()->getId(),
-            'is_available' => $book->getIsAvailable() ? 1 : 0,
+            'is_available' => $book->isAvailable() ? 1 : 0,
         ]);
     }
 
     public function update(Book $book): bool
     {
+        // var_dump($book->isAvailable());
         $query = "
             UPDATE books
             SET title = :title,
@@ -176,7 +177,7 @@ class BookRepository extends AbstractRepository
             'author' => $book->getAuthor(),
             'description' => $book->getDescription(),
             'image' => $book->getImage(),
-            'is_available' => $book->getIsAvailable() ? 1 : 0,
+            'is_available' => $book->isAvailable() ? 1 : 0,
         ]);
     }
 

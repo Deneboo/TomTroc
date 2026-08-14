@@ -32,7 +32,7 @@ if (!empty($hasSearchQuery)): ?>
         
         <ul>
             <?php foreach ($books as $book):
-                if (htmlspecialchars($book->getIsAvailable()) === '1'): ?>
+                if (htmlspecialchars($book->isAvailable()) === '1'): ?>
                 <li>
                     <a class="book-card" href="index.php?action=book&id=<?= $book->getId() ?>">
                         <img 

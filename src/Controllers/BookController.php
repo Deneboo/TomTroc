@@ -115,7 +115,6 @@ class BookController
                 (new ErrorController())->error404($errorMessage);
                 return;
             }
-
             $newBook = new Book(
                 $bookId,
                 $title,
@@ -139,7 +138,7 @@ class BookController
                 new \DateTime(),
                 $user,
                 '1',
-                $image ? $image : '',
+                $image ?? '',
             );
             $this->bookRepository->insert($newBook);
             $_SESSION['flash_success_add_book'] = "Votre livre  a bien été ajouté.";

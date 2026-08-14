@@ -60,10 +60,13 @@ try {
         case 'book':
             $bookController->bookDetails();
             break;
-        case 'addEditBook':
+        // case 'addBookForm':
+        //     $bookController->addBookForm();
+        //     break;
+        case 'addEditBookForm':
             $bookController->addEditBookForm();
             break;
-        case 'addEditBookPost':
+        case 'addEditBook':
             $bookController->addEditBook();
             break;
         case 'uploadImage':
