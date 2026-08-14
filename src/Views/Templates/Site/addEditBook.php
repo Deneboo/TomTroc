@@ -3,16 +3,15 @@
  * Add or edit book template.
  */
 /** @var object $book */
+
 $id = $book ? htmlspecialchars($book->getId()) : '';
 $image = $book && $book->getImage() !== '' ? htmlspecialchars($book->getImage()) : "/assets/images/default-book-cover.jpg";
 $title = $book ? htmlspecialchars($book->getTitle()) : '';
 $author = $book ? htmlspecialchars($book->getAuthor()) : '';
 $description = $book ? htmlspecialchars($book->getDescription()) : '';
-// $available = $book?->isAvailable() ?? false;
+
 $available = $book ? $book->isAvailable() : 0;
-var_dump($available);
-var_dump($book?->isAvailable());
-var_dump($available);
+
 ?>
 
 <div class="page-container">
@@ -24,7 +23,7 @@ var_dump($available);
             <div>
                 <form class="add-edit-book-form" action="index.php?action=uploadImage" method="post" enctype="multipart/form-data">
                     <div>
-                        <label for="fileToUpload">
+                        <label>
                             Photo
                         </label>
                         <img class="book-form-img" src="<?= $image ?>" alt="Couverture du livre <?= $title ?>">
@@ -80,8 +79,10 @@ var_dump($available);
                                 Photo
                             </label>
                             <input
-                                name="id"
-                                value="<?= $id ?>"
+                                type="file"
+                                id="fileToUpload"
+                                name="fileToUpload"
+                                accept="image/jpeg,image/png,image/gif"
                             >
                         </div>
                     <?php endif ?> 

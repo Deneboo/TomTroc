@@ -91,4 +91,16 @@ caption {
   border-radius: 20px;
 }
 
+%label {
+  display: block;
+  padding-top: 5px;
+  text-decoration: underline;
+  @include m.typography(
+    $font-body,
+    14px,
+    400,
+    $secondary-text-color
+  );
+}
+
 

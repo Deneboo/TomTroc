@@ -94,6 +94,7 @@ class BookController
         $image = $_POST['image'] ?? null;
         $userId = $_SESSION['user_id'];
         $isAvailable = isset($_POST['isAvailable']) ? (bool) $_POST['isAvailable'] : true;
+
         if (empty($title) || empty($author) || empty($description)) {
             $error = "Tous les champs sont obligatoires.";
             View::render('Templates/Site/addEditBook', [
@@ -110,11 +111,13 @@ class BookController
 
         if ($bookId !== null) {
             $book = $this->bookRepository->findById($bookId);
+
             if ($book === null || $book->getUser()->getId() !== $_SESSION['user_id']) {
                 $errorMessage = "Le livre demandé est introuvable ou vous n'avez pas la permission de le modifier.";
                 (new ErrorController())->error404($errorMessage);
                 return;
             }
+
             $newBook = new Book(
                 $bookId,
                 $title,
@@ -130,6 +133,7 @@ class BookController
             $_SESSION['flash_success_edit_book'] = "Votre livre  a bien été modifié.";
         } else {
             $user = $this->userRepository->findUserById($userId);
+
             $newBook = new Book(
                 0,
                 $title,
@@ -140,7 +144,22 @@ class BookController
                 '1',
                 $image ?? '',
             );
-            $this->bookRepository->insert($newBook);
+            $bookId = $this->bookRepository->insert($newBook);
+
+            if (!empty($_FILES['fileToUpload']['tmp_name'])) {
+                $path = $this->imageUploadService->uploadImage(
+                    'book_cover',
+                    $userId,
+                    $bookId
+                );
+
+                if ($path) {
+                    $book = $this->bookRepository->findById($bookId);
+                    $book->setImage($path);
+
+                    $this->bookRepository->update($book);
+                }
+            }
             $_SESSION['flash_success_add_book'] = "Votre livre  a bien été ajouté.";
         }
 
@@ -173,7 +192,7 @@ class BookController
             );
             if ($path) {
                 $book = $this->bookRepository->findById($bookId);
-
+  
                 if ($book->getImage() == null) {
                     $book->setImage($path);
 
@@ -187,7 +206,7 @@ class BookController
                 = "Une erreur s'est produite lors du téléchargement de la couverture.";
         }
 
-        header('Location: index.php?action=addEditBook&id=' . $bookId);
+        header('Location: index.php?action=addEditBookForm&id=' . $bookId);
         exit;
     }
 

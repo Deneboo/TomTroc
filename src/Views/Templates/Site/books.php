@@ -4,6 +4,8 @@
  */
 
 /**@var App\Models\Book[] $books */
+/**@var App\Models\Book $book */
+
 ?>
 
 <div class="page-container">
@@ -32,11 +34,12 @@ if (!empty($hasSearchQuery)): ?>
         
         <ul>
             <?php foreach ($books as $book):
+                $image = $book->getImage() !== '' && $book->getImage() !== null ? htmlspecialchars($book->getImage()) : "/assets/images/default-book-cover.jpg";
                 if (htmlspecialchars($book->isAvailable()) === '1'): ?>
                 <li>
                     <a class="book-card" href="index.php?action=book&id=<?= $book->getId() ?>">
                         <img 
-                            src="<?= htmlspecialchars($book->getImage()) ?>"
+                            src="<?= $image ?>"
                             alt="Image du livre <?= htmlspecialchars($book->getTitle()) ?>"
                         >
 

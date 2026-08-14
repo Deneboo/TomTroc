@@ -80,7 +80,7 @@ class BookRepository extends AbstractRepository
             $data['avatar'],
             new \DateTime($data['created_at']),
         );
-        
+
         return new Book(
             (int) $data['id'],
             $data['title'],
@@ -141,14 +141,14 @@ class BookRepository extends AbstractRepository
         return $books;
     }
 
-    public function insert(Book $book): bool
+    public function insert(Book $book): int
     {
         $query = "
             INSERT INTO books (title, author, description, image, user_id, is_available)
             VALUES (:title, :author, :description, :image, :user_id, :is_available)
         ";
 
-        return $this->execute($query, [
+        $this->execute($query, [
             'title' => $book->getTitle(),
             'author' => $book->getAuthor(),
             'description' => $book->getDescription(),
@@ -156,11 +156,13 @@ class BookRepository extends AbstractRepository
             'user_id' => $book->getUser()->getId(),
             'is_available' => $book->isAvailable() ? 1 : 0,
         ]);
+        $id = (int) $this->pdo->lastInsertId();
+
+        return $id;
     }
 
     public function update(Book $book): bool
     {
-        // var_dump($book->isAvailable());
         $query = "
             UPDATE books
             SET title = :title,

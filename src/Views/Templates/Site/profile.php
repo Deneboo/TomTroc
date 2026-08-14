@@ -133,10 +133,10 @@
             <?php } ?>
           </tbody>
         </table>
-        <a class="delete" href="index.php?action=addEditBookForm">Ajouter un livre</a>
+        <a class="add-book" href="index.php?action=addEditBookForm">Ajouter un livre</a>
       </div>
     <?php else : ?>
-      <a href="index.php?action=addEditBookForm">Ajouter un livre</a>
+      <a class="add-book" href="index.php?action=addEditBookForm">Ajouter un livre</a>
     <?php endif ?>
   </div>
 </div>

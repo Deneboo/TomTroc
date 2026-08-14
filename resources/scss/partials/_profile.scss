@@ -42,6 +42,7 @@
     padding-bottom: 48px;
     border-bottom: 1px solid v.$background-color;
 
+
     img {
       display: block;
       width: 135px;
@@ -49,15 +50,7 @@
       border-radius: 50%;
     }
     .avatar-label {
-      display: block;
-      padding-top: 5px;
-      text-decoration: underline;
-      @include m.typography(
-        v.$font-body,
-        14px,
-        400,
-        v.$secondary-text-color
-      );
+      @extend %label;
     }
   }
 
@@ -129,6 +122,7 @@
     img {
       width: 78px;
       height: 78px;
+      object-fit: cover;
     }
 
     tbody {
@@ -194,6 +188,12 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+  }
+
+  .add-book {
+    @extend %label;
+    padding: 30px;
+    text-align: right;
   }
 }
 

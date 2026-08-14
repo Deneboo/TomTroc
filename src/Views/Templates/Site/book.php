@@ -6,7 +6,7 @@
     <div class="book-details">
         <img class="book-details-img" src="<?= htmlspecialchars(
             $book->getImage(),
-        ) ?>" alt="Couverture du livre <?= htmlspecialchars($book->getTitle()) ?>">
+        )  ?? "/assets/images/default-book-cover.jpg" ?>" alt="Couverture du livre <?= htmlspecialchars($book->getTitle()) ?>">
         <article>
             <h1><?= htmlspecialchars($book->getTitle()) ?></h1>
             <div class="detail-author">
