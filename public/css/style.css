@@ -175,7 +175,7 @@ main {
   border-radius: 50%;
 }
 
-.profile-book-list table .book-list-description, .alert, caption {
+.account-book-list table .book-list-description, .alert, caption {
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -203,12 +203,12 @@ main {
   text-align: right;
 }
 
-.profile-header, .profile-edit, .profile-book-list, .add-edit-book-card {
+.account-header, .account-edit, .account-book-list, .add-edit-book-card {
   background-color: #fff;
   border-radius: 20px;
 }
 
-.profile-header .profile-avatar .avatar-label, .profile-book-list .add-book {
+.account-header .account-avatar .avatar-label, .account-book-list .add-book {
   display: block;
   padding-top: 5px;
   text-decoration: underline;
@@ -637,8 +637,8 @@ nav {
 }
 
 /* ----- Messages page ----- */
-/* ----- Profile page ----- */
-.profile-page {
+/* ----- account page seen by owner ----- */
+.account-page {
   width: 1135px;
   margin-inline: auto;
   display: flex;
@@ -647,11 +647,11 @@ nav {
   align-items: flex-start;
   gap: 32px;
 }
-.profile-page h1 {
+.account-page h1 {
   margin: 170px 0 16px 0;
 }
 
-.profile {
+.account {
   display: flex;
   justify-content: space-between;
   gap: 33px;
@@ -660,7 +660,7 @@ nav {
   color: pink;
 }
 
-.profile-header {
+.account-header {
   width: 547px;
   height: 515px;
   display: flex;
@@ -668,7 +668,7 @@ nav {
   align-items: center;
   padding: 48px 0 96px;
 }
-.profile-header .profile-avatar {
+.account-header .account-avatar {
   display: block;
   width: 242px;
   display: flex;
@@ -677,74 +677,74 @@ nav {
   padding-bottom: 48px;
   border-bottom: 1px solid #F5F3EF;
 }
-.profile-header .profile-avatar img {
+.account-header .account-avatar img {
   display: block;
   width: 135px;
   height: 135px;
   border-radius: 50%;
 }
-.profile-header .profile-info {
+.account-header .account-info {
   padding-top: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
 }
-.profile-header .profile-info .username {
+.account-header .account-info .username {
   font-family: "Playfair Display", serif;
   font-size: 24px;
   font-weight: 400;
   color: inherit;
   margin-bottom: 5px;
 }
-.profile-header .profile-info .membership {
+.account-header .account-info .membership {
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #A6A6A6;
   margin-bottom: 15px;
 }
-.profile-header .profile-info .membership span {
+.account-header .account-info .membership span {
   color: #A6A6A6;
 }
-.profile-header .profile-info .book-nbr {
+.account-header .account-info .book-nbr {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #292929;
 }
 
-.profile-edit {
+.account-edit {
   height: 515px;
   padding: 38px 116px 37px 116px;
 }
-.profile-edit .profile-btn {
+.account-edit .account-btn {
   width: fit-content;
   align-self: flex-start;
 }
 
-.profile-book-list {
+.account-book-list {
   width: 1140px;
   padding-top: 33px;
   margin-bottom: 102px;
 }
-.profile-book-list table {
+.account-book-list table {
   width: 100%;
   border-collapse: collapse;
 }
-.profile-book-list table thead {
+.account-book-list table thead {
   padding-bottom: 8.29px;
   border-bottom: 1px solid #eee;
 }
-.profile-book-list table thead th {
+.account-book-list table thead th {
   padding: 0 40px 8.29px 16px;
 }
-.profile-book-list table img {
+.account-book-list table img {
   width: 78px;
   height: 78px;
   object-fit: cover;
 }
-.profile-book-list table tbody tr td {
+.account-book-list table tbody tr td {
   max-width: 128px;
   padding: 26px 40px 26px 40px;
   font-family: "Inter", sans-serif;
@@ -752,7 +752,7 @@ nav {
   font-weight: 400;
   color: #292929;
 }
-.profile-book-list table tbody tr td .status {
+.account-book-list table tbody tr td .status {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -761,29 +761,29 @@ nav {
   font: inherit;
   color: #fff;
 }
-.profile-book-list table tbody tr td .available {
+.account-book-list table tbody tr td .available {
   background-color: #6DC5A1;
 }
-.profile-book-list table tbody tr td .unavailable {
+.account-book-list table tbody tr td .unavailable {
   background-color: #CB2D2D;
 }
-.profile-book-list table tbody tr td .action {
+.account-book-list table tbody tr td .action {
   display: flex;
   flex-direction: row;
   gap: 28px;
 }
-.profile-book-list table tbody tr td .action p {
+.account-book-list table tbody tr td .action p {
   font: inherit;
 }
-.profile-book-list table tbody tr td .action .delete {
+.account-book-list table tbody tr td .action .delete {
   text-decoration: underline;
   color: #CB2D2D;
 }
-.profile-book-list table tr:nth-child(even) {
+.account-book-list table tr:nth-child(even) {
   width: 100%;
   background-color: #F5F3EF;
 }
-.profile-book-list table .book-list-description {
+.account-book-list table .book-list-description {
   width: 128px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -791,11 +791,12 @@ nav {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.profile-book-list .add-book {
+.account-book-list .add-book {
   padding: 30px;
   text-align: right;
 }
 
+/* ----- prolile page seen by other users ----- */
 .error-page {
   display: flex;
   flex-direction: column;

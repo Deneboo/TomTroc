@@ -60,9 +60,6 @@ try {
         case 'book':
             $bookController->bookDetails();
             break;
-        // case 'addBookForm':
-        //     $bookController->addBookForm();
-        //     break;
         case 'addEditBookForm':
             $bookController->addEditBookForm();
             break;
@@ -90,14 +87,17 @@ try {
         case 'registerPage':
             $userController->registerPage();
             break;
-        case 'profile':
-            $userController->getProfile();
+        case 'account':
+            $userController->getAccount();
             break;
-        case 'updateProfile':
-            $userController->updateProfile();
+        case 'updateaccount':
+            $userController->updateaccount();
             break;
         case 'uploadAvatar':
             $userController->uploadAvatar();
+            break;
+        case 'profile':
+            $userController->getProfile();
             break;
         default:
             $errorControler->error404("La page demandée n'existe pas.");

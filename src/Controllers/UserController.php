@@ -31,7 +31,7 @@ class UserController
         View::render('Templates/Site/register');
     }
 
-    public function getProfile(): void
+    public function getAccount(): void
     {
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=loginPage');
@@ -42,7 +42,7 @@ class UserController
         $books = $this->userRepository->findByUserId($_SESSION['user_id']);
         $bookCount = count($books);
         View::render(
-            'Templates/Site/profile',
+            'Templates/Site/account',
             [
                 'user' => $user,
                 'books' => $books,
@@ -51,7 +51,44 @@ class UserController
         );
     }
 
-    public function updateProfile(): void
+    public function getProfile(): void
+    {
+        // if (!isset($_SESSION['user_id'])) {
+        //     header('Location: index.php?action=loginPage');
+        //     exit;
+        // }
+
+        $userToVisit = isset($_GET['id']) ? (int) $_GET['id'] : null;
+        // var_dump($userToVisit);
+        // exit();
+        if (!$userToVisit) {
+            header('Location: index.php?action=home');
+            exit;
+        }
+
+        try {
+            $userProfile = $this->userRepository->findUserById($userToVisit);
+            $books = $this->userRepository->findByUserId($userToVisit);
+
+            $bookCount = count($books);
+
+            View::render(
+                'Templates/Site/profile',
+                [
+                    'user' => $userProfile,
+                    'books' => $books,
+                    'bookCount' => $bookCount,
+                ],
+            );
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+
+            header('Location: index.php?action=error');
+            exit;
+        }
+    }
+
+    public function updateaccount(): void
     {
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
@@ -81,7 +118,7 @@ class UserController
                 $error = "Ce nom d'utilisateur est déjà pris.";
             }
 
-            View::render('Templates/Site/profile', [
+            View::render('Templates/Site/account', [
                 'error' => $error,
                 'user' => $user,
             ]);
@@ -96,7 +133,7 @@ class UserController
         $this->userRepository->update($user);
         $_SESSION['flash_success_info'] = "Vos modifications ont bien été enregistrées.";
 
-        header('Location: index.php?action=profile');
+        header('Location: index.php?action=account');
         exit;
     }
 
@@ -113,7 +150,7 @@ class UserController
         if ($error !== null) {
             $_SESSION['flash_error_upload_avatar'] = $error;
 
-            header('Location: index.php?action=profile');
+            header('Location: index.php?action=account');
             exit;
         }
 
@@ -137,7 +174,7 @@ class UserController
                 = "Une erreur s'est produite lors du téléchargement de votre avatar.";
         }
 
-        header('Location: index.php?action=profile');
+        header('Location: index.php?action=account');
         exit;
     }
 }

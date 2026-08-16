@@ -163,7 +163,7 @@ class BookController
             $_SESSION['flash_success_add_book'] = "Votre livre  a bien été ajouté.";
         }
 
-        header('Location: index.php?action=profile');
+        header('Location: index.php?action=account');
         exit;
     }
 
@@ -180,7 +180,7 @@ class BookController
 
         if ($error !== null || $bookId === null) {
             $_SESSION['flash_error_upload_book_cover'] = $error;
-            header('Location: index.php?action=profile');
+            header('Location: index.php?action=account');
             exit;
         }
 
@@ -230,7 +230,7 @@ class BookController
 
         $this->bookRepository->delete($bookId);
 
-        header('Location: index.php?action=profile');
+        header('Location: index.php?action=account');
         exit;
     }
 }
