@@ -177,14 +177,28 @@ class UserController
                 $this->userRepository->update($user);
                 $_SESSION['flash_success_upload_avatar'] = "Avatar modifié avec succès.";
             }
-        // Deal with exeption from the service
         } catch (\RuntimeException $e) {
-            // var_dump($e->getMessage());
             $_SESSION['flash_error_upload_avatar']
                 = "Une erreur s'est produite lors du téléchargement de votre avatar.";
         }
 
         header('Location: index.php?action=account');
         exit;
+    }
+
+    public function getMessagingView(): void
+    {
+       if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit;
+        } 
+        $user = $this->userRepository->findUserById($_SESSION['user_id']);
+
+        View::render(
+            'Templates/Site/messaging',
+            [
+                'user' => $user,
+            ],
+        );
     }
 }

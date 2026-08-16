@@ -24,7 +24,7 @@
                     <?= htmlspecialchars($book->getUser()->getUsername()) ?>
                 </p>
             </a>
-            <button class="btn btn-primary">Envoyer un message</button>
+            <a href="index.php?action=messagingPage" class="btn btn-primary">Envoyer un message</a>
         </article>
     </div>
 </div>
