@@ -99,6 +99,9 @@ try {
         case 'profile':
             $userController->getPublicAccount();
             break;
+        case 'messagingPage':
+            $userController->getMessagingView();
+            break;
         default:
             $errorControler->error404("La page demandée n'existe pas.");
             break;
