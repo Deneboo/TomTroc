@@ -79,7 +79,7 @@ class AuthController
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user->getId();
 
-            header('Location: index.php?action=profile');
+            header('Location: index.php?action=account');
             exit;
         }
 

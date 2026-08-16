@@ -1,6 +1,6 @@
 <?php
 /**
- * User profile.
+ * User account.
  */
 
 /** @var App\Models\User $user */
@@ -10,11 +10,11 @@
 ?>
 
 <div class="page-container">
-  <div class="profile-page"> 
+  <div class="account-page"> 
     <h1>Mon compte</h1>
-    <div class="profile">
-        <div  class="profile-header">
-          <div class="profile-avatar">
+    <div class="account">
+        <div  class="account-header">
+          <div class="account-avatar">
             <img src="<?= htmlspecialchars(
                 $user->getAvatar(),
             ) ?>" alt="Avatar de <?= htmlspecialchars($user->getUsername()) ?>">
@@ -37,14 +37,14 @@
                 <?php unset($_SESSION['flash_success_upload_avatar']); ?>
             <?php endif; ?>
           </div>
-          <div class="profile-info">
+          <div class="account-info">
             <p class="username" ><?= $user->getUsername() ?></p>
             <p class="membership">Membre depuis <span><?= $user->getMembershipDuration() ?></span></p>
             <p class="tiny-uppercase-label">Bibliothèque</p>
             <p class="book-nbr"><span><?= $bookCount ?></span> livres</p>
           </div>
         </div>
-      <div  class="profile-edit">
+      <div  class="account-edit">
         <p>Vos informations personnelles</p>
             <?php if (isset($_SESSION['flash_success_info'])): ?>
                 <div class="alert alert-success"><?= htmlspecialchars(
@@ -55,7 +55,7 @@
             <?php if (isset($error)): ?>
                 <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
-            <form action="index.php?action=updateProfile" method="post" enctype="multipart/form-data"  class="register-login-form">
+            <form action="index.php?action=updateaccount" method="post" enctype="multipart/form-data"  class="register-login-form">
                 <div>
                     <label for="email">Adresse email</label>
                     <input type="email" name="email" id="email" value="<?= htmlspecialchars(
@@ -72,12 +72,12 @@
                       $user->getUsername(),
                   ) ?? '' ?>" required>
               </div>
-            <button class="submit btn btn-secondary profile-btn">Enregistrer</button>
+            <button class="submit btn btn-secondary account-btn">Enregistrer</button>
           </form>
       </div>
     </div>
     <?php if ($bookCount > 0): ?>
-      <div class="profile-book-list">
+      <div class="account-book-list">
         <table>
           <thead>
             <tr>

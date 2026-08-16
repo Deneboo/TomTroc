@@ -3,9 +3,9 @@
 @use '../common/variables' as v;
 @use '../common/typography' as t;
 
-/* ----- Profile page ----- */
+/* ----- account page seen by owner and public account seen by visitor ----- */
 
-.profile-page {
+.account-page {
   width: 1135px;
    margin-inline: auto;
   @include m.flex(column, flex-start, flex-start, 32px);
@@ -15,25 +15,23 @@
   }
 }
 
-.profile {
+.account {
     display: flex;
     justify-content: space-between;
     gap: 33px;
     width: 100%;
     margin: 0 auto;
-    color: pink;
-}
 
-.profile-header {
-  @extend %section-card;
-  width: 547px;
-  height: 515px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 48px 0 96px;
+  .account-header {
+    @extend %section-card;
+    width: 547px;
+    height: 515px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 0 96px;
 
-  .profile-avatar {
+  .account-avatar {
     display: block;
     width: 242px;
     display: flex;
@@ -54,7 +52,7 @@
     }
   }
 
-  .profile-info {
+  .account-info {
     padding-top: 48px;
     display: flex;
     flex-direction: column;
@@ -87,28 +85,50 @@
       }
     }
   
-}
+    .account-edit {
+      @extend %section-card;
+      height: 515px;
+      padding: 38px 116px 37px 116px;
 
-.profile-edit {
-  @extend %section-card;
-  height: 515px;
-  padding: 38px 116px 37px 116px;
-
-  .profile-btn {
-    width: fit-content;
-    align-self: flex-start;
+      .account-btn {
+        width: fit-content;
+        align-self: flex-start;
+      }
+    }
   }
 }
 
-.profile-book-list {
-  @extend %section-card;
+.account-book-list {
   width: 1140px;
-  padding-top: 33px;
   margin-bottom: 102px;
+}
+
+.public-account {
+  margin: 103px 0 214px 0;
+
+  .public-account-header {
+    width: 341px;
+    min-height: 579px;
+
+    .public-account-send-message {
+      margin-top: 45px;
+    }
+  }
+
+  .public-account-book-list {
+    width: 771px;
+  }
+}
+
+.account-book-list, .public-account-book-list {
+  @extend %section-card;
+  padding-top: 33px;
+  padding-bottom: 20px;
 
   table {
     width: 100%;
     border-collapse: collapse;
+
 
     thead {
       padding-bottom: 8.29px;
@@ -128,6 +148,7 @@
     tbody {
 
       tr {
+        padding-right: 23px !important;
         
         td {
           max-width: 128px;
@@ -136,7 +157,6 @@
           @include m.typography(
             v.$font-body, 12px, 400, v.$primary-text-color
           );
-          // vertical-align: middle;
 
           .status {
               display: inline-flex;
@@ -194,6 +214,12 @@
     @extend %label;
     padding: 30px;
     text-align: right;
+  }
+
+  .no-book {
+    @extend %message;
+    padding: 30px;
+    text-align: center;
   }
 }
 
