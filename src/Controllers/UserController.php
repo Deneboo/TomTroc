@@ -51,16 +51,15 @@ class UserController
         );
     }
 
-    public function getProfile(): void
+    public function getPublicAccount(): void
     {
-        // if (!isset($_SESSION['user_id'])) {
-        //     header('Location: index.php?action=loginPage');
-        //     exit;
-        // }
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=loginPage');
+            exit;
+        }
 
         $userToVisit = isset($_GET['id']) ? (int) $_GET['id'] : null;
-        // var_dump($userToVisit);
-        // exit();
+
         if (!$userToVisit) {
             header('Location: index.php?action=home');
             exit;
@@ -69,11 +68,22 @@ class UserController
         try {
             $userProfile = $this->userRepository->findUserById($userToVisit);
             $books = $this->userRepository->findByUserId($userToVisit);
-
             $bookCount = count($books);
 
+            if ($userToVisit == $_SESSION['user_id']) {
+                View::render(
+                    'Templates/Site/account',
+                    [
+                        'user' => $userProfile,
+                        'books' => $books,
+                        'bookCount' => $bookCount,
+                    ],
+                );
+            }
+            
+
             View::render(
-                'Templates/Site/profile',
+                'Templates/Site/publicAccount',
                 [
                     'user' => $userProfile,
                     'books' => $books,

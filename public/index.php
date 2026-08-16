@@ -97,7 +97,7 @@ try {
             $userController->uploadAvatar();
             break;
         case 'profile':
-            $userController->getProfile();
+            $userController->getPublicAccount();
             break;
         default:
             $errorControler->error404("La page demandée n'existe pas.");
