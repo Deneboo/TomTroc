@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\ImageUploadException;
 class ImageUploadService
 {
         public function uploadImage(
@@ -33,8 +34,8 @@ class ImageUploadService
             $_FILES['fileToUpload']['tmp_name'],
             $targetFile,
         )) {
-            throw new \RuntimeException(
-                "Une erreur s'est produite lors du téléchargement du fichier."
+            throw new ImageUploadException(
+                code: ImageUploadException::UPLOAD_FAILED
             );
         }
 
