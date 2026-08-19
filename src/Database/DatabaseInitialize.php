@@ -59,9 +59,9 @@ class DatabaseInitialize
                 receiver_id INT NOT NULL,
                 book_id INT DEFAULT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (sender_id) REFERENCES users(id),
-                FOREIGN KEY (receiver_id) REFERENCES users(id),
-                FOREIGN KEY (book_id) REFERENCES books(id)
+                CONSTRAINT fk_sender FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+                CONSTRAINT fk_receiver FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE,
+                CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
             ) ENGINE=InnoDB
             CHARACTER SET utf8mb4
             COLLATE utf8mb4_unicode_ci;

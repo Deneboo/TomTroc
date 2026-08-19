@@ -100,7 +100,7 @@ try {
             $userController->getPublicAccount();
             break;
         case 'messagingPage':
-            $userController->getMessagingView();
+            $userController->messagingPage();
             break;
         default:
             $errorControler->error404("La page demandée n'existe pas.");

@@ -5,18 +5,21 @@ namespace App\Controllers;
 use App\Database\DBConnect;
 use App\Views\View;
 use App\Repository\UserRepository;
+use App\Repository\MessageRepository;
 use App\Services\ImageUploadService;
 use App\Validators\ImageValidator;
 
 class UserController
 {
     private UserRepository $userRepository;
+    private MessageRepository $messageRepository;
     private ImageUploadService $imageUploadService;
     private ImageValidator $imageValidator;
 
     public function __construct(DBConnect $database)
     {
         $this->userRepository = new UserRepository($database->getConnection());
+        $this->messageRepository = new MessageRepository($database->getConnection());
         $this->imageUploadService = new ImageUploadService();
         $this->imageValidator = new ImageValidator();
     }
@@ -186,18 +189,22 @@ class UserController
         exit;
     }
 
-    public function getMessagingView(): void
+    public function messagingPage(): void
     {
        if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
         } 
-        $user = $this->userRepository->findUserById($_SESSION['user_id']);
-
+        $userId = $_SESSION['user_id'];
+        $user = $this->userRepository->findUserById($userId);
+        $messages = $this->messageRepository->getAllLatestMessagesByUserId($userId);
+        var_dump('MESSAGE', $messages);
+        var_dump('---END-MESSAGE___');
         View::render(
             'Templates/Site/messaging',
             [
                 'user' => $user,
+                'messages' => $messages
             ],
         );
     }

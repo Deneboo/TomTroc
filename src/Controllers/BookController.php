@@ -27,9 +27,6 @@ class BookController
     }
     public function bookList(): void
     {
-        if (isset($_SESSION['user'])) {
-            return;
-        }
         $books = $this->bookRepository->findAll();
         View::render('Templates/Site/books', [
             'books' => $books,
@@ -43,12 +40,11 @@ class BookController
         $book = $this->bookRepository->findById($id);
 
         if ($book === null) {
-            if ($book === null) {
-                $errorMessage = "La livre demandé est introuvable.";
-                (new ErrorController())->error404($errorMessage);
-                return;
-            }
+            $errorMessage = "La livre demandé est introuvable.";
+            (new ErrorController())->error404($errorMessage);
+            return;
         }
+
 
         View::render('Templates/Site/book', [
             'book' => $book,

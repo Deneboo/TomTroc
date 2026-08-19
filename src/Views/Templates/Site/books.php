@@ -25,10 +25,9 @@
                 >
                 <?php
                 $hasSearchQuery = isset($_GET['title']) ? htmlspecialchars($_GET['title']) : '';
-if (!empty($hasSearchQuery)): ?>
+                if (!empty($hasSearchQuery)): ?>
                     <a href="index.php?action=books" class="search-clear">×</a>
-                <?php endif;
-?>
+                <?php endif; ?>
             </form>
         </div>
         
