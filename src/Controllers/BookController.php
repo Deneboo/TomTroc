@@ -10,6 +10,7 @@ use App\Controllers\ErrorController;
 use App\Models\Book;
 use App\Services\ImageUploadService;
 use App\Validators\ImageValidator;
+use App\Exceptions\ImageUploadException;
 
 class BookController
 {
@@ -170,37 +171,51 @@ class BookController
         $userId = (int) $_SESSION['user_id'];
         $imageType = 'book_cover';
 
-        $error = $this->imageValidator->validate(
-            $_FILES['fileToUpload'],
-            $imageType,
-        );
-
-        if ($error !== null || $bookId === null) {
-            $_SESSION['flash_error_upload_book_cover'] = $error;
+   
+        if ($bookId === null) {
+            $_SESSION['flash_error_upload_book_cover'] = "Le livre n'a pas été trouvé.";
             header('Location: index.php?action=account');
             exit;
         }
 
         try {
+            $this->imageValidator->validate(
+                $_FILES['fileToUpload'],
+                $imageType,
+            );
+
             $path = $this->imageUploadService->uploadImage(
                 $imageType,
                 $userId,
                 $bookId
             );
-            if ($path) {
-                $book = $this->bookRepository->findById($bookId);
-  
-                if ($book->getImage() == null) {
-                    $book->setImage($path);
 
-                    $this->bookRepository->update($book);
-
-                }
-                $_SESSION['flash_success_upload_book_cover'] = "Image modifiée avec succès.";
-            }
-        } catch (\RuntimeException $e) {
+        } catch (ImageUploadException $e) {
             $_SESSION['flash_error_upload_book_cover']
-                = "Une erreur s'est produite lors du téléchargement de la couverture.";
+                = $e->getErrorMessage();
+            header('Location: index.php?action=addEditBookForm&id=' . $bookId);
+            exit;
+        }
+
+        if ($path) {
+            $book = $this->bookRepository->findById($bookId);
+
+            if ($book->getImage() && $book->getImage() !== $path) {
+                $oldFile = __DIR__ 
+                . '/../../public/assets/uploads/'
+                . $userId
+                . '/'
+                . $imageType
+                . '/' . $book->getImage();
+                // We remove the file
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+
+            $book->setImage($path);
+            $this->bookRepository->update($book);
+            $_SESSION['flash_success_upload_book_cover'] = "Image modifiée avec succès.";
         }
 
         header('Location: index.php?action=addEditBookForm&id=' . $bookId);
