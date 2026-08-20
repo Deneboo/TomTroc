@@ -27,9 +27,6 @@ class BookController
     }
     public function bookList(): void
     {
-        if (isset($_SESSION['user'])) {
-            return;
-        }
         $books = $this->bookRepository->findAll();
         View::render('Templates/Site/books', [
             'books' => $books,

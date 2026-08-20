@@ -5,18 +5,21 @@ namespace App\Controllers;
 use App\Database\DBConnect;
 use App\Views\View;
 use App\Repository\UserRepository;
+use App\Repository\MessageRepository;
 use App\Services\ImageUploadService;
 use App\Validators\ImageValidator;
 
 class UserController
 {
     private UserRepository $userRepository;
+    private MessageRepository $messageRepository;
     private ImageUploadService $imageUploadService;
     private ImageValidator $imageValidator;
 
     public function __construct(DBConnect $database)
     {
         $this->userRepository = new UserRepository($database->getConnection());
+        $this->messageRepository = new MessageRepository($database->getConnection());
         $this->imageUploadService = new ImageUploadService();
         $this->imageValidator = new ImageValidator();
     }
@@ -190,14 +193,68 @@ class UserController
     {
        if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
+            var_dump('POUF !');
             exit;
         } 
-        $user = $this->userRepository->findUserById($_SESSION['user_id']);
+        $userId = $_SESSION['user_id'];
+        $user = $this->userRepository->findUserById($userId );
 
-        View::render(
+        
+        $latestMessages = $this->messageRepository->getAllLatestMessagesForOneUser($userId, $user);
+        
+        $messages = [];
+        $selectedInterlocuteurId = isset($_GET['id'])
+            ? (int) $_GET['id']
+            : null;
+        $conversationId = null;
+        $selectedInterlocuteur = null;
+
+            if ($selectedInterlocuteurId !== null) {
+                $selectedInterlocuteur = $this->userRepository->findUserById($selectedInterlocuteurId);
+                
+                $conversation = $this->messageRepository
+                    ->getOneConversation($userId, $selectedInterlocuteurId);
+        
+                    $conversationId = $conversation['id'];
+
+                if ($conversationId !== null) {
+                    $messages = $this->messageRepository
+                        ->getAllMessageFromAConversation($conversationId);
+                }
+            }
+            View::render(
             'Templates/Site/messaging',
             [
                 'user' => $user,
+                'messages'=> $messages,
+                'latestMessages' => $latestMessages,
+                'selectedInterlocuteur' => $selectedInterlocuteur
+            ],
+        );
+    }
+
+    public function getConversation() : void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit;
+        }
+        $userId = $_SESSION['user_id'];
+        $interlocutorId = (int) $_GET['id'];
+        var_dump($userId);
+        var_dump($interlocutorId);
+
+        $user = $this->userRepository->findUserById($userId);
+
+        $conversation = $this->messageRepository->getOneConversation($userId, $interlocutorId);
+        $messages = $this->messageRepository->getAllMessageFromAConversation($conversation['id']);
+    
+    View::render(
+        'Templates/Site/messaging',
+            [
+                'user' => $user,
+                'messages' => $messages,
+                'interlocutorId' => $interlocutorId
             ],
         );
     }

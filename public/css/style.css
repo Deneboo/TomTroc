@@ -637,6 +637,16 @@ nav {
 }
 
 /* ----- Messages page ----- */
+.owner {
+  margin-right: auto;
+  color: blue;
+}
+
+.interlocuteur {
+  margin-left: auto;
+  color: red;
+}
+
 /* ----- account page seen by owner and public account seen by visitor ----- */
 .account-page {
   width: 1135px;
