@@ -10,22 +10,21 @@
 /** @var mixed $latest */
 
 if ($selectedInterlocuteur !== null) {
-  $selectedInterlocuteurId = $selectedInterlocuteur->getId();
-  $selectedInterlocuteurAvatar = $selectedInterlocuteur->getAvatar();
-  $selectedInterlocuteurUsername = $selectedInterlocuteur->getUsername();
-}
-
-?>
+    $selectedInterlocuteurId = $selectedInterlocuteur->getId();
+    $selectedInterlocuteurAvatar = $selectedInterlocuteur->getAvatar();
+    $selectedInterlocuteurUsername = $selectedInterlocuteur->getUsername();
+} ?>
 
 <div class="page-container">
     <div class="messaging-page">
         <div class="all-messages">
             <h1>Messagerie</h1>
               <ul>
-                  <?php foreach ($latestMessages as $latest): 
+                  <?php foreach ($latestMessages as $latest):
+
                       $message = $latest['message'];
                       $interlocuteur = $latest['interlocuteur'];
-                  ?>
+                      ?>
                       <li>
                           <a href="index.php?action=messaging&id=<?= $interlocuteur->getId() ?>"
                           class="avatar-and-name"
@@ -38,36 +37,40 @@ if ($selectedInterlocuteur !== null) {
                             <p><?= htmlspecialchars($message->getMessage()) ?></p>
                         </a>
                       </li>
-                  <?php endforeach; ?>   
+                  <?php
+                  endforeach; ?>   
               </ul>
         </div> 
-        <?php if ($selectedInterlocuteur !== null) : ?>
+        <?php if ($selectedInterlocuteur !== null): ?>
             <div class="messaging">  
                 <div class="sender-name">
                     <a href="index.php?action=profile&id=<?= $selectedInterlocuteurId ?>" class="avatar-and-name">
-                          <img src="<?= htmlspecialchars($selectedInterlocuteurAvatar) ?>" alt="avatar">
+                          <img src="<?= htmlspecialchars(
+                              $selectedInterlocuteurAvatar,
+                          ) ?>" alt="avatar">
                           <p>
                               <?= htmlspecialchars($selectedInterlocuteurUsername) ?>
                           </p>
                       </a>
                   </div>
                 <div class="current-message">
-                      <?php foreach ($messages as $message): 
-                      $isSender = $_SESSION['user_id'] === $message->getSender()->getId()
-                      ? 'owner'
-                      : 'interlocuteur';
-                      ?>
+                      <?php foreach ($messages as $message):
+                          $isSender =
+                              $_SESSION['user_id'] === $message->getSender()->getId()
+                                  ? 'owner'
+                                  : 'interlocuteur'; ?>
                           <div class="<?= $isSender ?>">
                                 <p><?= $isSender ?></p>
                                 <p><?= $message->getCreatedAt()->format('d/m/Y à H:i') ?></p>
                                 <p><?= $message->getMessage() ?></p>
                           </div>
-                      <?php endforeach ?>
+                      <?php
+                      endforeach; ?>
                 </div>
                 <div class="message-form">
                       
                 </div>
             </div>
-        <?php endif ?>
+        <?php endif; ?>
     </div>
 </div>

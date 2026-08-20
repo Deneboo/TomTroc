@@ -114,7 +114,7 @@ footer nav ul li {
   height: 50px;
 }
 .register-login-form div input, .add-edit-book-form div input, .register-login-form div textarea, .add-edit-book-form div textarea, .register-login-form div select, .add-edit-book-form div select {
-  width: 435px;
+  max-width: 322px;
   border: 1px solid #F0F0F0;
   border-radius: 6px;
   margin-top: 10px;
@@ -203,7 +203,7 @@ main {
   text-align: right;
 }
 
-.account .account-header, .account .account-header .account-edit, .account-book-list, .public-account-book-list, .add-edit-book-card {
+.account .account-header, .account .account-edit, .account-book-list, .public-account-book-list, .add-edit-book-card {
   background-color: #fff;
   border-radius: 20px;
 }
@@ -721,11 +721,13 @@ nav {
   font-size: 14px;
   color: #292929;
 }
-.account .account-header .account-edit {
+.account .account-edit {
+  width: 555px;
   height: 515px;
+  align-items: center;
   padding: 38px 116px 37px 116px;
 }
-.account .account-header .account-edit .account-btn {
+.account .account-edit .account-btn {
   width: fit-content;
   align-self: flex-start;
 }

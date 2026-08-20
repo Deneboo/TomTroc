@@ -6,7 +6,6 @@
 /** @var App\Models\User $user */
 /** @var array[] $books */
 /** @var int $bookCount */
-
 ?>
 
 <div class="page-container">
@@ -41,13 +40,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($books as $book) { 
-                    $image = $book['image'] !== null && $book['image'] !== '' ? htmlspecialchars($book['image']) : "/assets/images/default-book-cover.jpg";
-                    ?>
+                  <?php foreach ($books as $book) {
+                      $image =
+                          $book['image'] !== null && $book['image'] !== ''
+                              ? htmlspecialchars($book['image'])
+                              : '/assets/images/default-book-cover.jpg'; ?>
                     <tr>
                         <td>
                           <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
-                            <img src="<?= $image ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
+                            <img src="<?= $image ?>" alt="Image du livre <?= htmlspecialchars(
+                                $book['title'],
+                            ) ?>">
                           </a>
                         </td>
                         <td>
@@ -63,13 +66,14 @@
                         </td>
 
                       </tr>
-                    <?php } ?>
+                    <?php
+                    } ?>
                   </tbody>
                 </table>
             </div>
-            <?php else : ?>
+            <?php else: ?>
               <p class="no-book">Pas de livre disponible...</p>
-            <?php endif ?>
+            <?php endif; ?>
         </div>
     </div>
     
