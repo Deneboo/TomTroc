@@ -43,26 +43,48 @@ class DatabaseInitialize
                 user_id INT NOT NULL,
                 is_available BOOLEAN DEFAULT TRUE,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users(id)
-            ) ENGINE=InnoDB
+                CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            ) 
+            ENGINE=InnoDB
             CHARACTER SET utf8mb4
             COLLATE utf8mb4_unicode_ci;
         ";
 
         $this->pdo->exec($createBooksTable);
 
+                $createConversationsTable = "
+            CREATE TABLE  IF NOT EXISTS conversations (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user1_id INT NOT NULL,
+                user2_id INT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                CONSTRAINT fk_conversations_user1 FOREIGN KEY (user1_id) REFERENCES users(id),
+                CONSTRAINT fk_conversations_user2 FOREIGN KEY (user2_id) REFERENCES users(id),
+                CONSTRAINT uq_conversations_users UNIQUE (user1_id, user2_id),
+                CONSTRAINT chk_conversations_different_users CHECK (user1_id <> user2_id)
+            )
+            ENGINE=InnoDB
+            CHARACTER SET utf8mb4
+            COLLATE utf8mb4_unicode_ci
+            ";
+
+        $this->pdo->exec($createConversationsTable);
+
         $createMessagesTable = "
             CREATE TABLE IF NOT EXISTS messages (
                 id INT AUTO_INCREMENT PRIMARY KEY,
+                conversation_id INT NOT NULL,
                 message TEXT NOT NULL,
                 sender_id INT NOT NULL,
                 receiver_id INT NOT NULL,
                 book_id INT DEFAULT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (sender_id) REFERENCES users(id),
-                FOREIGN KEY (receiver_id) REFERENCES users(id),
-                FOREIGN KEY (book_id) REFERENCES books(id)
-            ) ENGINE=InnoDB
+                CONSTRAINT fk_conversation FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE,
+                CONSTRAINT fk_sender FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+                CONSTRAINT fk_receiver FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE,
+                CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE SET NULL
+            ) 
+            ENGINE=InnoDB
             CHARACTER SET utf8mb4
             COLLATE utf8mb4_unicode_ci;
         ";

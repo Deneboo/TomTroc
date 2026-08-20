@@ -7,8 +7,8 @@ use App\Repository\BookRepository;
 class User
 {
     private ?int $id = null;
-    private string $email;
     private string $username;
+    private string $email;
     private string $password;
     private ?string $avatar = null;
     private \DateTime $createdAt;
