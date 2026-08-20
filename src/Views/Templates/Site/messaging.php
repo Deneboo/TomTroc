@@ -68,7 +68,12 @@ if ($selectedInterlocuteur !== null) {
                       endforeach; ?>
                 </div>
                 <div class="message-form">
-                      
+                    <form class="add-edit-book-form form-details" method="post" action="index.php?action=sendMessage&id=<?= $selectedInterlocuteurId ?>">
+                        <div>
+                            <input id="messageToSend" name="messageToSend" placeholder="Tapez votre message ici"></input>
+                        </div>
+                        <button type="submit" class="submit btn btn-form btn-primary">Envoyer</button>
+                    </form>  
                 </div>
             </div>
         <?php endif; ?>

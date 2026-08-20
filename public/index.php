@@ -13,6 +13,7 @@ use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\BookController;
+use App\Controllers\MessageController;
 use App\Controllers\ErrorController;
 use App\Database\DBConnect;
 
@@ -45,6 +46,7 @@ try {
     $bookController = new BookController($database);
     $authController = new AuthController($database);
     $userController = new UserController($database);
+    $messageController = new MessageController($database);
     $errorControler = new ErrorController();
 
     switch ($_GET['action'] ?? 'home') {
@@ -102,8 +104,8 @@ try {
         case 'messaging':
             $userController->getMessagingView();
             break;
-        case 'conversation':
-            $userController->getConversation();
+        case 'sendMessage':
+            $messageController->sendMessage();
             break;
         default:
             $errorControler->error404("La page demandée n'existe pas.");

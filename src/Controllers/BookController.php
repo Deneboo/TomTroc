@@ -26,6 +26,7 @@ class BookController
         $this->imageUploadService = new ImageUploadService($database);
         $this->imageValidator = new ImageValidator();
     }
+
     public function bookList(): void
     {
         $books = $this->bookRepository->findAll();
@@ -64,6 +65,11 @@ class BookController
 
     public function addEditBookForm(): void
     {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=loginPage');
+            exit;
+        }
+        
         $bookId = isset($_GET['id']) ? (int) $_GET['id'] : null;
         $book = null;
 
