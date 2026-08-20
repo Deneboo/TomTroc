@@ -29,7 +29,11 @@
                     <?= htmlspecialchars($book->getUser()->getUsername()) ?>
                 </p>
             </a>
-            <a href="index.php?action=messaging" class="btn btn-primary">Envoyer un message</a>
+            <?php if ($book->getUser()->getId() !== $_SESSION['user_id']): ?>
+                <a href="index.php?action=messaging&id=<?= $book->getUser()->getId() ?>" class="btn btn-primary">Envoyer un message</a>
+            <?php else : ?>
+                <a href="index.php?action=addEditBookForm&id=<?= $book->getId() ?>" class="btn btn-primary">Modifier</a>
+            <?php endif ?>
         </article>
     </div>
 </div>

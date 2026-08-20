@@ -157,4 +157,22 @@ class MessageRepository extends AbstractRepository
 
         return $messages;
     }
+
+    public function insert(string $message, int $senderId, int $receiverId, int $conversationId): int
+    {
+        $query = "
+            INSERT INTO messages (message, sender_id, receiver_id, conversation_id)
+            VALUES (:message, :senderId, :receiverId, :conversationId)
+        ";
+
+        $this->execute($query, [
+            'message' => $message,
+            'senderId' => $senderId,
+            'receiverId' => $receiverId,
+            'conversationId' => $conversationId
+        ]);
+        $id = (int) $this->pdo->lastInsertId();
+
+        return $id;
+    }
 }
