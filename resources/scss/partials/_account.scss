@@ -84,16 +84,18 @@
         @include t.p-article()
       }
     }
-  
-    .account-edit {
-      @extend %section-card;
-      height: 515px;
-      padding: 38px 116px 37px 116px;
+  }
 
-      .account-btn {
-        width: fit-content;
-        align-self: flex-start;
-      }
+  .account-edit {
+    @extend %section-card;
+    width: 555px;
+    height: 515px;
+    align-items: center;
+    padding: 38px 116px 37px 116px;
+
+    .account-btn {
+      width: fit-content;
+      align-self: flex-start;
     }
   }
 }

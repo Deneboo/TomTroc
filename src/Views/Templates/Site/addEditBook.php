@@ -5,13 +5,15 @@
 /** @var object $book */
 
 $id = $book ? htmlspecialchars($book->getId()) : '';
-$image = $book && $book->getImage() !== '' ? htmlspecialchars($book->getImage()) : "/assets/images/default-book-cover.jpg";
+$image =
+    $book && $book->getImage() !== ''
+        ? htmlspecialchars($book->getImage())
+        : '/assets/images/default-book-cover.jpg';
 $title = $book ? htmlspecialchars($book->getTitle()) : '';
 $author = $book ? htmlspecialchars($book->getAuthor()) : '';
 $description = $book ? htmlspecialchars($book->getDescription()) : '';
 
 $available = $book ? $book->isAvailable() : 0;
-
 ?>
 
 <div class="page-container">
@@ -32,7 +34,7 @@ $available = $book ? $book->isAvailable() : 0;
                         <label for="fileToUpload" class="btn-img" style="cursor: pointer;">
                             Modifier la photo
                         </label>
-                    <?php endif ?>
+                    <?php endif; ?>
                     <input
                         type="hidden"
                         name="id"
@@ -70,8 +72,7 @@ $available = $book ? $book->isAvailable() : 0;
                     </div>
                     <div>
                         <label for="description">Description</label>
-                        <textarea id="description" class="text-area" name="description" required><?= $description
-                        ?></textarea>
+                        <textarea id="description" class="text-area" name="description" required><?= $description ?></textarea>
                     </div>
                     <?php if (!$book): ?>
                         <div>
@@ -85,15 +86,18 @@ $available = $book ? $book->isAvailable() : 0;
                                 accept="image/jpeg,image/png,image/gif"
                             >
                         </div>
-                    <?php endif ?> 
+                    <?php endif; ?> 
                     <div>
                         <label for="isAvailable">Disponible :</label>
                         <select id="isAvailable" name="isAvailable">
-                            <option value="1" <?= $available ? 'selected' : '' ?>>Disponible</option>
-                            <option value="0" <?= !$available ? 'selected' : '' ?>>Non dispo.</option>
+                            <option value="1" <?= $available
+                                ? 'selected'
+                                : '' ?>>Disponible</option>
+                            <option value="0" <?= !$available
+                                ? 'selected'
+                                : '' ?>>Non dispo.</option>
                         </select>
                     </div>
-
                     <button type="submit" class="submit btn btn-form btn-primary"><?= isset($book)
                         ? 'Modifier'
                         : 'Ajouter' ?></button>

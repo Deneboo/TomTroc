@@ -6,7 +6,6 @@
 /** @var App\Models\User $user */
 /** @var array[] $books */
 /** @var int $bookCount */
-
 ?>
 
 <div class="page-container">
@@ -44,8 +43,8 @@
             <p class="book-nbr"><span><?= $bookCount ?></span> livres</p>
           </div>
         </div>
-      <div  class="account-edit">
-        <p>Vos informations personnelles</p>
+        <div class="account-edit">
+            <p>Vos informations personnelles</p>
             <?php if (isset($_SESSION['flash_success_info'])): ?>
                 <div class="alert alert-success"><?= htmlspecialchars(
                     $_SESSION['flash_success_info'],
@@ -72,9 +71,9 @@
                       $user->getUsername(),
                   ) ?? '' ?>" required>
               </div>
-            <button class="submit btn btn-secondary account-btn">Enregistrer</button>
-          </form>
-      </div>
+              <button class="submit btn btn-secondary account-btn">Enregistrer</button>
+            </form>
+        </div>
     </div>
     <?php if ($bookCount > 0): ?>
       <div class="account-book-list">
@@ -90,13 +89,17 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($books as $book) { 
-              $image = $book['image'] !== null && $book['image'] !== '' ? htmlspecialchars($book['image']) : "/assets/images/default-book-cover.jpg";
-              ?>
+            <?php foreach ($books as $book) {
+                $image =
+                    $book['image'] !== null && $book['image'] !== ''
+                        ? htmlspecialchars($book['image'])
+                        : '/assets/images/default-book-cover.jpg'; ?>
               <tr>
                   <td>
                     <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
-                      <img src="<?= $image ?>" alt="Image du livre <?= htmlspecialchars($book['title']) ?>">
+                      <img src="<?= $image ?>" alt="Image du livre <?= htmlspecialchars(
+                          $book['title'],
+                      ) ?>">
                     </a>
                   </td>
                   <td>
@@ -130,13 +133,14 @@
                     </div>
                   </td>
               </tr>
-            <?php } ?>
+            <?php
+            } ?>
           </tbody>
         </table>
         <a class="add-book" href="index.php?action=addEditBookForm">Ajouter un livre</a>
       </div>
-    <?php else : ?>
+    <?php else: ?>
       <a class="add-book" href="index.php?action=addEditBookForm">Ajouter un livre</a>
-    <?php endif ?>
+    <?php endif; ?>
   </div>
 </div>

@@ -28,7 +28,7 @@
     }
 
     input, textarea, select {
-      width: 435px;
+      max-width: 322px;
       border: 1px solid $light-border;
       border-radius: 6px;
       margin-top: 10px;
