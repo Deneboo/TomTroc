@@ -1,12 +1,18 @@
 @use "../common" as *;
 
+header {
+    width: 100%;
+    background-color: $background-color;
+}
+
 nav {
     display: flex;
     flex-direction: row;
     gap: 78px;
-    max-width: 100%;
-    margin: auto;
-    padding: 15px 150px 14px 150px;
+    width: 1135px;
+
+    margin: 0 auto;
+    padding: 15px 0 14px 0;
     background-color: $background-color;
 }
 
