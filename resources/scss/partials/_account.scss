@@ -161,13 +161,7 @@
           );
 
           .status {
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              border-radius: 29.58px;
-              padding: 3.7px 13.31px;
-              font: inherit;
-              color: #fff;
+              @extend %status;
           }
 
           .available {

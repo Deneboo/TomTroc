@@ -5,8 +5,8 @@
 /** @var object $book */
 
 $id = $book ? htmlspecialchars($book->getId()) : '';
-$image =
-    $book && $book->getImage() !== ''
+$image
+    = $book && $book->getImage() !== ''
         ? htmlspecialchars($book->getImage())
         : '/assets/images/default-book-cover.jpg';
 $title = $book ? htmlspecialchars($book->getTitle()) : '';

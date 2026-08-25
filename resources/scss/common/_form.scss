@@ -4,7 +4,7 @@
 .form-section {
   max-width: 322px;
   width: 100%;
-  margin: 210px 0px 205px 150px;
+  margin: 210px 0px 205px calc((100vw - 1080px) / 2.1);
 }
 
 %form-template {
@@ -28,7 +28,6 @@
     }
 
     input, textarea, select {
-      max-width: 322px;
       border: 1px solid $light-border;
       border-radius: 6px;
       margin-top: 10px;

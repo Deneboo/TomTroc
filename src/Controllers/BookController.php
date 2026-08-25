@@ -69,7 +69,7 @@ class BookController
             header('Location: index.php?action=loginPage');
             exit;
         }
-        
+
         $bookId = isset($_GET['id']) ? (int) $_GET['id'] : null;
         $book = null;
 
@@ -154,7 +154,7 @@ class BookController
                 $path = $this->imageUploadService->uploadImage(
                     'book_cover',
                     $userId,
-                    $bookId
+                    $bookId,
                 );
 
                 if ($path) {
@@ -177,7 +177,7 @@ class BookController
         $userId = (int) $_SESSION['user_id'];
         $imageType = 'book_cover';
 
-   
+
         if ($bookId === null) {
             $_SESSION['flash_error_upload_book_cover'] = "Le livre n'a pas été trouvé.";
             header('Location: index.php?action=account');
@@ -193,7 +193,7 @@ class BookController
             $path = $this->imageUploadService->uploadImage(
                 $imageType,
                 $userId,
-                $bookId
+                $bookId,
             );
 
         } catch (ImageUploadException $e) {
@@ -207,7 +207,7 @@ class BookController
             $book = $this->bookRepository->findById($bookId);
 
             if ($book->getImage() && $book->getImage() !== $path) {
-                $oldFile = __DIR__ 
+                $oldFile = __DIR__
                 . '/../../public/assets/uploads/'
                 . $userId
                 . '/'

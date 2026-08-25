@@ -84,7 +84,7 @@ class UserController
                     ],
                 );
             }
-            
+
 
             View::render(
                 'Templates/Site/publicAccount',
@@ -159,7 +159,7 @@ class UserController
         try {
             $this->imageValidator->validate(
                 $_FILES['fileToUpload'],
-                $imageType
+                $imageType,
             );
         } catch (ImageUploadException $e) {
             $_SESSION['flash_error_upload_avatar'] = $e->getMessage();
@@ -191,15 +191,15 @@ class UserController
 
     public function getMessagingView(): void
     {
-       if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
-        } 
+        }
         $userId = $_SESSION['user_id'];
-        $user = $this->userRepository->findUserById($userId );
+        $user = $this->userRepository->findUserById($userId);
 
         $latestMessages = $this->messageRepository->getAllLatestMessagesForOneUser($userId, $user);
-        
+
         $messages = [];
         $selectedInterlocuteurId = isset($_GET['id'])
             ? (int) $_GET['id']
@@ -207,26 +207,26 @@ class UserController
         $conversationId = null;
         $selectedInterlocuteur = null;
 
-            if ($selectedInterlocuteurId !== null) {
-                $selectedInterlocuteur = $this->userRepository->findUserById($selectedInterlocuteurId);
-                
-                $conversation = $this->messageRepository
-                    ->getOneConversation($userId, $selectedInterlocuteurId);
-        
-                    $conversationId = $conversation['id'];
+        if ($selectedInterlocuteurId !== null) {
+            $selectedInterlocuteur = $this->userRepository->findUserById($selectedInterlocuteurId);
 
-                if ($conversationId !== null) {
-                    $messages = $this->messageRepository
-                        ->getAllMessageFromAConversation($conversationId);
-                }
+            $conversation = $this->messageRepository
+                ->getOneConversation($userId, $selectedInterlocuteurId);
+
+            $conversationId = $conversation['id'];
+
+            if ($conversationId !== null) {
+                $messages = $this->messageRepository
+                    ->getAllMessageFromAConversation($conversationId);
             }
-            View::render(
+        }
+        View::render(
             'Templates/Site/messaging',
             [
                 'user' => $user,
-                'messages'=> $messages,
+                'messages' => $messages,
                 'latestMessages' => $latestMessages,
-                'selectedInterlocuteur' => $selectedInterlocuteur
+                'selectedInterlocuteur' => $selectedInterlocuteur,
             ],
         );
     }

@@ -112,7 +112,6 @@ try {
             break;
     }
 } catch (\Throwable $e) {
-    var_dump($e->getMessage());
-    // $errorControler = new ErrorController();
-    // $errorControler->error500();
+    $errorControler = new ErrorController();
+    $errorControler->error500();
 }

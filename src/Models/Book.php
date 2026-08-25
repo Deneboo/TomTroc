@@ -13,7 +13,7 @@ class Book
     private bool $isAvailable;
     private ?string $image;
 
-    public function __construct(int $id, string $title, string $author, string $description, \DateTime $createdAt, User $user, bool $isAvailable = true, ?string $image = NULL,)
+    public function __construct(int $id, string $title, string $author, string $description, \DateTime $createdAt, User $user, bool $isAvailable = true, ?string $image = null)
     {
         $this->id = $id;
         $this->title = $title;

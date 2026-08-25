@@ -90,8 +90,8 @@
           </thead>
           <tbody>
             <?php foreach ($books as $book) {
-                $image =
-                    $book['image'] !== null && $book['image'] !== ''
+                $image
+                    = $book['image'] !== null && $book['image'] !== ''
                         ? htmlspecialchars($book['image'])
                         : '/assets/images/default-book-cover.jpg'; ?>
               <tr>

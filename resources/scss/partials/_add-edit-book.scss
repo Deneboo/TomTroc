@@ -40,6 +40,10 @@
       object-fit: cover;
     }
 
+    input, text-area, select {
+        width: 435px;
+    }
+
     .text-area {
       min-height: 100px;
       resize: vertical;
