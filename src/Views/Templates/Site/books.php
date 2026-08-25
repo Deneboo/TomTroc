@@ -15,12 +15,14 @@
                 <button type="submit" class="search-button" aria-label="Rechercher">
                     <img src="/assets/images/lens.png" alt="">
                 </button>
+                <label for="searchBook" class="sr-only">Rechercher un livre</label>
                 <input type="hidden" name="action" value="search" >
                 <input 
                     type="text" 
                     name="title" 
                     placeholder="Rechercher un livre par titre"
                     value="<?= htmlspecialchars($_GET['title'] ?? '') ?>"
+                    id="searchBook"
                 >
                 <?php
                     $hasSearchQuery = isset($_GET['title']) ? htmlspecialchars($_GET['title']) : '';

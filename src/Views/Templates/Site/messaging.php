@@ -57,7 +57,7 @@ if ($selectedInterlocuteur !== null) {
                         <a href="index.php?action=profile&id=<?= $selectedInterlocuteurId ?>" class="avatar-and-name">
                             <img 
                                 src="<?= htmlspecialchars($selectedInterlocuteurAvatar,) ?>" 
-                                alt="avatar"
+                                alt="avatar de <?= htmlspecialchars($selectedInterlocuteurUsername,) ?>"
                                 class="avatar-message"
                             >
                             <p>
@@ -77,7 +77,7 @@ if ($selectedInterlocuteur !== null) {
                                 <?php if ($isSender === 'interlocuteur') : ?>
                                     <img 
                                         src="<?= htmlspecialchars($selectedInterlocuteurAvatar,) ?>" 
-                                        alt="avatar"
+                                        alt="avatar de <?= htmlspecialchars($selectedInterlocuteurUsername,) ?> pour conversation"
                                         class="avatar-message"
                                     >
                                 <?php endif ?>
@@ -92,6 +92,7 @@ if ($selectedInterlocuteur !== null) {
                 <div class="message-form">
                     <form class="add-edit-book-form form-details" method="post" action="index.php?action=sendMessage&id=<?= $selectedInterlocuteurId ?>">
                         <div>
+                            <label for="messageToSend" class="sr-only">Votre message</label>
                             <input id="messageToSend" name="messageToSend" placeholder="Tapez votre message ici" class="message-input"></input>
                         </div>
                         <button type="submit" class="submit btn btn-form btn-primary message-button">Envoyer</button>

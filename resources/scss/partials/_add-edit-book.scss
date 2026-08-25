@@ -25,11 +25,13 @@
     margin-bottom: 92px;
 }
 
+
+
 .add-edit-book-form {
     @extend %form-template;
     margin-top: 32px;
 
-    label {
+    label, .title-photo {
       color: v.$secondary-text-color;
     }
 
