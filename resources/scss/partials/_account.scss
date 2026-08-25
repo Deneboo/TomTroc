@@ -202,7 +202,7 @@
     }
 
     .book-list-description {
-      @extend %message;
+      @extend %text;
       width: 128px;
       display: -webkit-box;
       -webkit-line-clamp: 4;
@@ -219,7 +219,7 @@
   }
 
   .no-book {
-    @extend %message;
+    @extend %text;
     padding: 30px;
     text-align: center;
   }

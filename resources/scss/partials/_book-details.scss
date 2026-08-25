@@ -13,14 +13,6 @@
     @extend %split-page-img;
 }
 
-// .detail-author {
-//   @include m.flex(
-//     $direction: row,
-//     $align: center, 
-//     $gap: 12px
-//   );
-// }
-
 .detail-author p,
 .detail-author p span {
   @include m.typography(

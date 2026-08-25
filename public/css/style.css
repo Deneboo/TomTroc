@@ -169,7 +169,7 @@ main {
   height: 886px;
 }
 
-.avatar-and-name img {
+.messaging-page .avatar-message, .avatar-and-name img {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -264,13 +264,18 @@ li {
   list-style: none;
 }
 
+header {
+  width: 100%;
+  background-color: #F5F3EF;
+}
+
 nav {
   display: flex;
   flex-direction: row;
   gap: 78px;
-  max-width: 100%;
-  margin: auto;
-  padding: 15px 150px 14px 150px;
+  width: 1135px;
+  margin: 0 auto;
+  padding: 15px 0 14px 0;
   background-color: #F5F3EF;
 }
 
@@ -637,14 +642,160 @@ nav {
 }
 
 /* ----- Messages page ----- */
-.owner {
-  margin-right: auto;
-  color: blue;
+.messaging {
+  background-color: #F5F3EF;
 }
 
-.interlocuteur {
-  margin-left: auto;
-  color: red;
+.messaging-page {
+  width: 1135px;
+  margin-left: calc((100vw - 1135px) / 2);
+  margin-right: calc((100vw - 1135px) / 2);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  left: 0;
+  right: 0;
+}
+.messaging-page .all-messages {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  color: inherit;
+  width: 308px;
+  min-height: 893px;
+  padding: 55px 0 34px 0;
+  background-color: #FAF9F7;
+}
+.messaging-page .all-messages h1 {
+  margin-bottom: 27px;
+  padding: 0 43px 0 34px;
+}
+.messaging-page .all-messages li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+}
+.messaging-page .all-messages li .last-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 43px 18px 34px;
+}
+.messaging-page .all-messages li .last-message .last-message-header, .messaging-page .all-messages li .last-message p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #292929;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.messaging-page .all-messages li .last-message .message-list-text {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  color: inherit;
+  width: 172px;
+  color: #A6A6A6;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 7px;
+}
+.messaging-page .messaging-conversation {
+  display: flex;
+  flex-direction: column;
+  min-width: 833px;
+  padding: 35px 44px 34px;
+  background-color: #F5F3EF;
+}
+.messaging-page .messaging-conversation .current-message {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  flex: 1;
+}
+.messaging-page .messaging-conversation .current-message .owner,
+.messaging-page .messaging-conversation .current-message .interlocuteur {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.messaging-page .messaging-conversation .current-message .owner {
+  align-items: flex-end;
+}
+.messaging-page .messaging-conversation .current-message .owner .message-content {
+  background-color: #EDF2F6;
+}
+.messaging-page .messaging-conversation .current-message .interlocuteur {
+  align-items: flex-start;
+}
+.messaging-page .messaging-conversation .current-message .interlocuteur .message-content {
+  background-color: #fff;
+}
+.messaging-page .messaging-conversation .current-message .message-content {
+  width: 500px;
+  min-height: 37px;
+  padding: 10px 19px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+.messaging-page .messaging-conversation .current-message .messaging-conversation-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.messaging-page .messaging-conversation .current-message .messaging-conversation-header .avatar-message {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.messaging-page .messaging-conversation .current-message .messaging-conversation-header .message-date {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  color: #A6A6A6;
+}
+.messaging-page .messaging-conversation .current-message .messaging-conversation-header.owner {
+  justify-content: flex-end;
+}
+.messaging-page .messaging-conversation .current-message .messaging-conversation-header.interlocuteur {
+  justify-content: flex-start;
+}
+.messaging-page .messaging-conversation .message-form {
+  margin-top: auto;
+  width: 681px;
+}
+.messaging-page .messaging-conversation .message-form .add-edit-book-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.messaging-page .messaging-conversation .message-form .add-edit-book-form .message-input {
+  flex: 1;
+  min-width: 628px;
+  height: 49px;
+}
+.messaging-page .messaging-conversation .message-form .add-edit-book-form .message-button {
+  width: 132px;
+  height: 49px;
+  padding: 0 38px;
+  flex-shrink: 0;
 }
 
 /* ----- account page seen by owner and public account seen by visitor ----- */

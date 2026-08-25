@@ -1,15 +1,192 @@
 @use '../common/global' as *;
+@use '../common/variables' as v;
+@use '../common/mixins' as m;
+@use '../common/typography' as t;
 
 /* ----- Messages page ----- */
 
-.owner {
-    margin-right: auto;
-    color: blue;
+.messaging {
+    background-color: v.$background-color;
 }
 
-.interlocuteur {
-    margin-left: auto;
-    color: red;
+.messaging-page {
+    width: 1135px;
+    margin-left: calc((100vw - 1135px) / 2);
+    margin-right: calc((100vw - 1135px) / 2);
+    @include m.flex(
+        $direction: row,
+        $gap: 12px
+    );
+    left: 0;
+    right: 0;
+
+    .avatar-message {
+        @extend %avatar-small;
+    }
+    
+    .all-messages {
+        @include m.typography(
+            inherit, 12px, 400, inherit
+        );
+        width: 308px;
+        min-height: 893px;
+        padding: 55px 0 34px 0;
+        background-color: v.$background-light;
+
+        h1 {
+            margin-bottom: 27px;
+            padding: 0 43px 0 34px;
+        }
+
+        li {
+            @include m.flex(
+                $direction: column,
+                $gap: 12px
+            );
+
+            .last-message {
+                @include m.flex(
+                    $direction: row,
+                    $align: center,
+                    $gap: 12px
+                );
+                padding: 18px 43px 18px 34px;
+
+                .last-message-header, p {
+                    @include t.p-article();
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .message-list-text {
+                    @include m.typography(
+                        inherit, 12px, 400, inherit
+                    );
+                    width: 172px;
+                    color: v.$secondary-text-color;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    margin-top: 7px;
+                }
+            }
+
+
+        }
+        
+
+    }
+
+    .messaging-conversation {
+        display: flex;
+        flex-direction: column;
+        min-width: 833px;
+        padding: 35px 44px 34px;
+        background-color: v.$background-color;
+
+        .current-message {
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            flex: 1;
+
+            .owner,
+            .interlocuteur {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .owner {
+                align-items: flex-end;
+
+                .message-content {
+                    background-color: v.$input-color;
+                }
+            }
+
+            .interlocuteur {
+                align-items: flex-start;
+
+                .message-content {
+                    background-color: #fff;
+                }
+            }
+
+            .message-content {
+                width: 500px;
+                min-height: 37px;
+                padding: 10px 19px;
+                border-radius: 3px;
+                box-sizing: border-box;
+                font-size: 12px;
+            }
+
+            .messaging-conversation-header {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 5px;
+
+                .avatar-message {
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .message-date {
+                    margin: 0;
+                    font-size: 10px;
+                    font-weight: 400;
+                    line-height: 15px;
+                    color: v.$secondary-text-color;
+                }
+
+                &.owner {
+                    justify-content: flex-end;
+                }
+
+                &.interlocuteur {
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        .message-form {
+            margin-top: auto;
+            width: 681px;
+
+            .add-edit-book-form {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+
+                .message-input {
+                    flex: 1;
+                    min-width: 628px;
+                    height: 49px;
+                }
+
+                .message-button {
+                    width: 132px;
+                    height: 49px;
+                    padding: 0 38px;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
 }
+
+
+
+
 
 
