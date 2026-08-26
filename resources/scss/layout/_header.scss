@@ -49,8 +49,9 @@ nav {
   align-items: center;
 }
 
-.icon-messagerie {
+.icon-messagerie, .icon-book {
   width: 15px;
   height: 13.13px;
-  margin-right: 1.8px;
+  vertical-align: -1px;
+  margin-right: 2px;
 }

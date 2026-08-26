@@ -113,6 +113,7 @@
     min-height: 579px;
 
     .public-account-send-message {
+      display: inline-block;
       margin-top: 45px;
     }
   }
@@ -208,7 +209,7 @@
 
   .add-book {
     @extend %label;
-    padding: 30px;
+    padding: 0 30px 30px 30px;
     text-align: right;
   }
 
@@ -217,5 +218,10 @@
     padding: 30px;
     text-align: center;
   }
+}
+
+.add-first-book {
+  @extend %label;
+  margin: 0 0 30px 30px;
 }
 

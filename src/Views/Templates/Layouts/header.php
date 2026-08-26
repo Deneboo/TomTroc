@@ -1,7 +1,7 @@
     <header>
         <nav>
             <div class="logo-link">
-                <img src="/assets/images/logo.svg" alt="Logo Tomtroc avec le nom" class="logo">
+                <img src="/assets/images/site/logo.svg" alt="Logo Tomtroc avec le nom" class="logo">
             </div>
             <div class="nav-container">
                 <ul class="nav-left">
@@ -12,7 +12,7 @@
                 <ul class="nav-right">
                     
                     <?php if (isset($_SESSION['user_id'])) { ?>
-                        <li><a href="index.php?action=messaging"><span><img src="/assets/images/icon-messagerie.png" alt="icone bulle" class="icon-messagerie"></span>Messagerie</a></li>
+                        <li><a href="index.php?action=messaging"><span><img src="/assets/images/site/icon-messagerie.png" alt="icone bulle" class="icon-messagerie"></span>Messagerie</a></li>
                         <li><a href="index.php?action=account">Mon compte</a></li>
                         <li><a href="index.php?action=logout">Déconnexion</a></li>
                     <?php } else { ?>

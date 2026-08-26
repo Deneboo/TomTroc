@@ -33,9 +33,13 @@
         padding: 55px 0 34px 0;
         background-color: v.$background-light;
 
-        h1 {
+        h1, .no-message {
             margin-bottom: 27px;
             padding: 0 43px 0 34px;
+        }
+
+        .no-message {
+            @extend %text;
         }
 
         li {

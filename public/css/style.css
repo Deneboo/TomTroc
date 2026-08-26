@@ -174,7 +174,7 @@ main {
   border-radius: 50%;
 }
 
-.account-book-list table .book-list-description, .public-account-book-list table .book-list-description, .account-book-list .no-book, .public-account-book-list .no-book, .alert, caption {
+.account-book-list table .book-list-description, .public-account-book-list table .book-list-description, .account-book-list .no-book, .public-account-book-list .no-book, .messaging-page .all-messages .no-message, .alert, caption {
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -207,7 +207,7 @@ main {
   border-radius: 20px;
 }
 
-.account .account-header .account-avatar .avatar-label, .account-book-list .add-book, .public-account-book-list .add-book {
+.account .account-header .account-avatar .avatar-label, .account-book-list .add-book, .public-account-book-list .add-book, .add-first-book {
   display: block;
   padding-top: 5px;
   text-decoration: underline;
@@ -333,10 +333,11 @@ nav {
   align-items: center;
 }
 
-.icon-messagerie {
+.icon-messagerie, .icon-book {
   width: 15px;
   height: 13.13px;
-  margin-right: 1.8px;
+  vertical-align: -1px;
+  margin-right: 2px;
 }
 
 /* ----- Home page ----- */
@@ -716,7 +717,7 @@ nav {
   padding: 55px 0 34px 0;
   background-color: #FAF9F7;
 }
-.messaging-page .all-messages h1 {
+.messaging-page .all-messages h1, .messaging-page .all-messages .no-message {
   margin-bottom: 27px;
   padding: 0 43px 0 34px;
 }
@@ -944,6 +945,7 @@ nav {
   min-height: 579px;
 }
 .public-account .public-account-header .public-account-send-message {
+  display: inline-block;
   margin-top: 45px;
 }
 .public-account .public-account-book-list {
@@ -1012,12 +1014,16 @@ nav {
   overflow: hidden;
 }
 .account-book-list .add-book, .public-account-book-list .add-book {
-  padding: 30px;
+  padding: 0 30px 30px 30px;
   text-align: right;
 }
 .account-book-list .no-book, .public-account-book-list .no-book {
   padding: 30px;
   text-align: center;
+}
+
+.add-first-book {
+  margin: 0 0 30px 30px;
 }
 
 .error-page {

@@ -37,7 +37,7 @@
                 $image
                     = $book->getImage() !== '' && $book->getImage() !== null
                         ? htmlspecialchars($book->getImage())
-                        : '/assets/images/default-book-cover.jpg';
+                        : '/assets/images/site/default-book-cover.jpg';
                 ?>
                 <li>
                    <a class="book-card"

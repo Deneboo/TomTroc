@@ -21,34 +21,37 @@ if ($selectedInterlocuteur !== null) {
     <div class="messaging-page">
         <div class="all-messages">
             <h1>Messagerie</h1>
-            <ul>
-                <?php foreach ($latestMessages as $latest):
-                    $message = $latest['message'];
-                    $interlocuteur = $latest['interlocuteur'];
-                ?>
-                    <li>
-                        <a 
-                            href="index.php?action=messaging&id=<?= $interlocuteur->getId() ?>"
-                            class="last-message"
-                        >
-                            <img
-                                src="<?= htmlspecialchars($interlocuteur->getAvatar()) ?>"
-                                alt="avatar"
-                                class="avatar-message"
+            <?php if ($latestMessages) : ?>
+                <ul>
+                    <?php foreach ($latestMessages as $latest):
+                        $message = $latest['message'];
+                        $interlocuteur = $latest['interlocuteur'];
+                    ?>
+                        <li>
+                            <a 
+                                href="index.php?action=messaging&id=<?= $interlocuteur->getId() ?>"
+                                class="last-message"
                             >
-                            <div>
-                                <div class="last-message-header">
-                                    <p><?= htmlspecialchars($interlocuteur->getUsername()) ?></p>
-                                    <p><?= htmlspecialchars($message->getCreatedAt()->format('H:i')) ?></p>
+                                <img
+                                    src="<?= htmlspecialchars($interlocuteur->getAvatar()) ?>"
+                                    alt="avatar"
+                                    class="avatar-message"
+                                >
+                                <div>
+                                    <div class="last-message-header">
+                                        <p><?= htmlspecialchars($interlocuteur->getUsername()) ?></p>
+                                        <p><?= htmlspecialchars($message->getCreatedAt()->format('H:i')) ?></p>
+                                    </div>
+                                    
+                                    <p class="message-list-text"><?= htmlspecialchars($message->getMessage()) ?></p>
                                 </div>
-                                
-                                <p class="message-list-text"><?= htmlspecialchars($message->getMessage()) ?></p>
-                            </div>
-                        </a>
-                    </li>
-                <?php
-                endforeach; ?>   
-            </ul>
+                            </a>
+                        </li>
+                    <?php endforeach; ?> 
+                </ul>
+            <?php else : ?>
+                <p class="no-message">Vous n'avez pas de messages</p>
+            <?php endif; ?>
         </div> 
         <div class="messaging-conversation"> 
             <?php if ($selectedInterlocuteur !== null): ?> 

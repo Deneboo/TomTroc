@@ -16,7 +16,7 @@
         <button class="btn btn-primary">Découvrir</button>
     </div>
     <div class="about-img">
-        <img src="/assets/images/homme-et-livres.jpg" alt="Image d'un homme avec des livres">
+        <img src="/assets/images/site/homme-et-livres.jpg" alt="Image d'un site/homme avec des livres">
         <p class="caption">Hamza</p>
     </div>
 </div>
@@ -106,7 +106,7 @@
             <p class="caption">
                 L’équipe Tom Troc
             </p>
-            <img src="/assets/images/Vector_2.png" alt="Signature en forme de coeur vert">
+            <img src="/assets/images/site/heart-shape-sign.png" alt="Signature en forme de coeur vert">
         </div>
     </div>
 </div>

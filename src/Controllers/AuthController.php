@@ -52,7 +52,7 @@ class AuthController
             $username,
             $email,
             $hashedPassword,
-            '/assets/images/default-avatar.png',
+            '/assets/images/site/default-avatar.png',
             new \DateTime(),
         );
 

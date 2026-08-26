@@ -5,7 +5,7 @@
 <div class="page-container">
     <div class="book-details">
         <img class="book-details-img" src="<?= htmlspecialchars($book->getImage())
-            ?? '/assets/images/default-book-cover.jpg' ?>" alt="Couverture du livre <?= htmlspecialchars(
+            ?? '/assets/images/site/default-book-cover.jpg' ?>" alt="Couverture du livre <?= htmlspecialchars(
                 $book->getTitle(),
             ) ?>">
         <article>
@@ -29,7 +29,7 @@
                     <?= htmlspecialchars($book->getUser()->getUsername()) ?>
                 </p>
             </a>
-            <?php if ($book->getUser()->getId() !== $_SESSION['user_id']): ?>
+            <?php if (!isset($_SESSION['user_id']) || $book->getUser()->getId() !== $_SESSION['user_id']): ?>
                 <a href="index.php?action=messaging&id=<?= $book
                     ->getUser()
                     ->getId() ?>" class="btn btn-primary">Envoyer un message</a>

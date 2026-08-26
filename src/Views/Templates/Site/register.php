@@ -38,6 +38,6 @@
                 </form>
                 <p class="redirect-to">Déja inscrit ? <span><a href="index.php?action=loginPage">Connectez-vous</a></span></p>
             </div>
-            <img class="register-login-img" src="/assets/images/library-vintage.jpg" alt="image de livres">
+            <img class="register-login-img" src="/assets/images/site/library-vintage.jpg" alt="image de livres">
         </div>
 </div>

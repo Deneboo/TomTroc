@@ -3,6 +3,8 @@
  * User public account.
  */
 
+use App\Utils\TextFormat;
+
 /** @var App\Models\User $user */
 /** @var array[] $books */
 /** @var int $bookCount */
@@ -21,10 +23,22 @@
                     <p class="username" ><?= $user->getUsername() ?></p>
                     <p class="membership">Membre depuis <span><?= $user->getMembershipDuration() ?></span></p>
                     <p class="tiny-uppercase-label">Bibliothèque</p>
-                    <p class="book-nbr"><span><?= $bookCount ?></span> livres</p>
+                    <p class="book-nbr">
+                        <img src="/assets/images/site/icon-book.svg" alt="icone livre" class="icon-book">
+                        <span><?= $bookCount ?></span> 
+                        <?= TextFormat::pluralize(
+                            $bookCount,
+                            'livre'
+                        ) ?>
+                    </p>
                 </div>
                 <div>
-                    <button class="btn btn-secondary public-account-send-message">Envoyer un message</button>
+                    <?php if (!isset($_SESSION['user_id']) || $user->getId() !== $_SESSION['user_id']): ?>
+                        <a href="index.php?action=messaging&id=<?= $user->getId() ?>"
+                            class="btn btn-secondary public-account-send-message">
+                            Envoyer un message
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div>
@@ -44,7 +58,7 @@
                                     $image
                                         = $book['image'] !== null && $book['image'] !== ''
                                             ? htmlspecialchars($book['image'])
-                                            : '/assets/images/default-book-cover.jpg'; ?>
+                                            : '/assets/images/site/default-book-cover.jpg'; ?>
                                       <tr>
                                           <td>
                                               <a href="index.php?action=book&id=<?= htmlspecialchars($book['id']) ?>">
