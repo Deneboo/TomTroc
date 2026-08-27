@@ -27,8 +27,6 @@ class Message
         $this->bookId = $bookId;
     }
 
-    // Getters
-
     public function getId(): ?int
     {
         return $this->id;

@@ -17,6 +17,12 @@ use App\Controllers\MessageController;
 use App\Controllers\ErrorController;
 use App\Database\DBConnect;
 
+// Initiate database if not exists
+$dbInitialize = new DatabaseInitialize();
+
+$dbInitialize->initialize();
+$database = DBConnect::getInstance();
+
 if (session_status() === PHP_SESSION_NONE) {
     session_set_cookie_params([
         'lifetime' => 60 * 60 * 24 * 30, // 30 days
@@ -26,12 +32,6 @@ if (session_status() === PHP_SESSION_NONE) {
     ]);
     session_start();
 }
-
-// Initiate database if not exists
-$dbInitialize = new DatabaseInitialize();
-
-$dbInitialize->initialize();
-$database = DBConnect::getInstance();
 
 try {
 
@@ -112,7 +112,6 @@ try {
             break;
     }
 } catch (\Throwable $e) {
-    var_dump($e);
-    // $errorControler = new ErrorController();
-    // $errorControler->error500();
+    $errorControler = new ErrorController();
+    $errorControler->error500();
 }

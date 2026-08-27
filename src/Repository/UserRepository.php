@@ -2,9 +2,7 @@
 
 namespace App\Repository;
 
-use PDO;
 use App\models\User;
-use App\models\Book;
 
 class UserRepository extends AbstractRepository
 {
