@@ -100,7 +100,8 @@ $available = $book ? $book->isAvailable() : 0;
                     </div>
                     <button type="submit" class="submit btn btn-form btn-primary"><?= isset($book)
                         ? 'Modifier'
-                        : 'Ajouter' ?></button>
+                        : 'Ajouter' ?>
+                    </button>
                 </form>
             </div>
         </div>

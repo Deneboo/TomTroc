@@ -35,73 +35,41 @@ class Book
         $this->id = $id;
     }
 
-    /**
-     * Getter pour le titre.
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * Setter pour le titre.
-     * @param string $title
-     */
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    /**
-     * Getter pour le author.
-     * @return string
-     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
-    /**
-     * Setter pour le titre.
-     * @param string $author
-     */
     public function setAuthor(string $author): void
     {
         $this->author = $author;
     }
 
-    /**
-     * Getter for image.
-     * @return string
-     */
     public function getImage(): ?string
     {
         return $this->image;
     }
 
-    /**
-     * Setter for image.
-     * @param string $image
-     */
     public function setImage(?string $image): void
     {
         $this->image = $image;
     }
 
-    /**
-     * Getter for description.
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * Setter for description.
-     * @param string $description
-     */
     public function setDescription(string $description): void
     {
         $this->description = $description;
@@ -118,36 +86,21 @@ class Book
         return $this;
     }
 
-    /**
-    * Getter for user.
-    * @return User
-    */
     public function getUser(): User
     {
         return $this->user;
     }
 
-    /**
-     * Setter for user.
-     * @param User $user
-     */
     public function setUser(User $user): void
     {
         $this->user = $user;
     }
 
-    /**
-     * Getter for isAvailable.
-     * @return bool
-     */
     public function isAvailable(): bool
     {
         return $this->isAvailable;
     }
 
-    /**
-     * Setter for isAvailable.
-     */
     public function setIsAvailable(bool $isAvailable): void
     {
         $this->isAvailable = $isAvailable;

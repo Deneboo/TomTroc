@@ -29,8 +29,6 @@ class User
         $this->createdAt = $createdAt;
     }
 
-    // Getters
-
     public function getId(): ?int
     {
         return $this->id;

@@ -16,8 +16,16 @@ class DatabaseInitialize
         $this->pdo = DBConnect::getInstance()->getConnection();
     }
 
-    public function createTable(): void
+    public function createDatabase(): void
     {
+        $createTomTrocBD = "
+            CREATE DATABASE IF NOT EXISTS `tom_troc`
+            CHARACTER SET utf8mb4
+            COLLATE utf8mb4_unicode_ci
+        ";
+
+        $this->pdo->exec($createTomTrocBD);
+
         $createUsersTable = "
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -135,7 +143,7 @@ class DatabaseInitialize
 
     public function initialize(): void
     {
-        $this->createTable();
+        $this->createDatabase();
         $this->seed();
     }
 }

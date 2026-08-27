@@ -36,3 +36,5 @@ composer dump-autoload
 Une fois les conteneurs démarrés, l'application est accessible à l'adresse suivante :
 
 **http://localhost:8085/index.php?action=home**
+
+La base de données est créée automatiquement par Docker. Les tables ainsi que quelques données de démonstration sont générées à partir de fixtures lors du premier lancement du projet.
