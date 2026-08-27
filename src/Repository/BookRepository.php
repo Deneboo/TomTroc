@@ -135,7 +135,7 @@ class BookRepository extends AbstractRepository
                 new \DateTime($data['created_at']),
                 $user,
                 (bool) $data['is_available'],
-                $data['image']
+                $data['image'],
             );
         }
         return $books;

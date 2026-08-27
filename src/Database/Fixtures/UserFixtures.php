@@ -11,25 +11,25 @@ class UserFixtures
                 'email' => 'camille@example.com',
                 'password' => password_hash('password', PASSWORD_DEFAULT),
                 'username' => 'CamilleClubLit',
-                'avatar' => null,
+                'avatar' => '/assets/images/fixtures/users/camille.jpg',
             ],
             [
                 'email' => 'nathalie@example.com',
                 'password' => password_hash('password', PASSWORD_DEFAULT),
                 'username' => 'Nathalire',
-                'avatar' => null,
+                'avatar' => '/assets/images/fixtures/users/nathalire.jpg',
             ],
             [
                 'email' => 'alex@example.com',
                 'password' => password_hash('password', PASSWORD_DEFAULT),
                 'username' => 'Alexlecture',
-                'avatar' => null,
+                'avatar' => '/assets/images/fixtures/users/alex-lecture.jpg',
             ],
             [
                 'email' => 'hugo@example.com',
                 'password' => password_hash('password', PASSWORD_DEFAULT),
                 'username' => 'Hugo1990_12',
-                'avatar' => null,
+                'avatar' => '/assets/images/fixtures/users/hugo.jpg',
             ],
         ];
     }

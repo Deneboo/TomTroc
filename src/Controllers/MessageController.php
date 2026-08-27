@@ -8,17 +8,17 @@ use App\Repository\ConversationRepository;
 
 class MessageController
 {
-      private MessageRepository $messageRepository;
-      private ConversationRepository $conversationRepository;
+    private MessageRepository $messageRepository;
+    private ConversationRepository $conversationRepository;
 
-      public function __construct(DBConnect $database)
-      {
-          $this->messageRepository = new MessageRepository($database->getConnection());
-          $this->conversationRepository = new ConversationRepository($database->getConnection());
-      }
+    public function __construct(DBConnect $database)
+    {
+        $this->messageRepository = new MessageRepository($database->getConnection());
+        $this->conversationRepository = new ConversationRepository($database->getConnection());
+    }
 
-      public function sendMessage(): void 
-      {
+    public function sendMessage(): void
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=loginPage');
             exit;
@@ -27,7 +27,7 @@ class MessageController
         $userId = $_SESSION['user_id'];
         $interlocuteurId = (int) $_GET['id'];
         $message = $_POST['messageToSend'];
-    
+
         $conversation = $this->conversationRepository->getConversationByUsersIds($userId, $interlocuteurId);
         $conversationId = null;
         if (!$conversation) {
@@ -40,7 +40,7 @@ class MessageController
             $message,
             $userId,
             $interlocuteurId,
-            $conversationId
+            $conversationId,
         );
 
         header('Location: index.php?action=messaging&id=' . $interlocuteurId);

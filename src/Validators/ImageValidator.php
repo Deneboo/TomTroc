@@ -1,13 +1,13 @@
 <?php
 
-Namespace App\Validators;
+namespace App\Validators;
 
 require_once(__DIR__ . '/../../config/config.php');
 
 use App\Exceptions\ImageUploadException;
-class ImageValidator 
-{
 
+class ImageValidator
+{
     public function validateSize(array $file, string $imageType): void
     {
         $limit = IMAGE_MAX_SIZES[$imageType];
@@ -20,9 +20,9 @@ class ImageValidator
         if ($file['size'] > $limit) {
             throw new ImageUploadException(
                 $errorMessage,
-                ImageUploadException::FILE_TOO_LARGE
+                ImageUploadException::FILE_TOO_LARGE,
             );
-        }  
+        }
     }
 
     public function validateMimeType(array $file): void
@@ -34,14 +34,14 @@ class ImageValidator
             || !in_array($check['mime'], ['image/jpeg', 'image/png', 'image/gif'])
         ) {
             throw new ImageUploadException(
-                code: ImageUploadException::INVALID_MIME_TYPE
+                code: ImageUploadException::INVALID_MIME_TYPE,
             );
         }
     }
 
     public function validate(array $file, string $imageType): void
     {
-            $this->validateSize($file, $imageType);
-            $this->validateMimeType($file);
+        $this->validateSize($file, $imageType);
+        $this->validateMimeType($file);
     }
 }

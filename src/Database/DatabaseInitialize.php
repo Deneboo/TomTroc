@@ -52,7 +52,7 @@ class DatabaseInitialize
 
         $this->pdo->exec($createBooksTable);
 
-                $createConversationsTable = "
+        $createConversationsTable = "
             CREATE TABLE  IF NOT EXISTS conversations (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user1_id INT NOT NULL,

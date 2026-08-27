@@ -4,10 +4,10 @@
 
 <div class="page-container">
     <div class="book-details">
-        <img class="book-details-img" src="<?= htmlspecialchars($book->getImage()) ??
-            '/assets/images/default-book-cover.jpg' ?>" alt="Couverture du livre <?= htmlspecialchars(
-            $book->getTitle(),
-        ) ?>">
+        <img class="book-details-img" src="<?= htmlspecialchars($book->getImage())
+            ?? '/assets/images/site/default-book-cover.jpg' ?>" alt="Couverture du livre <?= htmlspecialchars(
+                $book->getTitle(),
+            ) ?>">
         <article>
             <h1><?= htmlspecialchars($book->getTitle()) ?></h1>
             <div class="detail-author">
@@ -29,11 +29,13 @@
                     <?= htmlspecialchars($book->getUser()->getUsername()) ?>
                 </p>
             </a>
-            <?php if ($book->getUser()->getId() !== $_SESSION['user_id']): ?>
-                <a href="index.php?action=messaging&id=<?= $book->getUser()->getId() ?>" class="btn btn-primary">Envoyer un message</a>
-            <?php else : ?>
+            <?php if (!isset($_SESSION['user_id']) || $book->getUser()->getId() !== $_SESSION['user_id']): ?>
+                <a href="index.php?action=messaging&id=<?= $book
+                    ->getUser()
+                    ->getId() ?>" class="btn btn-primary">Envoyer un message</a>
+            <?php else: ?>
                 <a href="index.php?action=addEditBookForm&id=<?= $book->getId() ?>" class="btn btn-primary">Modifier</a>
-            <?php endif ?>
+            <?php endif; ?>
         </article>
     </div>
 </div>

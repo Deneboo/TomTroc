@@ -7,7 +7,6 @@ use App\Models\Conversation;
 
 class ConversationRepository extends AbstractRepository
 {
-
     public function getConversationByUsersIds(int $user1Id, int $user2Id)
     {
         $query = "
@@ -31,7 +30,7 @@ class ConversationRepository extends AbstractRepository
             $data['id'],
             $data['user1_id'],
             $data['user2_id'],
-            new \DateTime($data['created_at'])
+            new \DateTime($data['created_at']),
         );
     }
 

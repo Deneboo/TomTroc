@@ -9,7 +9,7 @@ class Conversation
     private int $user2Id;
     private \DateTime $createdAt;
 
-     public function __construct(
+    public function __construct(
         int $id,
         int $user1Id,
         int $user2Id,
@@ -21,7 +21,7 @@ class Conversation
         $this->createdAt = $createdAt;
     }
 
-        public function getId(): ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -32,7 +32,7 @@ class Conversation
         return $this;
     }
 
-        public function getUser1Id(): int
+    public function getUser1Id(): int
     {
         return $this->user1Id;
     }
@@ -54,7 +54,7 @@ class Conversation
         return $this;
     }
 
-        public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }

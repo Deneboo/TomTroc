@@ -91,7 +91,7 @@ footer nav ul li {
 .form-section {
   max-width: 322px;
   width: 100%;
-  margin: 210px 0px 205px 150px;
+  margin: 210px 0px 205px calc((100vw - 1080px) / 2.1);
 }
 
 .register-login-form, .add-edit-book-form {
@@ -114,7 +114,6 @@ footer nav ul li {
   height: 50px;
 }
 .register-login-form div input, .add-edit-book-form div input, .register-login-form div textarea, .add-edit-book-form div textarea, .register-login-form div select, .add-edit-book-form div select {
-  max-width: 322px;
   border: 1px solid #F0F0F0;
   border-radius: 6px;
   margin-top: 10px;
@@ -175,7 +174,7 @@ main {
   border-radius: 50%;
 }
 
-.account-book-list table .book-list-description, .public-account-book-list table .book-list-description, .account-book-list .no-book, .public-account-book-list .no-book, .alert, caption {
+.account-book-list table .book-list-description, .public-account-book-list table .book-list-description, .account-book-list .no-book, .public-account-book-list .no-book, .messaging-page .all-messages .no-message, .alert, caption {
   font-family: inherit;
   font-size: 12px;
   font-weight: 400;
@@ -208,7 +207,7 @@ main {
   border-radius: 20px;
 }
 
-.account .account-header .account-avatar .avatar-label, .account-book-list .add-book, .public-account-book-list .add-book {
+.account .account-header .account-avatar .avatar-label, .account-book-list .add-book, .public-account-book-list .add-book, .add-first-book {
   display: block;
   padding-top: 5px;
   text-decoration: underline;
@@ -216,6 +215,28 @@ main {
   font-size: 14px;
   font-weight: 400;
   color: #A6A6A6;
+}
+
+.account-book-list table tbody tr td .status, .public-account-book-list table tbody tr td .status, .book-image .unavailable {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 29.58px;
+  padding: 3.7px 13.31px;
+  font: inherit;
+  color: #fff;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 h1 {
@@ -310,6 +331,13 @@ nav {
   display: flex;
   gap: 58px;
   align-items: center;
+}
+
+.icon-messagerie, .icon-book {
+  width: 15px;
+  height: 13.13px;
+  vertical-align: -1px;
+  margin-right: 2px;
 }
 
 /* ----- Home page ----- */
@@ -569,6 +597,21 @@ nav {
   background-color: #fff;
 }
 
+.book-image {
+  position: relative;
+}
+.book-image .unavailable {
+  position: absolute;
+  top: 16px;
+  left: 90px;
+  background-color: #C56D6D;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 /* ----- Books create/edit page ----- */
 .add-edit-book-page {
   margin-inline: auto;
@@ -596,7 +639,7 @@ nav {
 .add-edit-book-form {
   margin-top: 32px;
 }
-.add-edit-book-form label {
+.add-edit-book-form label, .add-edit-book-form .title-photo {
   color: #A6A6A6;
 }
 .add-edit-book-form img {
@@ -604,6 +647,9 @@ nav {
   height: 448px;
   margin-top: 10px;
   object-fit: cover;
+}
+.add-edit-book-form input, .add-edit-book-form text-area, .add-edit-book-form select {
+  width: 435px;
 }
 .add-edit-book-form .text-area {
   min-height: 100px;
@@ -628,6 +674,9 @@ nav {
 /* ----- Register Login page ----- */
 .register-login-form {
   margin-top: 32px;
+}
+.register-login-form input {
+  width: 322px;
 }
 
 .redirect-to {
@@ -668,7 +717,7 @@ nav {
   padding: 55px 0 34px 0;
   background-color: #FAF9F7;
 }
-.messaging-page .all-messages h1 {
+.messaging-page .all-messages h1, .messaging-page .all-messages .no-message {
   margin-bottom: 27px;
   padding: 0 43px 0 34px;
 }
@@ -896,6 +945,7 @@ nav {
   min-height: 579px;
 }
 .public-account .public-account-header .public-account-send-message {
+  display: inline-block;
   margin-top: 45px;
 }
 .public-account .public-account-book-list {
@@ -933,15 +983,6 @@ nav {
   font-weight: 400;
   color: #292929;
 }
-.account-book-list table tbody tr td .status, .public-account-book-list table tbody tr td .status {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 29.58px;
-  padding: 3.7px 13.31px;
-  font: inherit;
-  color: #fff;
-}
 .account-book-list table tbody tr td .available, .public-account-book-list table tbody tr td .available {
   background-color: #6DC5A1;
 }
@@ -973,12 +1014,16 @@ nav {
   overflow: hidden;
 }
 .account-book-list .add-book, .public-account-book-list .add-book {
-  padding: 30px;
+  padding: 0 30px 30px 30px;
   text-align: right;
 }
 .account-book-list .no-book, .public-account-book-list .no-book {
   padding: 30px;
   text-align: center;
+}
+
+.add-first-book {
+  margin: 0 0 30px 30px;
 }
 
 .error-page {

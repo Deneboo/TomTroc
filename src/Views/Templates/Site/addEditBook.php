@@ -5,10 +5,10 @@
 /** @var object $book */
 
 $id = $book ? htmlspecialchars($book->getId()) : '';
-$image =
-    $book && $book->getImage() !== ''
+$image
+    = $book && $book->getImage() !== ''
         ? htmlspecialchars($book->getImage())
-        : '/assets/images/default-book-cover.jpg';
+        : '/assets/images/site/default-book-cover.jpg';
 $title = $book ? htmlspecialchars($book->getTitle()) : '';
 $author = $book ? htmlspecialchars($book->getAuthor()) : '';
 $description = $book ? htmlspecialchars($book->getDescription()) : '';
@@ -25,9 +25,9 @@ $available = $book ? $book->isAvailable() : 0;
             <div>
                 <form class="add-edit-book-form" action="index.php?action=uploadImage" method="post" enctype="multipart/form-data">
                     <div>
-                        <label>
+                        <p class="title-photo">
                             Photo
-                        </label>
+                        </p>
                         <img class="book-form-img" src="<?= $image ?>" alt="Couverture du livre <?= $title ?>">
                     </div>
                     <?php if ($book): ?>

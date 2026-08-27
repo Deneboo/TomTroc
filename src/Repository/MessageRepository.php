@@ -39,51 +39,51 @@ class MessageRepository extends AbstractRepository
                 WHERE c.user1_id = :user_id
                     OR c.user2_id = :user_id
                 ORDER BY m.created_at DESC;
-            "; 
+            ";
 
-            $rows = $this->executeAll($query, [
-                'user_id' => $userId
-            ]);
+        $rows = $this->executeAll($query, [
+            'user_id' => $userId,
+        ]);
 
-            if (!$rows) {
-                return null;
-            }
+        if (!$rows) {
+            return null;
+        }
 
-            $messages = [];
+        $messages = [];
 
-            foreach ($rows as $data) {
-                $interlocuteur = new User(
-                    (int) $data['interlocuteur_id'],
-                    $data['interlocuteur_username'],
-                    '',
-                    '',
-                    $data['interlocuteur_avatar'],
-                    new \DateTime($data['created_at']),
-                );
+        foreach ($rows as $data) {
+            $interlocuteur = new User(
+                (int) $data['interlocuteur_id'],
+                $data['interlocuteur_username'],
+                '',
+                '',
+                $data['interlocuteur_avatar'],
+                new \DateTime($data['created_at']),
+            );
 
-                $sender = (int) $data['sender_id'] === $userId
-                    ? $user
-                    : $interlocuteur;
-                $receiver = (int) $data['receiver_id'] === $userId
-                    ? $user
-                    : $interlocuteur;
+            $sender = (int) $data['sender_id'] === $userId
+                ? $user
+                : $interlocuteur;
+            $receiver = (int) $data['receiver_id'] === $userId
+                ? $user
+                : $interlocuteur;
 
-                $message = new Message(
-                    (int) $data['message_id'],
-                    $data['message_text'],
-                    $sender,
-                    $receiver,
-                    new \DateTime($data['created_at']),
-                    $data['message_book_id'] !== null ? (int) $data['message_book_id'] : null
-                );
+            $message = new Message(
+                (int) $data['message_id'],
+                $data['message_text'],
+                $sender,
+                $receiver,
+                new \DateTime($data['created_at']),
+                $data['message_book_id'] !== null ? (int) $data['message_book_id'] : null,
+            );
 
-                $messages[] = [
-                    'message' => $message,
-                    'interlocuteur' => $interlocuteur,
-                ];
-            }
+            $messages[] = [
+                'message' => $message,
+                'interlocuteur' => $interlocuteur,
+            ];
+        }
 
-            return  $messages;
+        return  $messages;
     }
 
     public function getOneConversation(int $userId, int $interlocuteurId)
@@ -96,7 +96,7 @@ class MessageRepository extends AbstractRepository
             ";
 
         $data = $this->executeOne($query, ['userId' => $userId, 'interlocutorId' => $interlocuteurId]);
-        
+
         // $data is an array because unhydrated.
         return $data;
     }
@@ -124,7 +124,7 @@ class MessageRepository extends AbstractRepository
 
         $rows = $this->executeAll($query, ['conversationId' => $conversationId]);
         $messages = [];
-        
+
         foreach ($rows as $data) {
             $sender = new User(
                 (int) $data['sender_id'],
@@ -132,7 +132,7 @@ class MessageRepository extends AbstractRepository
                 $data['sender_username'],
                 '',
                 $data['sender_avatar'],
-                new \DateTime($data['created_at'])
+                new \DateTime($data['created_at']),
             );
 
             $receiver = new User(
@@ -141,16 +141,16 @@ class MessageRepository extends AbstractRepository
                 $data['receiver_username'],
                 '',
                 $data['receiver_avatar'],
-                new \DateTime($data['created_at'])
+                new \DateTime($data['created_at']),
             );
 
-        $message = new Message(
+            $message = new Message(
                 (int) $data['message'],
                 $data['message'],
                 $sender,
                 $receiver,
                 new \DateTime($data['created_at']),
-                $data['book_id'] !== null ? (int) $data['book_id'] : null
+                $data['book_id'] !== null ? (int) $data['book_id'] : null,
             );
             $messages[] = $message;
         }
@@ -169,7 +169,7 @@ class MessageRepository extends AbstractRepository
             'message' => $message,
             'senderId' => $senderId,
             'receiverId' => $receiverId,
-            'conversationId' => $conversationId
+            'conversationId' => $conversationId,
         ]);
         $id = (int) $this->pdo->lastInsertId();
 

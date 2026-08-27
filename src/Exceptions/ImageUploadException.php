@@ -13,12 +13,12 @@ class ImageUploadException extends \Exception
         // code returned with \Exception
         return match ($this->code) {
             self::FILE_TOO_LARGE => $this->message,
-            self::INVALID_MIME_TYPE =>
-                "Seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés.",
-            self::UPLOAD_FAILED =>
-                "Une erreur s'est produite lors du téléchargement du fichier.",
-            default =>
-                "Une erreur s'est produite lors du téléchargement de l'image.",
+            self::INVALID_MIME_TYPE
+                => "Seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés.",
+            self::UPLOAD_FAILED
+                => "Une erreur s'est produite lors du téléchargement du fichier.",
+            default
+            => "Une erreur s'est produite lors du téléchargement de l'image.",
         };
     }
 }

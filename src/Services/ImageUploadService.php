@@ -3,14 +3,14 @@
 namespace App\Services;
 
 use App\Exceptions\ImageUploadException;
+
 class ImageUploadService
 {
-        public function uploadImage(
-            string $imageType,
-            int $userId,
-            ?int $bookId = null
-        ): string 
-        {
+    public function uploadImage(
+        string $imageType,
+        int $userId,
+        ?int $bookId = null,
+    ): string {
 
         $targetDir = __DIR__
             . '/../../public/assets/uploads/'
@@ -25,7 +25,7 @@ class ImageUploadService
 
         $file = $_FILES['fileToUpload'];
         $extension = strtolower(
-            pathinfo($file['name'], PATHINFO_EXTENSION)
+            pathinfo($file['name'], PATHINFO_EXTENSION),
         );
         $fileName = $imageType === 'book_cover' ? $bookId . '_' . $imageType . '.' . $extension : $imageType . '.' . $extension;
         $targetFile = $targetDir . $fileName;
@@ -35,7 +35,7 @@ class ImageUploadService
             $targetFile,
         )) {
             throw new ImageUploadException(
-                code: ImageUploadException::UPLOAD_FAILED
+                code: ImageUploadException::UPLOAD_FAILED,
             );
         }
 
