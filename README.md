@@ -26,8 +26,13 @@ docker compose up --build
 
 ```bash
 docker exec -it tomtroc-php-1 bash
+```
 
+```bash
 composer install
+```
+
+```bash
 composer dump-autoload
 ```
 

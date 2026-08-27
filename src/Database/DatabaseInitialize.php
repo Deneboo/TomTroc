@@ -127,7 +127,7 @@ class DatabaseInitialize
 
         $stmt = $this->pdo->prepare("
             INSERT INTO books (title, author, description, image, created_at, user_id)
-            VALUES (:title, :author, :description, :image, :created_at), :user_id
+            VALUES (:title, :author, :description, :image, :created_at, :user_id)
         ");
 
         foreach (BookFixtures::getData() as $book) {
