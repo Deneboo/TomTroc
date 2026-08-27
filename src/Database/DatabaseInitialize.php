@@ -109,8 +109,8 @@ class DatabaseInitialize
         }
 
         $stmt = $this->pdo->prepare("
-            INSERT INTO users (email, password, username, avatar)
-            VALUES (:email, :password, :username, :avatar)
+            INSERT INTO users (email, password, username, avatar, created_at)
+            VALUES (:email, :password, :username, :avatar, :created_at)
         ");
 
         foreach (UserFixtures::getData() as $user) {
@@ -126,8 +126,8 @@ class DatabaseInitialize
         }
 
         $stmt = $this->pdo->prepare("
-            INSERT INTO books (title, author, description, image, user_id)
-            VALUES (:title, :author, :description, :image, :user_id)
+            INSERT INTO books (title, author, description, image, created_at, user_id)
+            VALUES (:title, :author, :description, :image, :created_at), :user_id
         ");
 
         foreach (BookFixtures::getData() as $book) {
@@ -136,6 +136,7 @@ class DatabaseInitialize
                 'author'      => $book['author'],
                 'description' => $book['description'],
                 'image'       => $book['image'],
+                'created_at'  => $book['created_at'],
                 'user_id'     => $users[$book['seller']],
             ]);
         }
