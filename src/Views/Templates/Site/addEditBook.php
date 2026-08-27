@@ -40,7 +40,7 @@ $available = $book ? $book->isAvailable() : 0;
                         name="id"
                         value="<?= $id ?>"
                     >
-                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" value="<?= $id ?>" style="display: none;">
+                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="this.form.submit()" style="display: none;">
                 </form>
                 <?php if (isset($_SESSION['flash_error_upload_book_cover'])): ?>
                     <div class="alert alert-book-cover alert-danger">
