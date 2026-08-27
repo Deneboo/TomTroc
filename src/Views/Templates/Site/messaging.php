@@ -96,7 +96,7 @@ if ($selectedInterlocuteur !== null) {
                     <form class="add-edit-book-form form-details" method="post" action="index.php?action=sendMessage&id=<?= $selectedInterlocuteurId ?>">
                         <div>
                             <label for="messageToSend" class="sr-only">Votre message</label>
-                            <input id="messageToSend" name="messageToSend" placeholder="Tapez votre message ici" class="message-input"></input>
+                            <input id="messageToSend" name="messageToSend" placeholder="Tapez votre message ici" class="message-input">
                         </div>
                         <button type="submit" class="submit btn btn-form btn-primary message-button">Envoyer</button>
                     </form>  
