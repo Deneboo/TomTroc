@@ -82,7 +82,7 @@
     <a href="index.php?action=books" class="btn btn-secondary">Voir tous les livres</a>
   
 </div>
-<img src="/assets/images/darwin-vegher.jpg" alt="image de livres" class="home-img" >
+<img src="/assets/images/site/darwin-vegher.jpg" alt="image de livres" class="home-img" >
 
 <!-- Our values -->
 <div class="home-container our-values">
