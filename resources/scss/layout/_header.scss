@@ -43,6 +43,11 @@ nav {
   color: inherit;
 }
 
+.active {
+  font-weight: 600;
+  font-style: semi-bold;
+}
+
 .nav-right {
   display: flex;
   gap: 58px;
