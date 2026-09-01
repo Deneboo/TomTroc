@@ -13,7 +13,7 @@
             <h1>Nos livres à échanger</h1>
             <form method="get" action="index.php"  class="search-input">
                 <button type="submit" class="search-button" aria-label="Rechercher">
-                    <img src="/assets/images/lens.png" alt="">
+                    <img src="/assets/images/site/lens.png" alt="">
                 </button>
                 <label for="searchBook" class="sr-only">Rechercher un livre</label>
                 <input type="hidden" name="action" value="search" >
