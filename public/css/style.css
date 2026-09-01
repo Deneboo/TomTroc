@@ -327,6 +327,11 @@ nav {
   color: inherit;
 }
 
+.active {
+  font-weight: 600;
+  font-style: semi-bold;
+}
+
 .nav-right {
   display: flex;
   gap: 58px;
@@ -338,6 +343,20 @@ nav {
   height: 13.13px;
   vertical-align: -1px;
   margin-right: 2px;
+}
+
+.unread-message-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 8.25px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #F5F3EF;
+  background-color: #000;
+  border-radius: 50%;
 }
 
 /* ----- Home page ----- */

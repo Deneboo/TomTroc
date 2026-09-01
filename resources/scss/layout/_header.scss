@@ -38,9 +38,14 @@ nav {
 }
 
 .nav-left a, .nav-right a {
-  font-family: 'Inter', sans-serif;
+  font-family: $font-body;
   font-size: 14px;
   color: inherit;
+}
+
+.active {
+  font-weight: 600;
+  font-style: semi-bold;
 }
 
 .nav-right {
@@ -54,4 +59,18 @@ nav {
   height: 13.13px;
   vertical-align: -1px;
   margin-right: 2px;
+}
+
+.unread-message-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-body;
+  font-weight: 700;
+  font-size: 8.25px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: $background-color;
+  background-color: $title-color;
+  border-radius: 50%;
 }

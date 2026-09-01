@@ -90,6 +90,10 @@ class BookController
 
     public function addEditBook(): void
     {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=loginPage');
+            exit;
+        }
         $bookId = isset($_POST['id']) ? (int) $_POST['id'] : null;
 
         $title = trim($_POST['title'] ?? '');
@@ -173,6 +177,11 @@ class BookController
 
     public function uploadImage(): void
     {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=loginPage');
+            exit;
+        }
+
         $bookId = isset($_POST['id']) ? (int) $_POST['id'] : null;
         $userId = (int) $_SESSION['user_id'];
         $imageType = 'book_cover';
@@ -230,6 +239,11 @@ class BookController
 
     public function deleteBook(): void
     {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=loginPage');
+            exit;
+        }
+        
         $bookId = isset($_GET['id']) ? (int) $_GET['id'] : null;
 
         if ($bookId === null) {

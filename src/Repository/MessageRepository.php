@@ -16,6 +16,7 @@ class MessageRepository extends AbstractRepository
                     m.message AS message_text,
                     m.sender_id AS sender_id,
                     m.receiver_id AS receiver_id,
+                    m.is_read AS is_read,
                     m.book_id AS message_book_id,
                     interlocuteur.id AS interlocuteur_id,
                     interlocuteur.username AS interlocuteur_username,
@@ -74,7 +75,8 @@ class MessageRepository extends AbstractRepository
                 $sender,
                 $receiver,
                 new \DateTime($data['created_at']),
-                $data['message_book_id'] !== null ? (int) $data['message_book_id'] : null,
+                $data['is_read'] === 1 ? true : false,
+                $data['message_book_id'] !== null ? (int) $data['message_book_id'] : null
             );
 
             $messages[] = [
@@ -126,31 +128,38 @@ class MessageRepository extends AbstractRepository
         $messages = [];
 
         foreach ($rows as $data) {
-            $sender = new User(
-                (int) $data['sender_id'],
-                $data['sender_email'],
-                $data['sender_username'],
-                '',
-                $data['sender_avatar'],
-                new \DateTime($data['created_at']),
-            );
+            $senderId = (int) $data['sender_id'];
+            $receiverId = (int) $data['receiver_id'];
 
-            $receiver = new User(
-                (int) $data['receiver_id'],
-                $data['receiver_email'],
-                $data['receiver_username'],
-                '',
-                $data['receiver_avatar'],
-                new \DateTime($data['created_at']),
-            );
+            if (!isset($users[$senderId])) {
+                $users[$senderId] = new User(
+                    $senderId,
+                    $data['sender_email'],
+                    $data['sender_username'],
+                    '',
+                    $data['sender_avatar'],
+                    new \DateTime($data['created_at'])
+                );
+            }
 
+            if (!isset($users[$receiverId])) {
+                $users[$receiverId] = new User(
+                    $receiverId,
+                    $data['receiver_email'],
+                    $data['receiver_username'],
+                    '',
+                    $data['receiver_avatar'],
+                    new \DateTime($data['created_at'])
+                );
+            }
             $message = new Message(
-                (int) $data['message'],
+                (int) $data['id'],
                 $data['message'],
-                $sender,
-                $receiver,
+                $users[$senderId],
+                $users[$receiverId],
                 new \DateTime($data['created_at']),
-                $data['book_id'] !== null ? (int) $data['book_id'] : null,
+                $data['is_read'] === 1 ? true : false,
+                $data['book_id'] !== null ? (int) $data['book_id'] : null
             );
             $messages[] = $message;
         }
@@ -174,5 +183,47 @@ class MessageRepository extends AbstractRepository
         $id = (int) $this->pdo->lastInsertId();
 
         return $id;
+    }
+
+    public function markMessagesAsRead(int $conversationId, int $userId): void
+    {
+        $query = "
+            UPDATE messages
+            SET is_read = 1
+            WHERE conversation_id = :conversationId
+            AND receiver_id = :userId
+        ";
+
+        $this->execute($query, [
+            'conversationId' => $conversationId,
+            'userId' => $userId,
+        ]);
+    }
+
+    public function hasUnreadMessages(int $userId): bool
+    {
+        $query = "
+            SELECT COUNT(*) AS unread_count
+            FROM messages
+            WHERE receiver_id = :userId AND is_read = 0
+        ";
+
+        $data = $this->executeOne($query, ['userId' => $userId]);
+
+        return (int) $data['unread_count'] > 0;
+    }
+
+    public function countUnreadMessages(int $userId): int
+    {
+        $query = "
+            SELECT COUNT(*)
+            FROM messages
+            WHERE receiver_id = :userId
+            AND is_read = 0
+        ";
+
+        $data = $this->executeOne($query, ['userId' => $userId]);
+
+        return (int) $data['COUNT(*)'];
     }
 }

@@ -27,7 +27,10 @@ class ImageUploadService
         $extension = strtolower(
             pathinfo($file['name'], PATHINFO_EXTENSION),
         );
-        $fileName = $imageType === 'book_cover' ? $bookId . '_' . $imageType . '.' . $extension : $imageType . '.' . $extension;
+        $fileName = $imageType === 
+            'book_cover' ? $bookId . '_' . $imageType . '.' . $extension : 
+            $imageType . '.' . $extension;
+
         $targetFile = $targetDir . $fileName;
 
         if (!move_uploaded_file(
