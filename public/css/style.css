@@ -356,7 +356,8 @@ nav {
   letter-spacing: 0;
   color: #F5F3EF;
   background-color: #000;
-  border-radius: 50%;
+  border-radius: 6.25px;
+  padding: 3px 3px;
 }
 
 /* ----- Home page ----- */
