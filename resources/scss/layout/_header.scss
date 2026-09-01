@@ -65,6 +65,8 @@ nav {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  top: -2.5px;
   font-family: $font-body;
   font-weight: 700;
   font-size: 8.25px;
