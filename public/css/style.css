@@ -340,6 +340,21 @@ nav {
   margin-right: 2px;
 }
 
+.unread-message-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -2px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 8.25px;
+  color: #F5F3EF;
+  background-color: #000;
+  padding: 3px 3px;
+  border-radius: 6.75px;
+}
+
 /* ----- Home page ----- */
 /* About section */
 .about {

@@ -13,6 +13,9 @@ Projet réalisé dans le cadre de la formation **Développeur d'application PHP/
 
 ```bash
 git clone <url-du-repository>
+```
+
+```bash
 cd tomtroc
 ```
 

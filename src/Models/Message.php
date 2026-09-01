@@ -9,6 +9,7 @@ class Message
     private User $sender;
     private User $receiver;
     private \DateTime $createdAt;
+    private bool $isRead = false;
     private ?int $bookId = null;
 
     public function __construct(
@@ -17,13 +18,15 @@ class Message
         User $sender,
         User $receiver,
         \DateTime $createdAt,
-        ?int $bookId = null,
+        bool $isRead = false,
+        ?int $bookId = null
     ) {
         $this->id = $id;
         $this->message = $message;
         $this->sender = $sender;
         $this->receiver = $receiver;
         $this->createdAt = $createdAt;
+        $this->isRead = $isRead;
         $this->bookId = $bookId;
     }
 
@@ -79,6 +82,17 @@ class Message
     public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function isRead(): bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): self
+    {
+        $this->isRead = $isRead;
         return $this;
     }
 

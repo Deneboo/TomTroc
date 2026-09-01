@@ -45,6 +45,7 @@ class UserController
         $user = $this->userRepository->findUserById($_SESSION['user_id']);
         $books = $this->userRepository->findByUserId($_SESSION['user_id']);
         $bookCount = count($books);
+
         View::render(
             'Templates/Site/account',
             [
@@ -69,37 +70,37 @@ class UserController
             exit;
         }
 
-        try {
-            $userProfile = $this->userRepository->findUserById($userToVisit);
-            $books = $this->userRepository->findByUserId($userToVisit);
-            $bookCount = count($books);
+        $userProfile = $this->userRepository->findUserById($userToVisit);
 
-            if ($userToVisit == $_SESSION['user_id']) {
-                View::render(
-                    'Templates/Site/account',
-                    [
-                        'user' => $userProfile,
-                        'books' => $books,
-                        'bookCount' => $bookCount,
-                    ],
-                );
-            }
+        if (!$userProfile) {
+            header('Location: index.php?action=error');
+            exit;
+        }
 
+        $books = $this->userRepository->findByUserId($userToVisit);
+        $bookCount = count($books);
 
+        if ($userToVisit == $_SESSION['user_id']) {
             View::render(
-                'Templates/Site/publicAccount',
+                'Templates/Site/account',
                 [
                     'user' => $userProfile,
                     'books' => $books,
                     'bookCount' => $bookCount,
                 ],
             );
-        } catch (\Exception $e) {
-            error_log($e->getMessage());
-
-            header('Location: index.php?action=error');
             exit;
         }
+
+        View::render(
+            'Templates/Site/publicAccount',
+            [
+                'user' => $userProfile,
+                'books' => $books,
+                'bookCount' => $bookCount,
+            ],
+        );
+
     }
 
     public function updateaccount(): void
@@ -153,6 +154,11 @@ class UserController
 
     public function uploadAvatar(): void
     {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit;
+        }
+        
         $userId = (int) $_SESSION['user_id'];
         $imageType = 'avatar';
 
@@ -199,8 +205,10 @@ class UserController
         $userId = $_SESSION['user_id'];
         $user = $this->userRepository->findUserById($userId);
 
+        // Latest messages for the user
         $latestMessages = $this->messageRepository->getAllLatestMessagesForOneUser($userId, $user);
 
+        // Selected interlocuter messages and conversation
         $messages = [];
         $selectedInterlocuteurId = isset($_GET['id'])
             ? (int) $_GET['id']
@@ -218,6 +226,8 @@ class UserController
             if ($conversation !== null) {
                 $conversationId = $conversation['id'];
                 $messages = $this->messageRepository->getAllMessageFromAConversation($conversationId);
+                // Mark messages as read
+                $this->messageRepository->markMessagesAsRead($conversationId, $userId);
             } else {
                 $conversationId = null;
                 $messages = [];
@@ -228,9 +238,9 @@ class UserController
             'Templates/Site/messaging',
             [
                 'user' => $user,
-                'messages' => $messages,
                 'latestMessages' => $latestMessages,
                 'selectedInterlocuteur' => $selectedInterlocuteur,
+                'messages' => $messages,
             ],
         );
     }
