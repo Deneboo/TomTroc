@@ -100,13 +100,12 @@ class UserController
                 'bookCount' => $bookCount,
             ],
         );
-
     }
 
     public function updateaccount(): void
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=loginPage');
             exit;
         }
 
@@ -155,7 +154,7 @@ class UserController
     public function uploadAvatar(): void
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=loginPage');
             exit;
         }
         
@@ -167,29 +166,39 @@ class UserController
                 $_FILES['fileToUpload'],
                 $imageType,
             );
+
+            $path = $this->imageUploadService->uploadImage(
+                $imageType,
+                $userId,
+            );
+
         } catch (ImageUploadException $e) {
             $_SESSION['flash_error_upload_avatar'] = $e->getMessage();
             header('Location: index.php?action=account');
             exit;
         }
 
-        try {
-            $path = $this->imageUploadService->uploadImage(
-                $imageType,
-                $userId,
-            );
+        if ($path) {
+            $user = $this->userRepository->findUserById($userId);
+            
+            if ($user->getAvatar()
+                && $user->getAvatar() !== '/assets/images/site/default-avatar.png'
+                && $user->getAvatar() !== $path
+            ) {
+                $oldFile = __DIR__
+                    . '/../../public'
+                    . $user->getAvatar();
 
-            if ($path) {
-                $user = $this->userRepository->findUserById($userId);
-                $user->setAvatar($path);
-
-                $this->userRepository->update($user);
-                $_SESSION['flash_success_upload_avatar'] = "Avatar modifié avec succès.";
+                // We remove the old file
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
             }
-        } catch (ImageUploadException $e) {
-            $_SESSION['flash_error_upload_avatar'] = $e->getMessage();
-            header('Location: index.php?action=account');
-            exit;
+                        
+            $user->setAvatar($path);
+
+            $this->userRepository->update($user);
+            $_SESSION['flash_success_upload_avatar'] = "Avatar modifié avec succès.";
         }
 
         header('Location: index.php?action=account');
@@ -199,7 +208,7 @@ class UserController
     public function getMessagingView(): void
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=loginPage');
             exit;
         }
         $userId = $_SESSION['user_id'];
