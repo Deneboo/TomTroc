@@ -345,12 +345,19 @@ nav {
   margin-right: 2px;
 }
 
+.nav-right a[href*=messaging] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .unread-message-counter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  top: -2.5px;
+  position: absolute;
+  left: 103px;
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 8.25px;
